@@ -1,0 +1,11 @@
+.DS_Store
+.zsh_rake_cache
+auto
+dist
+git_tutorial/html
+git_tutorial/repos
+git_tutorial/work/**/*
+samples
+served
+src/.sass-cache/*
+.sass-cache/*

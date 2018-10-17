@@ -1,0 +1,181 @@
+
+----------------------------------------------------------------------
+
+h1. Linked List
+
+p. A Linked list is like a conga line. The hands are the "chains" or "links" or "references" and the bodies
+are called "nodes".
+
+h2. How well does a linked list perform
+
+* Finding the point of insertion: @O(n)@
+* Doing the insertion: @O(1)@
+* Space complexity: @O(n)@
+
+h2. What's the difference with a linked list and a stack?
+
+* In a stack, you cannot add an element in between. You can only take from the top.
+Linked lists have "chains" that you can unchain and attach to another node.
+
+h2. What's the difference with a linked list and an array?
+
+p. Suppose you wanted to store a to-do list with 3 items in memory. An array structure would look like
+
+<img src="array_0.png" style="width: 500px"/>
+
+p. It would assign 3 spots in memory for you. Perfect for just 3 elements! But say you changed your mind and want to add a new task
+
+<img src="array_1.png" style="width: 500px"/>
+
+p. Then you'd have to move every single item on that list to a new area in memory.
+
+p. So what could you do? Well, you could look for an area with 10 slots just in case. But what if you max out at only 5 items? Now you put those slots on hold for yourself, and nobody can use it. What a waste!
+
+p. If you use a linked list instead, your items can be anywhere in memory. The "links" can just point to the slot where the other tasks are.
+
+<img src="linked_list.png" style="width: 500px"/>
+<img src="linked_list_1.png" style="width: 500px"/>
+
+h2. Real world example of a linked list
+
+* A music playlist
+
+----------------------------------------------------------------------
+
+h1. Linked List Exercise
+
+p. These are logic exercises. Write the title and answers, then take a picture and
+send it to your instructor on Slack. She will either give it a thumbs up if it's 100% or tell you what the correct answer is if you are wrong. All your wrong answers are
+compiled and you will be tested on it again on Saturday
+
+h2. Exercises
+
+* How long would it take for you to search for the 5th item on the list?
+* What is the time complexity to search for something on the list. Remember to answer in
+big-O notation.
+* What is the space complexity of a linked list?
+* How long does it take do an insertion in a linked list?
+
+----------------------------------------------------------------------
+h1. Stacks
+
+h2. Goals
+
+* To understand what a stack is
+
+h2. What is a stack
+
+h2. How well does a stack perform
+
+h2. Examples of when to use a stack
+
+----------------------------------------------------------------------
+
+h1. Stacks Exercise
+
+
+----------------------------------------------------------------------
+
+h1. Queues
+
+h2. Goals
+
+* To understand what a queue is
+
+h2. What is a queue
+
+h2. How well does a queue perform
+
+h2. Examples of when to use a queue
+
+----------------------------------------------------------------------
+
+h1. Queues Exercise
+
+
+----------------------------------------------------------------------
+
+h1. Stacks and Queues Exercise
+
+----------------------------------------------------------------------
+
+h1. Heaps
+
+h2. Goals
+
+* To understand what a heap is
+
+h2. What is a heap
+
+h2. How well does a heap perform
+
+h2. Examples of when to use a heap
+
+----------------------------------------------------------------------
+
+h1. Heaps Exercise
+
+----------------------------------------------------------------------
+
+h1. Trees
+
+h2. Goals
+
+* To understand what a tree is
+
+h2. What is a tree
+
+h2. How well does a tree perform
+
+h2. Examples of when to use a tree
+
+----------------------------------------------------------------------
+
+h1. Trees Exercise
+
+----------------------------------------------------------------------
+
+h1. Heaps and Trees Exercise
+
+----------------------------------------------------------------------
+
+h1. Graphs
+
+h2. Goals
+
+* To understand what a graph is
+
+h2. What is a graph
+
+h2. How well does a graph perform
+
+h2. Examples of when to use a graph
+
+----------------------------------------------------------------------
+
+h1. Graphs Exercise
+
+----------------------------------------------------------------------
+
+h1. Hash Table
+
+h2. Goals
+
+* To understand what a hash table is
+
+h2. What is a hash table
+
+h2. How well does a hash table perform
+
+h2. Examples of when to use a hash table
+
+----------------------------------------------------------------------
+
+h1. Hash Table Exercise
+
+
+h1. All data structures exercise
+
+
+
+h1. All data structures exercise
