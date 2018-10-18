@@ -1,23 +1,58 @@
 
 ----------------------------------------------------------------------
 
+h1. Big O Notation
+
+p.  A way to describe how fast an algorithm is
+
+h2. I need a metaphor
+
+p. Say that we have a phone book. If we wanted to search for the last name Zed, one strategy would be to go through the alphabet one by one. A, B, C, etc.
+until I reach Z. Assume that for each letter, it takes me 1 second to look up the next. So for the 26th letter, I took 26 seconds to reach Z. 
+
+p. Another strategy one might take is to split the phone book right down the middle. That means I land in M. Z is greater than M, so I ignore the first half, and split right down the middle of the second half. That gets me to S. I split again that gets me to V, and I split again, that gets me to X, eventually I won't have to split again and hit Z. That's 4 splits, so 4 seconds.
+
+h2. What does this mean in code?
+
+p. Well in code, we have arrays. ['Anna', 'Bea', 'Cabuay', 'David', 'Elon']. A computer is dumb, and can only access elements one by one. A sequential search to Elon would take 4 steps. But a binary search would only take two. (We'll split down the middle and see that it must be in the half that has ['David', 'Elon'], then we take only one more step to find 'Elon').
+
+h2. Summary
+
+p. Big O notation tells you the number of steps it takes to accomplish a task relative to the number of elements you have. Big O might refer to worst case, average case or best case.
+
+For this course, we will define Big O as the worst case scenario.
+
+So in the example above, since you have 26 elements, and it took 26 steps, to accomplish your task, a sequential search costs, at worst, @O(n)@ time, where n is the number of elements involved. However, the second strategy, a "binary" search costs @O(logn)@ steps relative to n elements.
+
+p. Another way to figure out what the @big O@ is, is to ask yourself, at worst, how many elements do I need to access to accomplish my goal?
+
+----------------------------------------------------------------------
+
 h1. Linked List
 
-p. A Linked list is like a conga line. The hands are the "chains" or "links" or "references" and the bodies
+<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="linked_list.mp4"></source>
+  <source type="video/webm" src="linked_list.webm"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
+h2. I need a metaphor
+
+p. A linked list is like a conga line. The hands are the "chains" or "links" or "references" and the bodies
 are called "nodes".
 
 h2. How well does a linked list perform
 
-* Finding the point of insertion: @O(n)@
+* Finding an element in the list: @O(n)@
 * Doing the insertion: @O(1)@
-* Space complexity: @O(n)@
+* Doing the deletion: @O(1)@
 
 h2. What's the difference with a linked list and a stack?
 
 * In a stack, you cannot add an element in between. You can only take from the top.
 Linked lists have "chains" that you can unchain and attach to another node.
 
-h2. What's the difference with a linked list and an array?
+h2. Why is a linked list better than an array?
 
 p. Suppose you wanted to store a to-do list with 3 items in memory. An array structure would look like
 
@@ -33,50 +68,144 @@ p. So what could you do? Well, you could look for an area with 10 slots just in 
 
 p. If you use a linked list instead, your items can be anywhere in memory. The "links" can just point to the slot where the other tasks are.
 
+
 <img src="linked_list.png" style="width: 500px"/>
 <img src="linked_list_1.png" style="width: 500px"/>
 
-h2. Real world example of a linked list
+h2. Why is a linked list worse than an array?
 
-* A music playlist
+p. x = ['Lab 1', 'Lab 2', 'Lab 3', 'Lab 4', 'Lab 5']
+
+p. Suppose you finished the entire data structures course, and just want to review certain topics, for example Lab 5. Imagine I didn't have a navbar, and you had to just keep pressing next to get to anywhere. Well, instead of instantly going to the Lab 5 section, you have to keep pressing next. That means you have to press next 4 times instead of 1 to get to it! And if after you review Lab 5, you want to go back to Lab 1, you have to go back 4 times! How horrible, but you have to do it because you don't know any of the addresses of each item until you hit the item right before it. Lab 5 could be in slot address 35, Lab 1 could be in slot 92. 
+
+Arrays handle this problem better. You know the address for every item in your array. So we predictably know that address of Lab 5 will be 4 slots away from Lab 1. We don't have to ask Lab 2 what the address of Lab 3 is, Lab 3 what the address of Lab 4 is, and Lab 4, what the address of Lab 5 is. We know that each address is right next to each other. In other words, in an array, how far each item is from each other is the same as how far it is in memory.
+
+h2. What does this mean in code?
+
+p. Getting @x[3]@ in a linked list will take much longer "under the hood". To reach @x[3]@, the computer will have to ask @x[0]@, @x[1]@, and @x[2]@ for the address of @x[3]@. This means to search
+for an element within a linked list it will take @O(n)@ time -- at worst, we will need to access all the elements of the list 
+
+p. In an array, however, getting @x[3]@ will be much faster to reach @x[3]@, all we have to do is find the address of @x[0]@. This means to search for an element within a linked list it will take @O(1)@ time -- we only need 1 element out of n elements to access anything in an array.
+
+h2. Summary
 
 ----------------------------------------------------------------------
 
 h1. Linked List Exercise
 
+h2. Written Exercises
+
 p. These are logic exercises. Write the title and answers, then take a picture and
 send it to your instructor on Slack. She will either give it a thumbs up if it's 100% or tell you what the correct answer is if you are wrong. All your wrong answers are
-compiled and you will be tested on it again on Saturday
+compiled and you will be tested on it again on Saturday. 
 
-h2. Exercises
+1. How long would it take for you to search for the 5th item on the list?
 
-* How long would it take for you to search for the 5th item on the list?
-* What is the time complexity to search for something on the list. Remember to answer in
+2. What is the time complexity to search for something on the list. Remember to answer in
 big-O notation.
-* What is the space complexity of a linked list?
-* How long does it take do an insertion in a linked list?
+
+3. What is the space complexity of a linked list?
+
+4. How long does it take do an insertion in a linked list?
+
+5. What is more time efficient for insertions? Arrays or Linked Lists?
+
+6. What is more space efficient? Arrays or Linked Lists?
+
+7. If we needed a data structure to do a lot of reads, do we use an Array or a Linked List?
+
+8. What data structure should we use if we expect to do insertions in the middle of a list a lot?
+
+9. What data structure should we use if we expect a lot of deletions? An Array or a Linked List?
 
 ----------------------------------------------------------------------
 h1. Stacks
 
-h2. Goals
+<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="stack.mp4"></source>
+  <source type="video/webm" src="stack.webm"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
 
-* To understand what a stack is
 
-h2. What is a stack
+h2. I need a metaphor!
+* Imagine a stack of books. You could pile on more books on top. The last ones you put are the first ones to go out should you need it.
 
-h2. How well does a stack perform
+h2. Stacks are LIFO
+
+* LIFO - Last in First Out
+
+h2. How well does a stack perform?
+
+* Finding an item: @O(n)@
+* Inserting an item: @O(1)@
+* Deleting an item: @O(1)@
+
+h2. What does this look like in code?
+
+File: my_stack.py
+my_stack = new Stack()
+my_stack.push('Anna')
+my_stack.push('Bea')
+my_stack.push('Candy')
+
+print(my_stack) # will look like ['Anna', 'Bea', 'Candy']
+
+my_stack.pop()
+
+print(my_stack) # will look like ['Anna', 'Bea']
+EOF
+
+h2. Wait is a stack just a list?
+
+Not really. You could use a python list to implement (create) a stack, but a stack only has 
+2 main methods. Push and pop. You could use a list as a stack in this way.
+
+File: my_stack_using_python_lists.py
+my_stack = []
+my_stack.append('Anna')
+my_stack.append('Bea')
+my_stack.append('Candy')
+
+print(my_stack) # will look like ['Anna', 'Bea', 'Candy']
+
+my_stack.pop()
+
+print(my_stack) # will look like ['Anna', 'Bea']
+EOF
+
+
+h2. Summary
+
+* Stacks are last in, first out. You "push" (add) or "pop" (remove) with a stack
 
 h2. Examples of when to use a stack
 
+* Undo / redo in a document. Every action will get pushed or popped
 ----------------------------------------------------------------------
 
 h1. Stacks Exercise
+
+h2. Written Exercises
+
+1. What is the runtime of accessing an item in a stack?
+2. What is the runtime for insertion in a stack?
+3. What is the runtime for deleting an item in a stack?
+4. @my_stack = [10, 2, 50, 30, 7]@. Write down what the stack will look like if you push 1
+5. @my_stack = [10, 2, 50, 30, 7]@. Write down what the stack will do if you pop it
+6. @popped_item = [10, 2, 50, 30, 7].pop()@. What is the value of popped item?
+7. What's the difference between a stack and a python list?
 
 
 ----------------------------------------------------------------------
 
 h1. Queues
+
+<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="queue.mp4"></source>
+  <source type="video/webm" src="queue.webm"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
 
 h2. Goals
 

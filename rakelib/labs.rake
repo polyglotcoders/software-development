@@ -169,7 +169,7 @@ directory Labs::HTML_DIR
 directory Labs::WORK_DIR
 
 TO_HTML = "#{Labs::HTML_DIR}/%f"
-EXTRA_SRCS = FileList['src/*.css', 'src/*.js', 'src/*.gif', 'src/*.jpg', 'src/*.png', 'src/*.eot', 'src/*.ttf', 'src/*.woff', 'diagrams/*.png', 'src/manifest.json']
+EXTRA_SRCS = FileList['src/*.css', 'src/*.js', 'src/*.gif', 'src/*.jpg', 'src/*.png', 'src/*.eot', 'src/*.ttf', 'src/*.woff', 'diagrams/*.png', 'src/manifest.json', 'src/*.mp4']
 EXTRA_OUT = EXTRA_SRCS.pathmap(TO_HTML)
 INDEX_HTML = File.join(Labs::HTML_DIR, "index.html")
 
