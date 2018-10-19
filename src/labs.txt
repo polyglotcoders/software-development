@@ -8,7 +8,7 @@ p.  A way to describe how fast an algorithm is
 h2. I need a metaphor
 
 p. Say that we have a phone book. If we wanted to search for the last name Zed, one strategy would be to go through the alphabet one by one. A, B, C, etc.
-until I reach Z. Assume that for each letter, it takes me 1 second to look up the next. So for the 26th letter, I took 26 seconds to reach Z. 
+until I reach Z. Assume that for each letter, it takes me 1 second to look up the next. So for the 26th letter, I took 26 seconds to reach Z.
 
 p. Another strategy one might take is to split the phone book right down the middle. That means I land in M. Z is greater than M, so I ignore the first half, and split right down the middle of the second half. That gets me to S. I split again that gets me to V, and I split again, that gets me to X, eventually I won't have to split again and hit Z. That's 4 splits, so 4 seconds.
 
@@ -25,6 +25,203 @@ For this course, we will define Big O as the worst case scenario.
 So in the example above, since you have 26 elements, and it took 26 steps, to accomplish your task, a sequential search costs, at worst, @O(n)@ time, where n is the number of elements involved. However, the second strategy, a "binary" search costs @O(logn)@ steps relative to n elements.
 
 p. Another way to figure out what the @big O@ is, is to ask yourself, at worst, how many elements do I need to access to accomplish my goal?
+
+----------------------------------------------------------------------
+h1. Stacks
+
+<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="stack.mp4"></source>
+  <source type="video/webm" src="stack.webm"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
+
+h2. I need a metaphor!
+* Imagine a stack of books. You could pile on more books on top. The last ones you put are the first ones to go out should you need it.
+
+h2. How well does a stack perform?
+
+* Finding an item: @O(n)@
+* Inserting an item: @O(1)@
+* Deleting an item: @O(1)@
+
+
+h2. What operations can you do with a stack?
+
+* push, pop, find
+* Remember, you cannot insert or delete from anywhere but the end
+
+h2. Stacks are LIFO
+
+* LIFO - Last in First Out
+
+h2. Why is it O(1) time to insert something. Don't you have to go through n elements
+before you do an insertion?
+
+p. We're not talking about the entire process of finding and then inserting.
+Since you already know the index (location) of where to @push@ the last item,
+all it takes is a simple insertion at that index. Which is constant.
+
+
+p. Here's another way to think about it. If you had a stack of length 100 and you
+wanted to @push@ a new item. Would you have to look at every single item of the list
+to do your insertion if you already know the index of the item? No. You just do
+
+Code:
+my_stack[100] = 'new item'
+
+h2. What does this look like in code?
+
+File: my_stack.py
+my_stack = new Stack()
+my_stack.push('Anna')
+my_stack.push('Bea')
+my_stack.push('Candy')
+
+print(my_stack) # will look like ['Anna', 'Bea', 'Candy']
+
+my_stack.pop()
+
+print(my_stack) # will look like ['Anna', 'Bea']
+EOF
+
+h2. Wait is a stack just a list?
+
+Not really. You could use a python list to implement (create) a stack, but a stack only has
+2 main methods. Push and pop. You could use a list as a stack in this way.
+
+File: my_stack_using_python_lists.py
+my_stack = []
+my_stack.append('Anna')
+my_stack.append('Bea')
+my_stack.append('Candy')
+
+print(my_stack) # will look like ['Anna', 'Bea', 'Candy']
+
+my_stack.pop()
+
+print(my_stack) # will look like ['Anna', 'Bea']
+EOF
+
+
+h2. Summary
+
+* Stacks are last in, first out. You "push" (add) or "pop" (remove) with a stack
+You only push/pop from the end of the stack
+
+h2. Examples of when to use a stack
+
+* Undo / redo in a document. Every action will get pushed or popped
+----------------------------------------------------------------------
+
+h1. Stacks Exercise
+
+h2. Written Exercises
+
+1. What is the runtime of accessing an item in a stack?
+2. What is the runtime for insertion in a stack?
+3. What is the runtime for deleting an item in a stack?
+4. @my_stack = [10, 2, 50, 30, 7]@. Write down what the stack will look like if you push 1
+5. @my_stack = [10, 2, 50, 30, 7]@. Write down what the stack will do if you pop it
+6. @popped_item = [10, 2, 50, 30, 7].pop()@. What is the value of popped item?
+7. What's the difference between a stack and a python list?
+
+
+----------------------------------------------------------------------
+
+h1. Queues
+
+<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="queue.mp4"></source>
+  <source type="video/webm" src="queue.webm"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
+h2. I need a metaphor!
+
+* A queue is literally a queue. Or a line. Or a lineup. But unlike the real world,
+nobody is allowed to budge. Nothing can get "inserted" in the middle.
+
+h2. How well does a queue perform
+
+* Finding an item: @O(n)@
+* Inserting an item: @O(1)@
+* Deleting an item: @O(1)@
+
+h2. Why is it O(1) time to insert something. Don't you have to go through n elements
+before you do an insertion?
+
+p. We're not talking about the entire process of finding and then inserting.
+Since you already know the index (location) of where to queue the last item,
+all it takes is a simple insertion at that index. Which is constant.
+
+
+p. Here's another way to think about it. If you had a queue of length 100 and you
+wanted to queue a new item. Would you have to look at every single item of the list
+to do your insertion if you already know the index of the item? No. You just do
+
+Code:
+my_queue[100] = 'new item'
+
+h2. What operations can you do with a queue?
+
+* enqueue, dequeue, find
+* Remember, you cannot enqueue or dequeue from anywhere but the end
+
+h2. What does this look like in code?
+
+File: my_queue.py
+my_queue = new Queue()
+my_queue.push('Anna')
+my_queue.push('Bea')
+my_queue.push('Candy')
+
+print(my_queue) # will look like ['Anna', 'Bea', 'Candy']
+
+my_queue.pop()
+
+print(my_queue) # will look like ['Anna', 'Bea']
+EOF
+
+h2. Wait is a queue just a list?
+
+Not really. You could use a python list to implement (create) a queue, but a queue only has
+2 main methods. Enqueue and dequeue. You could use a list as a queue in this way.
+
+File: my_queue_using_lists.py
+my_queue = []
+my_queue.append('Anna')
+my_queue.append('Bea')
+my_queue.append('Candy')
+
+print(my_queue) # will look like ['Anna', 'Bea', 'Candy']
+
+my_queue.pop(0) # just pop the first item. Another option is to do a popleft
+
+print(my_queue) # will look like ['Bea', 'Candy']
+EOF
+
+
+h2. Examples of when to use a queue
+
+* Ticket waitlist at the DMV
+
+----------------------------------------------------------------------
+
+h1. Queues Exercise
+
+1. What is the runtime of accessing an item in a queue?
+2. What is the runtime for insertion in a queue?
+3. What is the runtime for deleting an item in a queue?
+4. @my_queue = [10, 2, 50, 30, 7]@. Write down what the queue will look like if you queue 1
+5. @my_queue = [10, 2, 50, 30, 7]@. Write down what the queue will do if you dequeue it
+6. @popped_item = [10, 2, 50, 30, 7].pop()@. What is the value of dequeued item?
+7. What's the difference between a queue and a python list?
+
+
+----------------------------------------------------------------------
+
+h1. Stacks and Queues Exercise
 
 ----------------------------------------------------------------------
 
@@ -46,6 +243,10 @@ h2. How well does a linked list perform
 * Finding an element in the list: @O(n)@
 * Doing the insertion: @O(1)@
 * Doing the deletion: @O(1)@
+
+h2. What operations can you do with a linked list?
+
+* insert anywhere, find
 
 h2. What's the difference with a linked list and a stack?
 
@@ -76,14 +277,14 @@ h2. Why is a linked list worse than an array?
 
 p. x = ['Lab 1', 'Lab 2', 'Lab 3', 'Lab 4', 'Lab 5']
 
-p. Suppose you finished the entire data structures course, and just want to review certain topics, for example Lab 5. Imagine I didn't have a navbar, and you had to just keep pressing next to get to anywhere. Well, instead of instantly going to the Lab 5 section, you have to keep pressing next. That means you have to press next 4 times instead of 1 to get to it! And if after you review Lab 5, you want to go back to Lab 1, you have to go back 4 times! How horrible, but you have to do it because you don't know any of the addresses of each item until you hit the item right before it. Lab 5 could be in slot address 35, Lab 1 could be in slot 92. 
+p. Suppose you finished the entire data structures course, and just want to review certain topics, for example Lab 5. Imagine I didn't have a navbar, and you had to just keep pressing next to get to anywhere. Well, instead of instantly going to the Lab 5 section, you have to keep pressing next. That means you have to press next 4 times instead of 1 to get to it! And if after you review Lab 5, you want to go back to Lab 1, you have to go back 4 times! How horrible, but you have to do it because you don't know any of the addresses of each item until you hit the item right before it. Lab 5 could be in slot address 35, Lab 1 could be in slot 92.
 
 Arrays handle this problem better. You know the address for every item in your array. So we predictably know that address of Lab 5 will be 4 slots away from Lab 1. We don't have to ask Lab 2 what the address of Lab 3 is, Lab 3 what the address of Lab 4 is, and Lab 4, what the address of Lab 5 is. We know that each address is right next to each other. In other words, in an array, how far each item is from each other is the same as how far it is in memory.
 
-h2. What does this mean in code?
+h2. Now explain the difference in code
 
 p. Getting @x[3]@ in a linked list will take much longer "under the hood". To reach @x[3]@, the computer will have to ask @x[0]@, @x[1]@, and @x[2]@ for the address of @x[3]@. This means to search
-for an element within a linked list it will take @O(n)@ time -- at worst, we will need to access all the elements of the list 
+for an element within a linked list it will take @O(n)@ time -- at worst, we will need to access all the elements of the list
 
 p. In an array, however, getting @x[3]@ will be much faster to reach @x[3]@, all we have to do is find the address of @x[0]@. This means to search for an element within a linked list it will take @O(1)@ time -- we only need 1 element out of n elements to access anything in an array.
 
@@ -97,7 +298,7 @@ h2. Written Exercises
 
 p. These are logic exercises. Write the title and answers, then take a picture and
 send it to your instructor on Slack. She will either give it a thumbs up if it's 100% or tell you what the correct answer is if you are wrong. All your wrong answers are
-compiled and you will be tested on it again on Saturday. 
+compiled and you will be tested on it again on Saturday.
 
 1. How long would it take for you to search for the 5th item on the list?
 
@@ -118,113 +319,6 @@ big-O notation.
 
 9. What data structure should we use if we expect a lot of deletions? An Array or a Linked List?
 
-----------------------------------------------------------------------
-h1. Stacks
-
-<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
-  <source type="video/mp4" src="stack.mp4"></source>
-  <source type="video/webm" src="stack.webm"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
-
-
-h2. I need a metaphor!
-* Imagine a stack of books. You could pile on more books on top. The last ones you put are the first ones to go out should you need it.
-
-h2. Stacks are LIFO
-
-* LIFO - Last in First Out
-
-h2. How well does a stack perform?
-
-* Finding an item: @O(n)@
-* Inserting an item: @O(1)@
-* Deleting an item: @O(1)@
-
-h2. What does this look like in code?
-
-File: my_stack.py
-my_stack = new Stack()
-my_stack.push('Anna')
-my_stack.push('Bea')
-my_stack.push('Candy')
-
-print(my_stack) # will look like ['Anna', 'Bea', 'Candy']
-
-my_stack.pop()
-
-print(my_stack) # will look like ['Anna', 'Bea']
-EOF
-
-h2. Wait is a stack just a list?
-
-Not really. You could use a python list to implement (create) a stack, but a stack only has 
-2 main methods. Push and pop. You could use a list as a stack in this way.
-
-File: my_stack_using_python_lists.py
-my_stack = []
-my_stack.append('Anna')
-my_stack.append('Bea')
-my_stack.append('Candy')
-
-print(my_stack) # will look like ['Anna', 'Bea', 'Candy']
-
-my_stack.pop()
-
-print(my_stack) # will look like ['Anna', 'Bea']
-EOF
-
-
-h2. Summary
-
-* Stacks are last in, first out. You "push" (add) or "pop" (remove) with a stack
-
-h2. Examples of when to use a stack
-
-* Undo / redo in a document. Every action will get pushed or popped
-----------------------------------------------------------------------
-
-h1. Stacks Exercise
-
-h2. Written Exercises
-
-1. What is the runtime of accessing an item in a stack?
-2. What is the runtime for insertion in a stack?
-3. What is the runtime for deleting an item in a stack?
-4. @my_stack = [10, 2, 50, 30, 7]@. Write down what the stack will look like if you push 1
-5. @my_stack = [10, 2, 50, 30, 7]@. Write down what the stack will do if you pop it
-6. @popped_item = [10, 2, 50, 30, 7].pop()@. What is the value of popped item?
-7. What's the difference between a stack and a python list?
-
-
-----------------------------------------------------------------------
-
-h1. Queues
-
-<video width="640" height="480" autoplay controls controlsList="nofullscreen nodownload novolume" >
-  <source type="video/mp4" src="queue.mp4"></source>
-  <source type="video/webm" src="queue.webm"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
-
-h2. Goals
-
-* To understand what a queue is
-
-h2. What is a queue
-
-h2. How well does a queue perform
-
-h2. Examples of when to use a queue
-
-----------------------------------------------------------------------
-
-h1. Queues Exercise
-
-
-----------------------------------------------------------------------
-
-h1. Stacks and Queues Exercise
 
 ----------------------------------------------------------------------
 
@@ -239,6 +333,7 @@ h2. What is a heap
 h2. How well does a heap perform
 
 h2. Examples of when to use a heap
+
 
 ----------------------------------------------------------------------
 
