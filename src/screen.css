@@ -91,12 +91,12 @@
     height: 10px;
     border-radius: 10px;
     margin-top: -5px;
-    background: blue;
+    background: #ff4859;
   }
 
   #index nav a:hover {
     color: #fff;
-    background: blue;
+    background: #ff4859;
   }
 
   #index nav a:hover::before {
@@ -206,8 +206,12 @@ h1 {
 }
 
 .sample {
-  color: #74e83f;
-  background: #2E2E2E;
+  color: #6de460;
+  background-color: #2E2E2E;
+}
+
+.sample_command {
+  color: #d795ed;
 }
 
 .file {
@@ -240,7 +244,7 @@ code {
 
 h2 {
   padding-top: 1rem;
-  color: blue;
+  color: #ff4859;
   font-size: 1.75rem;
   counter-increment: content-heading-counter;
 }
@@ -344,7 +348,7 @@ h3 b {
 
 .foot-navigation a:hover {
   color: #fff;
-  background: blue;
+  background: #ff4859;
 }
 
 .foot-navigation a:hover svg path {
@@ -424,7 +428,7 @@ h3 b {
     text-align: center;
     color: #fff;
     font-size: 1.5rem;
-    background: blue;
+    background: #ff4859;
     content: counter(content-heading-counter);
   }
 }

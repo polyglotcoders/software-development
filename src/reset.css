@@ -24,7 +24,11 @@ pre {
   font-size: 1em;
 }
 
-a { background-color: transparent; }
+a {
+  background-color: transparent;
+  color: #00868b;
+}
+
 
 abbr[title] {
   border-bottom: none;

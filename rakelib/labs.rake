@@ -27,7 +27,8 @@ module Labs
     end
 
     def to_html
-      RedCloth.new(lines).to_html
+      new_html = RedCloth.new(lines).to_html
+      new_lines = new_html.gsub('<p class="sample">', '<pre class="sample">')
     end
   end
 
@@ -82,7 +83,7 @@ module Labs
           gathered_line = "pre(instructions)."
         elsif line =~ /^Output:\s*$/
           labs[lab_index] << "h3. **Output:**\n\n"
-          gathered_line = "<pre class=\"sample\">"
+          gathered_line = "<p class=\"sample\">\n"
           mode = :file
         elsif line =~ /^Set: +\w+=.*$/
           # Skip set lines
@@ -111,8 +112,17 @@ module Labs
           sample_name = make_sample_name(lab_index+1, $1)
           open(sample_name) do |ins|
             ins.each do |sample_line|
-              labs[lab_index] << "#{gathered_line}#{sample_line}"
-              gathered_line = ''
+              puts sample_line
+              if sample_line.start_with?('$')
+                command_line = "<div class=\"sample_command\">"
+                sample_line.chop!
+                close = "</div>\n"
+                labs[lab_index] << "#{gathered_line}#{command_line}#{sample_line}#{close}"
+                gathered_line = ''
+              else
+                labs[lab_index] << "#{gathered_line}#{sample_line}"
+                gathered_line = ''
+              end
             end
           end
         else
