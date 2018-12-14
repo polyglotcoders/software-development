@@ -155,12 +155,12 @@ p. @sublime <filename>@ means open sublime text and make a file called <filename
 Execute:
 sublime hello_world.py
 
-p. Now save the file.
+p. Now SAVE the file.
 
 Execute:
 ls
 
-p. You should now see the file within your home directory
+p. You should now see the file within your home directory! Video is down below (my shortcut to open sublime text is subl instead of sublime)
 
 <video width="1440" height="1080" autoplay controls controlsList="nofullscreen nodownload novolume" >
   <source type="video/mp4" src="helloworld.mp4"></source>
@@ -231,9 +231,9 @@ h2. Create a slack account
 
 * Accept your email invitation to slack
 
-h2. Send bea a blurb about yourself!
+h2. Add a photo to your profile and introduce yourself to everybody!
 
-* Add a photo to your profile and give me
+* Don't be shy and make sure to send a fun emoji whenever a peer introduces themselves!
 
 ----------------------------------------------------------------------
 h1. Setup Git Locally
@@ -295,7 +295,7 @@ h2. Go to github.com
 
 h2. Send your github username 
 
-* Go to the #githubaccounts channel and send your username to gain access to the repo. You will be notified via email when you receive your invite to the repo.
+* Go to the #githubaccounts channel on slack ("channel":https://polyglotcoding.slack.com/messages/CDBQS6YMV/) and send your username to gain access to the repo. You will be notified via email when you receive your invite to the repo.
 
 It should look like this
 
