@@ -26,12 +26,6 @@ h2. Download homebrew (Mac only)
 Code:
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-
-h2. Download homebrew (Mac only)
-
-Code:
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 h2. Download Anaconda
 
 For Mac Users:
@@ -50,6 +44,196 @@ install Anaconda
 Code:
 wget https://repo.anaconda.com/archive/Anaconda3-5.3.0-Linux-x86_64.sh
 bash Anaconda3-5.3.0-Linux-x86_64.sh
+
+----------------------------------------------------------------------
+
+h1. Setup your bash profile
+
+h2. Goals
+
+* Create a bash profile / modify it if it exists
+* We do this section so we can have a prettified version of iterm2
+
+h2. What is a bash profile?
+
+p. Where environment settings are stored. When a new iterm2 session starts, it will load the contents of the bash profile before executing commands.
+
+h2. Open up @~/.bash_profile@
+
+Execute:
+sublime ~/.bash_profile
+
+p. This should have opened up sublime text for you
+
+h2. Copy paste this into the text editor and save
+
+File: .bash_profile
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+export EDITOR=vim
+export LC_ALL="en_US.UTF-8"
+export LANG=en_US.UTF-8
+
+RESET="\[\033[0m\]"
+RED="\[\033[0;31m\]"
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+YELLOW="\[\033[0;33m\]"
+CYAN="\[\033[0;36m\]"
+MAGEN="\[\033[1;35m\]"
+
+
+PS_LINE=`printf -- '- %.0s' {1..200}`
+function parse_git_branch {
+  PS_BRANCH=''
+    PS_FILL=${PS_LINE:0:$COLUMNS}
+      if [ -d .svn ]; then
+            PS_BRANCH="(svn r$(svn info|awk '/Revision/{print $2}'))"
+                return
+                  elif [ -f _FOSSIL_ -o -f .fslckout ]; then
+                        PS_BRANCH="(fossil $(fossil status|awk '/tags/{print $2}')) "
+                            return
+                              fi
+                                ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+                                  PS_BRANCH="(git ${ref#refs/heads/}) "
+                                }
+                                PROMPT_COMMAND=parse_git_branch
+                                PS_INFO="$CYAN\u$RESET: $YELLOW\w"
+                                PS_GIT="$GREEN\$PS_BRANCH"
+                                PS_TIME="$RED[\t]"
+                                PS_PROMPT="$MAGEN →"
+                                export PS1="\[\n\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${PS_PROMPT} "
+
+EOF
+
+h2. Reload the file
+
+Execute:
+source ~/.bash_profile
+
+----------------------------------------------------------------------
+
+h1. What is a command line?
+
+h2. Goals
+
+* Understand the command line
+
+h2. A command line is a text interface for your computer.
+
+* Open finder and open iTerm2
+* Go to your home directory (normally your name) on Finder
+* Now type @ls@ on iTerm2.
+* You should see the exact same directories (also called "folders"). Your command line is just
+a different way to access your computer and run commands! @ls@ is a 
+command to list the files in the current directory you are in (which happens to be 
+the home directory)
+
+<img src="ls.png" style="width: 750px;"></img>
+
+----------------------------------------------------------------------
+
+h1. Learn some basic command line commands
+
+h2. Goals
+
+* Learn what cd, ls, sublime, pwd, mkdir, mv, rm commands do
+* Learn what ~ means
+
+h2. mkdir
+
+p. @mkdir@ stands for "make directory"
+
+Execute:
+mkdir Development
+
+h2. sublime
+
+p. @sublime <filename>@ means open sublime text and make a file called <filename>
+
+Execute:
+sublime hello_world.py
+
+p. Now save the file.
+
+Execute:
+ls
+
+p. You should now see the file within your home directory
+
+<video width="1440" height="1080" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="helloworld.mp4"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
+h2. cd
+
+p. @cd@ stands for "change directory"
+
+h3. Change directories relative to your current directory
+* @.@ means "current directory"
+* @..@ means "the directory above the current one"
+
+Execute:
+cd . #means "stay in the current directory"
+cd .. #means "change to the directory above us"
+cd ~ #means "change to the home directory"
+cd Development #means "change to a directory called Development"
+
+* Note that you can use tab to autocomplete directory names / paths.
+* Note that you can mix and match. To go two parent directories up, do @cd ../../<dirname>@ and etc.
+
+<img src="sameterminal.png" style="width: 750px;"></img>
+
+h3. Change directories based on an absolute path
+
+h2. pwd
+
+p. @pwd@ is used to get the absolute path of a current directory
+
+p. So far, we've only gotten paths "relative" to the current directory. A "relative" path is like giving directions. Go back, go forward. An "absolute" path is like giving the address.
+
+Execute:
+pwd
+
+<img src="pwd.png" style="width: 250px;"></img>
+
+* Note: @cd ~@ is equivalent to @cd /Users/<home_directory_name>@
+
+h2. mv
+
+p. @mv@ is used to move files or directories to different paths
+
+<h3><b>Execute:</b></h3>
+<pre class="instructions">mv /Users/<home_directory_name>/hello_world.py /Users/<home_directory_name>/Development</pre>
+<pre class="instructions">cd ~/Development</pre>
+<pre class="instructions">ls</pre>
+
+p. You should see the directory "hello_world.py" within Development now.
+
+h2. rm
+
+p. Todo yourself. Figure out what rm does, and use it on hello_world.py!
+
+
+----------------------------------------------------------------------
+
+h1. Signup for Slack and Slack Etiquette
+
+h2. Goals
+
+* Create a slack account
+* Add your picture, and introduce yourself
+* Ask your first coding question in Slack
+
+h2. Create a slack account
+
+* Accept your email invitation to slack
+
+h2. Send bea a blurb about yourself!
+
+* Add a photo to your profile and give me
 
 ----------------------------------------------------------------------
 h1. Setup Git Locally
@@ -107,12 +291,21 @@ h3. Definitions
 h2. Go to github.com
 
 * Make an account at "https://github.com/":https://github.com/
+* Use the email you set up in the last lab
+
+h2. Send your github username 
+
+* Go to the #githubaccounts channel and send your username to gain access to the repo. You will be notified via email when you receive your invite to the repo.
+
+It should look like this
+
+<img src="invite-polyglot.png" style="width: 750px;"></img>
 
 h2. Fork the Repository
 
 p. When we "fork" a repo, we make a copy of someone else's repo and add it to our own account
 
-* Go to "https://github.com/polyglot-coding/course/":https://github.com/polyglot-coding/course/
+* Go to "https://github.com/polyglotcoders/cohort-1/":https://github.com/polyglotcoders/cohort-1/
 * Press @Fork@
 <img src="fork_img.png" style="width: 750px;"></img>
 
@@ -142,34 +335,38 @@ h3. Definitions
 </br>
 **Now open up iterm2 (cmd + space then type iterm2)**
 
-Execute:
-cd
+<h3><b>Execute:</b></h3>
+<pre class="instructions">cd
 mkdir Development
 cd Development
 mkdir polyglot
 cd polyglot
-git clone https://github.com/biancasubion/course.git
-cd course
+git clone https://github.com/coderbea/cohort-1.git
+cd cohort-1
 git remote -v
-=original_remote
-git remote add upstream https://github.com/polyglot-coding/course.github
-=add_upstream
-git remote -v
-=upstream_remote
-
-**Confirm you get something similar to below:**
-
-Output:
-=original_remote
-=add_upstream
-=upstream_remote
-EOF
+git remote add upstream https://github.com/polyglotcoders/cohort-1.github
+git remote -v</pre>
+<p><b>Confirm you get something similar to below:</b></p>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+open-command$ git remote -v close-command
+origin https://github.com/coderbea/cohort-1.git (fetch) br-line
+origin  https://github.com/coderbea/cohort-1.git (push) br-line
+open-command$ git remote add upstream https://github.com/polyglotcoders/cohort-1.github close-command br-line
+open-command$ git remote -v close-command br-line
+origin  https://github.com/coderbea/cohort-1.git (fetch) br-line
+origin  https://github.com/coderbea/cohort-1.git (push) br-line
+upstream  https://github.com/polyglotcoders/cohort-1.github (fetch) br-line
+upstream  https://github.com/polyglotcoders/cohort-1.github (push) br-line
+</pre>
 
 h2. Make a change
 
-p. Now that you have a clone of your fork of Poylglot's "course" repo, make a change!
+p. Now that you have a clone of your fork of Poylglot's "cohort-1" repo, make a change!
 
 Execute:
+mkdir sandbox
+cd sandbox
 pwd
 =pwd
 ls
@@ -178,10 +375,10 @@ sublime hello.py
 
 <h3><b>Output:</b></h3>
 <pre class="sample">
-$ pwd
-/Users/bea/Development/polyglot/course
-$ ls
-handouts    lectures
+open-command $ pwd close-command
+/Users/bea/Development/polyglot/cohort-1
+open-command $ ls close-command
+handouts    lectures    images    sandbox
 </pre>
 
 File: hello_world.py
@@ -259,13 +456,27 @@ to the either your own (origin) fork of polyglot's repo, or polyglot's (upstream
 **Make sure you push to origin always! You only pull from upstream, but you push all your
 changes to origin**
 
-Execute:
-git push origin master
-=git_push
+<h3><b>Execute:</b></h3>
+<pre class="instructions">git push origin master</pre>
 
-Output:
-=git_push
-EOF
+<h3><b>Output:</b></h3>
+<pre class="sample">
+open-command $ git push origin master close-command
+To https://github.com/coderbea/cohort-1.git
+
+   02c27bb..be543f1  master → master
+</pre>
+
+h2. Take a look at your change online!
+
+p. Remember, pushing to origin means we push it to the url listed on git remote -v for origin. Go to that URL, which is just your fork of the repo 
+
+<video width="960" height="720" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="pushed.mp4"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
+
+
 
 
 h2. Summary!
@@ -293,31 +504,3 @@ git commit -m "Finished handout 1" # Add all changes to "commited"
 git push origin master
 
 
-----------------------------------------------------------------------
-h1. Signup for Slack and Slack Etiquette
-
-h2. Goals
-
-* Create a slack account
-* Add your picture, and introduce yourself
-* Ask your first coding question in Slack
-* Todo on January 4th, 2018
-
-h2. Create a slack account
-
-* Accept your email invitation to slack
-
-h2. Introduce yourself
-
-* Add a photo to your profile and introduce yourself
-
-h2. Ask a coding question
-
-* Ask any question you want but here are a couple of rules
-  * You must add a title to your question
-  * When you have code, surround it with backticks. This is a backtick: `
-  * When you want to add to your question, click thread on your message. Do NOT keep sending new messages
-
-h2. Post your github account to the #githubaccounts channel
-
-* go to the #githubs account channel and message your newly created github account!

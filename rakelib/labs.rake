@@ -29,6 +29,9 @@ module Labs
     def to_html
       new_html = RedCloth.new(lines).to_html
       new_lines = new_html.gsub('<p class="sample">', '<pre class="sample">')
+      new_lines = new_lines.gsub('open-command', '<div class="sample_command">')
+      new_lines = new_lines.gsub('close-command', '</div>')
+      new_lines = new_lines.gsub('br-line', '<br/>')
     end
   end
 
