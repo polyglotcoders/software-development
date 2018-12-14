@@ -114,15 +114,15 @@ source ~/.bash_profile
 
 ----------------------------------------------------------------------
 
-h1. What is a command line?
+h1. All about the command line
 
 h2. Goals
 
-* Understand the command line
+* Understand the command line and what its purpose is
 
 h2. A command line is a text interface for your computer.
 
-* Open finder and open iTerm2
+* Open finder and open iTerm2 (aka our command line)
 * Go to your home directory (normally your name) on Finder
 * Now type @ls@ on iTerm2.
 * You should see the exact same directories (also called "folders"). Your command line is just
