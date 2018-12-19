@@ -138,8 +138,8 @@ h1. Learn some basic command line commands
 
 h2. Goals
 
-* Learn what cd, ls, sublime, pwd, mkdir, mv, rm commands do
-* Learn what ~ means
+* Learn what @cd@, @ls@, @sublime@, @pwd@, @mkdir@, @mv@, @rm@ commands do
+* Learn what @~@ means
 
 h2. mkdir
 
