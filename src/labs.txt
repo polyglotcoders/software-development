@@ -335,12 +335,15 @@ h3. Definitions
 </br>
 **Now open up iterm2 (cmd + space then type iterm2)**
 
-<h3><b>Execute:</b></h3>
-<pre class="instructions">cd
+Execute:
+cd
 mkdir Development
 cd Development
 mkdir polyglot
 cd polyglot
+
+
+<pre class="instructions">
 git clone https://github.com/coderbea/cohort-1.git
 cd cohort-1
 git remote -v
@@ -365,13 +368,14 @@ h2. Make a change
 p. Now that you have a clone of your fork of Poylglot's "cohort-1" repo, make a change!
 
 Execute:
+cd /Users/bea/Development/polyglot-course/books/precourse
 mkdir sandbox
-cd sandbox
 pwd
 =pwd
 ls
 =ls
-sublime hello.py
+sublime sandbox/hello_world.py
+
 
 <h3><b>Output:</b></h3>
 <pre class="sample">
@@ -381,7 +385,8 @@ open-command $ ls close-command
 handouts    lectures    images    sandbox
 </pre>
 
-File: hello_world.py
+
+File: sandbox/hello_world.py
 # A sublime text window should have opened up. Write anything
 # you want in it! I will put this.
 
@@ -410,15 +415,12 @@ h2. Add the "untracked files" to staging
 
 Execute:
 git add .
-=git_add
 git status
 =git_status
 
 Output:
-=git_add
 =git_status
 EOF
-
 
 h2. Commit the changes
 
@@ -428,9 +430,13 @@ Execute:
 git commit -m "[workflows] add a new helloworld file"
 =git_commit
 
-Output:
-=git_commit
-EOF
+<h3><b>Output:</b></h3>
+<pre class="sample">
+open-command$ git commit -m [workflows] add a new helloworld file close-command
+[master ebebf61] [workflows] add a new helloworld file br-line
+ 1 file changed, 4 insertions(+) br-line
+ create mode 100644 sandbox/hello_world.py br-line
+</pre>
 
 
 h2. Push the changes
@@ -446,9 +452,15 @@ Execute:
 git remote -v
 =git_remote
 
-Output:
-=git_remote
-EOF
+<h3><b>Output:</b></h3>
+<pre class="sample">
+open-command$ git remote -v close-command br-line
+origin  https://github.com/coderbea/cohort-1.git (fetch) br-line
+origin  https://github.com/coderbea/cohort-1.git (push) br-line
+upstream  https://github.com/polyglotcoders/cohort-1.github (fetch) br-line
+upstream  https://github.com/polyglotcoders/cohort-1.github (push) br-line
+</pre>
+
 
 **If you copy paste that URL, without the .git / .github on the end, it'll send you directly
 to the either your own (origin) fork of polyglot's repo, or polyglot's (upstream) repo.**
