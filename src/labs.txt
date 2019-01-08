@@ -514,9 +514,11 @@ h2. Written Exercises
 
 7. What is the difference @between = and ==@?
 
-8. What is the result of @false != @false@?
+8. What is the result of @false != false@?
 
-9. What is the difference between @and@ and @or@? Give an example that shows the difference
+9. What is the result of @false != true@?
+
+10. What is the difference between @and@ and @or@? Give an example that shows the difference
 
 ----------------------------------------------------------------------
 h1. Quiz 00
