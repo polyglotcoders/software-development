@@ -91,12 +91,12 @@
     height: 10px;
     border-radius: 10px;
     margin-top: -5px;
-    background: #ff4859;
+    background: #007f8e;
   }
 
   #index nav a:hover {
     color: #fff;
-    background: #ff4859;
+    background: #007f8e;
   }
 
   #index nav a:hover::before {
@@ -244,7 +244,7 @@ code {
 
 h2 {
   padding-top: 1rem;
-  color: #ff4859;
+  color: #007f8e;
   font-size: 1.75rem;
   counter-increment: content-heading-counter;
 }
@@ -319,6 +319,20 @@ h3 b {
 }
 
 
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+
+
+
 
 /* Footer
 ------------------------------------------------------------------- */
@@ -348,7 +362,7 @@ h3 b {
 
 .foot-navigation a:hover {
   color: #fff;
-  background: #ff4859;
+  background: #007f8e;
 }
 
 .foot-navigation a:hover svg path {
@@ -428,7 +442,7 @@ h3 b {
     text-align: center;
     color: #fff;
     font-size: 1.5rem;
-    background: #ff4859;
+    background: #007f8e;
     content: counter(content-heading-counter);
   }
 }

@@ -1,518 +1,473 @@
 ----------------------------------------------------------------------
-h1. Setup Laptop
+h1. Top-down
 
 h2. Goals
 
-* To install multiple tools
+* Understand how code can be used in a real application
 
-h2. Notes
+h2. Here is the structure of a class
 
-* Don't get intimidated by the commands here. Just copy paste them! These are
-commands that you won't have to remember again and just have to google.
+File: user.py
+import datetime # this is how we import methods / functions from other places
 
-* When you see this <h3><b>Execute:</b></h3> It means you have to type it on ITerm2
+# Here is a class
+class User:
+  def __init__(self, name, lastname, password, birthday, address, telephone, hobbies, email):
+    self.name = name
+    self.lastname = lastname
+    self.password = password
+    self.birthday = birthday
+    self.address = address
+    self.telephone = telephone
+    self.hobbies = hobbies
+    self.email = email
 
-h2. Download ITerm2 (Mac only)
+  def get_age(self):
+    # Get today's date
+    today = datetime.datetime.today()
+    age = today.year - self.birthday.year
 
-* Download from "https://www.iterm2.com/":https://www.iterm2.com/
+    return age
 
-h2. Download Sublime Text 3 (Mac only)
+  def change_password(self, new_password):
+    if len(new_password) < 6:
+      raise ValueError('New password cannot contain less than 6 characters')
 
-* Download from "https://www.sublimetext.com/":https://www.sublimetext.com/
-* Follow the instructions here "https://olivierlacan.com/posts/launch-sublime-text-3-from-the-command-line/":https://olivierlacan.com/posts/launch-sublime-text-3-from-the-command-line/
+    self.password  = new_password
 
-h2. Download homebrew (Mac only)
+  def add_hobby(self, hobby):
+    self.hobbies.append(hobby)
 
-Code:
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Here is how to "instantiate" a class
 
-h2. Download Anaconda
+bob = User(
+  "bob",
+  "jones",
+  "supersecretpassword",
+  datetime.date(1992, 3, 12),
+  "450 SW Marine Drive",
+  "604 123 4567",
+  ["basketball", "baking"],
+  "bob.jones@gmail.com"
+)
 
-For Mac Users:
-
-* Download from: "https://www.anaconda.com/download/#macos":https://www.anaconda.com/download/#macos
-
-For Linux Users:
-
-* Open ubuntu 18.04 terminal
-* install compilers / necessary libraries / software 
-
-Code:
-sudo apt-get install gcc gfortran git lsb
-install Anaconda
-
-Code:
-wget https://repo.anaconda.com/archive/Anaconda3-5.3.0-Linux-x86_64.sh
-bash Anaconda3-5.3.0-Linux-x86_64.sh
-
-----------------------------------------------------------------------
-
-h1. Setup your bash profile
-
-h2. Goals
-
-* Create a bash profile / modify it if it exists
-* We do this section so we can have a prettified version of iterm2
-
-h2. What is a bash profile?
-
-p. Where environment settings are stored. When a new iterm2 session starts, it will load the contents of the bash profile before executing commands.
-
-h2. Open up @~/.bash_profile@
-
-Execute:
-sublime ~/.bash_profile
-
-p. This should have opened up sublime text for you
-
-h2. Copy paste this into the text editor and save
-
-File: .bash_profile
-export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
-
-export EDITOR=vim
-export LC_ALL="en_US.UTF-8"
-export LANG=en_US.UTF-8
-
-RESET="\[\033[0m\]"
-RED="\[\033[0;31m\]"
-GREEN="\[\033[01;32m\]"
-BLUE="\[\033[01;34m\]"
-YELLOW="\[\033[0;33m\]"
-CYAN="\[\033[0;36m\]"
-MAGEN="\[\033[1;35m\]"
-
-
-PS_LINE=`printf -- '- %.0s' {1..200}`
-function parse_git_branch {
-  PS_BRANCH=''
-    PS_FILL=${PS_LINE:0:$COLUMNS}
-      if [ -d .svn ]; then
-            PS_BRANCH="(svn r$(svn info|awk '/Revision/{print $2}'))"
-                return
-                  elif [ -f _FOSSIL_ -o -f .fslckout ]; then
-                        PS_BRANCH="(fossil $(fossil status|awk '/tags/{print $2}')) "
-                            return
-                              fi
-                                ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-                                  PS_BRANCH="(git ${ref#refs/heads/}) "
-                                }
-                                PROMPT_COMMAND=parse_git_branch
-                                PS_INFO="$CYAN\u$RESET: $YELLOW\w"
-                                PS_GIT="$GREEN\$PS_BRANCH"
-                                PS_TIME="$RED[\t]"
-                                PS_PROMPT="$MAGEN →"
-                                export PS1="\[\n\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${PS_PROMPT} "
-
+print("Bob's age:", bob.get_age())
+print("Bob's original password", bob.password)
+bob.change_password("newpassword")
+print("Bob's new password", bob.password)
 EOF
 
-h2. Reload the file
-
 Execute:
-source ~/.bash_profile
-
-----------------------------------------------------------------------
-
-h1. All about the command line
-
-h2. Goals
-
-* Understand the command line and what its purpose is
-
-h2. A command line is a text interface for your computer.
-
-* Open finder and open iTerm2 (aka our command line)
-* Go to your home directory (normally your name) on Finder
-* Now type @ls@ on iTerm2.
-* You should see the exact same directories (also called "folders"). Your command line is just
-a different way to access your computer and run commands! @ls@ is a 
-command to list the files in the current directory you are in (which happens to be 
-the home directory)
-
-<img src="ls.png" style="width: 750px;"></img>
-
-----------------------------------------------------------------------
-
-h1. Learn some basic command line commands
-
-h2. Goals
-
-* Learn what @cd@, @ls@, @sublime@, @pwd@, @mkdir@, @mv@, @rm@ commands do
-* Learn what @~@ means
-
-h2. mkdir
-
-p. @mkdir@ stands for "make directory"
-
-Execute:
-mkdir Development
-
-h2. sublime
-
-p. @sublime <filename>@ means open sublime text and make a file called <filename>
-
-Execute:
-sublime hello_world.py
-
-p. Now SAVE the file.
-
-Execute:
-ls
-
-p. You should now see the file within your home directory! Video is down below (my shortcut to open sublime text is subl instead of sublime)
-
-<video width="1440" height="1080" autoplay controls controlsList="nofullscreen nodownload novolume" >
-  <source type="video/mp4" src="helloworld.mp4"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
-
-h2. cd
-
-p. @cd@ stands for "change directory"
-
-h3. Change directories relative to your current directory
-* @.@ means "current directory"
-* @..@ means "the directory above the current one"
-
-Execute:
-cd . #means "stay in the current directory"
-cd .. #means "change to the directory above us"
-cd ~ #means "change to the home directory"
-cd Development #means "change to a directory called Development"
-
-* Note that you can use tab to autocomplete directory names / paths.
-* Note that you can mix and match. To go two parent directories up, do @cd ../../<dirname>@ and etc.
-
-<img src="sameterminal.png" style="width: 750px;"></img>
-
-h3. Change directories based on an absolute path
-
-h2. pwd
-
-p. @pwd@ is used to get the absolute path of a current directory
-
-p. So far, we've only gotten paths "relative" to the current directory. A "relative" path is like giving directions. Go back, go forward. An "absolute" path is like giving the address.
-
-Execute:
-pwd
-
-<img src="pwd.png" style="width: 250px;"></img>
-
-* Note: @cd ~@ is equivalent to @cd /Users/<home_directory_name>@
-
-h2. mv
-
-p. @mv@ is used to move files or directories to different paths
-
-<h3><b>Execute:</b></h3>
-<pre class="instructions">mv /Users/<home_directory_name>/hello_world.py /Users/<home_directory_name>/Development</pre>
-<pre class="instructions">cd ~/Development</pre>
-<pre class="instructions">ls</pre>
-
-p. You should see the directory "hello_world.py" within Development now.
-
-h2. rm
-
-p. Todo yourself. Figure out what rm does, and use it on hello_world.py!
-
-
-----------------------------------------------------------------------
-
-h1. Signup for Slack and Slack Etiquette
-
-h2. Goals
-
-* Create a slack account
-* Add your picture, and introduce yourself
-* Ask your first coding question in Slack
-
-h2. Create a slack account
-
-* Accept your email invitation to slack
-
-h2. Add a photo to your profile and introduce yourself to everybody!
-
-* Don't be shy and make sure to send a fun emoji whenever a peer introduces themselves!
-
-----------------------------------------------------------------------
-h1. Setup Git Locally
-
-h3. Definitions
-* Local: your own computer
-
-
-h2. Goals
-
-* To setup git and ruby so that it is ready for work.
-
-h2. Setup Name and Email
-
-p. If you have never used git before, you need to do some setup first.
-Run the following commands so that git knows your name and email
-
-execute:
-git config --global user.name "Your Name"
-git config --global user.email "your_email@whatever.com"
-
-h2. Setup Line Ending Preferences
-
-Also, for Unix/Mac users:
-
-execute:
-git config --global core.autocrlf input
-git config --global core.safecrlf true
-
-h2. Setup Ruby 
-
-p. For this tutorial you need a working Ruby interpreter. If you haven´t one 
-installed yet, it is time to set it up now:
-
-"https://www.ruby-lang.org/en/installation/":https://www.ruby-lang.org/en/installation/
-
-----------------------------------------------------------------------
-h1. Signup for Github, Fork Repo, and Polyglot workflow
-
-p. Now that we set up git locally, we want to sign up for a github account online.
-Github allows you to "push" your code up online. To do that, your local project should be
-a git repo. We'll learn more about this in class, but for now, we'll be forking a repo,
-then cloning it locally.
-
-h2. Goals
-
-* Create a github account, request access to Polyglot's repo, and retrieve your own fork
-* Understand what remote refers to
-* Remember what commands you have to run when you make a change and want everybody to see
-* Remember what commands you have to run when you want to get the latest lectures and handouts
-
-h3. Definitions
-* Repository/Repo: a folder containing your project's files and folders
-
-h2. Go to github.com
-
-* Make an account at "https://github.com/":https://github.com/
-* Use the email you set up in the last lab
-
-h2. Send your github username 
-
-* Go to the #githubaccounts channel on slack ("channel":https://polyglotcoding.slack.com/messages/CDBQS6YMV/) and send your username to gain access to the repo. You will be notified via email when you receive your invite to the repo.
-
-It should look like this
-
-<img src="invite-polyglot.png" style="width: 750px;"></img>
-
-h2. Fork the Repository
-
-p. When we "fork" a repo, we make a copy of someone else's repo and add it to our own account
-
-* Go to "https://github.com/polyglotcoders/cohort-1/":https://github.com/polyglotcoders/cohort-1/
-* Press @Fork@
-<img src="fork_img.png" style="width: 750px;"></img>
-
-
-p. You should have been redirected to a a new url. The repo should now be on your account, rather
-than Polyglot's
-
-<img src="own_repo.png" style="width: 750px;"></img>
-
-h2. Clone the Repository
-
-p. Cloning a repository to us means we take a repository from the internet and make a copy in our local computer.
-
-
-* Press @Clone or download@
-* Press @Use HTTPS@
-* Copy the code
-<img src="clone.png" style="width: 750px;"></img>
-
-
-h2. Add a remote "upstream"
-
-h3. Definitions
-* Remote: Think of it as a channel. There are multiple copies of each "repo" depending on the owner. For your own, we go to channel/remote "origin". For Polyglot's own repo, we'll call it "upstream"
-
-
-</br>
-**Now open up iterm2 (cmd + space then type iterm2)**
-
-Execute:
-cd
-mkdir Development
-cd Development
-mkdir polyglot
-cd polyglot
-
-
-<pre class="instructions">
-git clone https://github.com/coderbea/cohort-1.git
-cd cohort-1
-git remote -v
-git remote add upstream https://github.com/polyglotcoders/cohort-1.github
-git remote -v</pre>
-<p><b>Confirm you get something similar to below:</b></p>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-open-command$ git remote -v close-command
-origin https://github.com/coderbea/cohort-1.git (fetch) br-line
-origin  https://github.com/coderbea/cohort-1.git (push) br-line
-open-command$ git remote add upstream https://github.com/polyglotcoders/cohort-1.github close-command br-line
-open-command$ git remote -v close-command br-line
-origin  https://github.com/coderbea/cohort-1.git (fetch) br-line
-origin  https://github.com/coderbea/cohort-1.git (push) br-line
-upstream  https://github.com/polyglotcoders/cohort-1.github (fetch) br-line
-upstream  https://github.com/polyglotcoders/cohort-1.github (push) br-line
-</pre>
-
-h2. Make a change
-
-p. Now that you have a clone of your fork of Poylglot's "cohort-1" repo, make a change!
-
-Execute:
-cd /Users/bea/Development/polyglot-course/books/precourse
-mkdir sandbox
-pwd
-=pwd
-ls
-=ls
-sublime sandbox/hello_world.py
-
-
-<h3><b>Output:</b></h3>
-<pre class="sample">
-open-command $ pwd close-command
-/Users/bea/Development/polyglot/cohort-1
-open-command $ ls close-command
-handouts    lectures    images    sandbox
-</pre>
-
-
-File: sandbox/hello_world.py
-# A sublime text window should have opened up. Write anything
-# you want in it! I will put this.
-
-print("Hello World!")
+python user.py
+=user_out
+
+Output: 
+=user_out
 EOF
 
-p. Now save the file!
+h2. Coding Exercises
 
-h2. Check the status of the repo and changes you made
+1. Copy and paste the code above into a file within @lectures@ called @python101_lab_01_top_down.py@
 
-h3. Definitions
-* **Staging**: A list of changes to get committed. Imagine you're packing up stuff in a box.
-Sometimes you take things out, sometimes you put it in. The box is the staging area.
-* **Commit**: A list of changes with a name for the group of changes. You put the lid on the box
-and labeled it "Ballet stuff"
+2. Add a new hobby to bo
+
+3. Create another person by instantiating a new object using the User class
+
+4. Raise a Value error if the length of the password is greater than or equal to 12
+
+----------------------------------------------------------------------
+h1. Variables
+
+h2. Goals
+
+* Start creating your own variables
+* Understand what variables are
+
+h2. A variable is a value that can change
+
+Try to predict what lucy would be on each print
+
+File: variables.py
+lucy = 10 + 2 - 1
+print("lucy variable value:", lucy)
+lucy = 13 + 2 - 1
+print("lucy variable value:", lucy)
+EOF
 
 Execute:
-git status
-=git_status
+python variables.py
+=var_out
 
 Output:
-=git_status
+=var_out
 EOF
 
-h2. Add the "untracked files" to staging
+
+h2. Python has untyped variables
+
+* In python, variables can be of ANY type and you don't have to declare it.
+
+p. This is what it looks like in C / C++, where you have to declare the type of variable
+
+File: typed_variables.h
+int lucy = 1;
+string colm = "Hello";
+float morsal = 3.705;
+EOF
+
+p. This is what it looks like in python
+
+File: untyped_variables.py
+lucy = 1
+colm = "Hello"
+morsal = 3.705
+EOF
+
+h2. Unlike normal math equations, the "conclusion" is on the left side
+
+p. In math we do something like @1 + 2 + 3 = answer@ in programming however, we set the answer to the equation. @answer = 1 + 2 + 3@ The lefthand side almost always contains only one word.
+
+h2. Name of the variable does not matter
+
+p. A common mistake people often make is thinking that the name of the variable matters. it does not.
+
+File: name_does_not_matter.py
+harry = 1.385
+one = "Harry"
+EOF
+
+p. Run this file and you will see that it won't throw any errors
 
 Execute:
-git add .
-git status
-=git_status
+python name_does_not_matter.py
+=name_does_not
 
 Output:
-=git_status
+=name_does_not
 EOF
 
-h2. Commit the changes
+p. Another common mistake people make is thinking that there has to be quotation marks to variables. Variables never have quotation marks. They aren't strings! Their value could be strings, but they are not.
 
-**Commit the changes with a message! AKA "ballet stuff"** 
-
-Execute:
-git commit -m "[workflows] add a new helloworld file"
-=git_commit
-
-<h3><b>Output:</b></h3>
-<pre class="sample">
-open-command$ git commit -m [workflows] add a new helloworld file close-command
-[master ebebf61] [workflows] add a new helloworld file br-line
- 1 file changed, 4 insertions(+) br-line
- create mode 100644 sandbox/hello_world.py br-line
-</pre>
-
-
-h2. Push the changes
-
-h3. Definitions
-* **Push**: Remember when you cloned the repo and added a remote "upstream"? Well now
-we're going to "push" the files to that url on origin! So now your code will be online
-and on github on your own repo.
-
-h4. Let's look at our remotes
+File: quotation_marks_around_vars.py
+"one" = "Harry"
+EOF
 
 Execute:
-git remote -v
-=git_remote
+python quotation_marks_around_vars.py
+=out
 
-<h3><b>Output:</b></h3>
-<pre class="sample">
-open-command$ git remote -v close-command br-line
-origin  https://github.com/coderbea/cohort-1.git (fetch) br-line
-origin  https://github.com/coderbea/cohort-1.git (push) br-line
-upstream  https://github.com/polyglotcoders/cohort-1.github (fetch) br-line
-upstream  https://github.com/polyglotcoders/cohort-1.github (push) br-line
-</pre>
+Output:
+=out
+EOF
+
+h2. Advanced: Return multiple values in python.
+
+p. Python is quite unique in that you can make two variables equal to two statements. An example of this would be a function that returns two values.
+
+File: return_two_values.py
+def fn_return_two():
+  return "a", "b"
+
+str_1, str_2 = fn_return_two()
+
+print("This is the first value returned", str_1)
+print("This is the second value returned", str_2)
+EOF
+
+Execute:
+python return_two_values.py
+=ret_out
+
+Output:
+=ret_out
+EOF
+
+h2. Coding Exercises
+
+p. Remember to add, commit, and push the file to your own forked repo!
+
+1. Create a file called @python101_lab_02_variables.py@
+
+2. Create variables for your first name, last name, your school, your favorite number, and your favorite color!
+
+3. Return the string "42" by adding TWO strings together. Do not just give @forty_two = "42"@
+
+4. Return the integer value 5 by using addition, subtraction, and division
 
 
-**If you copy paste that URL, without the .git / .github on the end, it'll send you directly
-to the either your own (origin) fork of polyglot's repo, or polyglot's (upstream) repo.**
+----------------------------------------------------------------------
+h1. Data types and Data Structures
 
-**Make sure you push to origin always! You only pull from upstream, but you push all your
-changes to origin**
+h2. Goals
+
+* Learn primitive / basic data types
+* Learn non-primitive / composite data structures
+
+h2. Primitive types
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Example</th> 
+  </tr>
+  <tr>
+    <td>str</td>
+    <td>'Hello' or "Hello"</td>
+  </tr>
+  <tr>
+    <td>int</td>
+    <td>0,1,2,3,4</td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td>0.123, 0.456</td>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td>false</td>
+  </tr>
+</table>
+
+h2. Non-primitive / Composite Data Structures
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Example</th> 
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>list</td>
+    <td>['kevin', 'kevin', 'tim', 'david']</td> 
+    <td>can have duplicates, ordered by insertion</td>
+  </tr>
+  <tr>
+    <td>set</td>
+    <td>{'kevin', 'david', 'tim'}</td> 
+    <td>no duplicates, unordered by insertion</td>
+  </tr>
+  <tr>
+    <td>dict</td>
+    <td>{'kevin': 25, 'david': 26, 'tim': 29} </td> 
+    <td>key-value pair. no duplicates. unordered by insertion</td>
+  </tr>
+</table>
+
+p. What does ordered by insertion mean? It means that you can expect that the data structure will retain the same elements in order of insertion.
+
+h2. Written Questions
+
+1. You have a grocery store. Which composite data structure is best to store items and their respective prices?
+
+2. You want to get all the unique words in an essay. What composite data structure is best for this?
+
+3. You run a fast-food restaurant. What data structure is best to use to store all the orders coming in?
+
+4.  How much money does sam have?
+
+File: written_q.py
+
+bank = {
+  'sam': 500
+}
+
+bank['sam']['money'] == 200
+EOF
+
+5.  How much money does sam have?
+
+File: written_q.py
+
+bank = {
+  'sam': 500
+}
+
+bank['sam']['money'] = 200
+EOF
+
+
+
+h2. Coding Exercises
+
+1. Create a file within lectures called @python101_lab_03_data_types_and_structures.py@
+
+2. Let's create the grocery store price list. The list of ingredients and their respective prices are
+
+* grapes 4.99
+* apples 2.00
+* tomato soup 3.00
+
+3. To test it out, run your file by running
+
+Execute:
+python python101_lab_01_data_types_and_structures.py
+
+4. You'll notice that there is no output. Print out your grocery list by adding an additional line to print out the price list data structure you made. Google "how do I print something in python?"
+
+5. Test your file out by running it again. You should see the dictionary you created
+
+6. Grapes are being discontinued from your grocery store. Write another line of code that will remove it from your price list
+
+
+----------------------------------------------------------------------
+
+h1. Operators
+
+h2. Goals
+
+* Understand arithmetic, relational, and logical operators
+
+h2. Arithmetic operators
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Task Performed</th> 
+    <th>Example</th>
+    <th>Output</th>
+  </tr>
+  <tr>
+    <td>+</td>
+    <td>Addition</td> 
+    <td>1 + 1</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>-</td>
+    <td>Subtraction</td> 
+    <td>1 - 1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>/</td>
+    <td>Division</td> 
+    <td>1 / 2</td>
+    <td>0.5</td>
+  </tr>
+  <tr>
+    <td>*</td>
+    <td>Multiplication</td> 
+    <td>1 * 2</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>//</td>
+    <td>Floor division (round down to an int)</td> 
+    <td>1 / 2</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>**</td>
+    <td>To the power of</td> 
+    <td>2**2</td>
+    <td>4</td>
+  </tr>
+</table>
+
+h2. Relational operators
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Task Performed</th> 
+    <th>Example</th>
+    <th>Output</th>
+  </tr>
+  <tr>
+    <td>==</td>
+    <td>True if it is equal</td> 
+    <td>1 == 1</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>!=</td>
+    <td>True if not equal to</td> 
+    <td>1 != 1</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td><</td>
+    <td>Less than</td> 
+    <td>1 < 1</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td>*</td>
+    <td>Greater than</td> 
+    <td>1 > 1</td>
+    <td>False</td>
+  </tr>
+  <tr>
+    <td><=</td>
+    <td>Less than or equal to</td> 
+    <td>1 <= 1</td>
+    <td>True</td>
+  </tr>
+  <tr>
+    <td>>=</td>
+    <td>Greater than or equal to </td> 
+    <td>1>=1</td>
+    <td>True</td>
+  </tr>
+</table>
+
+h2. Logical operators
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Task Performed</th> 
+    <th>Example</th>
+    <th>Output</th>
+  </tr>
+  <tr>
+    <td>and</td>
+    <td>True, if both are true  </td> 
+    <td>(1 == 1) and (2 == 3)</td>
+    <td>False. One is false.</td>
+  </tr>
+  <tr>
+    <td>or</td>
+    <td>True, if one is true</td> 
+    <td>(1 == 2) or (2 == 3)</td>
+    <td>False. Neither are true.</td>
+  </tr>
+  <tr>
+    <td>not</td>
+    <td>True, if one is false</td> 
+    <td>(1 == 2)</td>
+    <td>True. It is not true</td>
+  </tr>
+</table>
+
+h2. Written Exercises
+
+1. What is the result of @true == true@?
+
+2. What is the result of @false == true@?
+
+3. What is the result of @true and true@?
+
+4. What is the result of @true and false@?
+
+5. What is the result of @3 == 3 and 4 == 4@?
+
+6. What is the result of @3 == 2 and 4 == 4@?
+
+7. What is the difference @between = and ==@?
+
+8. What is the difference between @and@ and @or@? Give an example that shows the difference
+
+----------------------------------------------------------------------
+h1. Quiz 00
+
+1. Start quiz
 
 <h3><b>Execute:</b></h3>
-<pre class="instructions">git push origin master</pre>
-
-<h3><b>Output:</b></h3>
-<pre class="sample">
-open-command $ git push origin master close-command
-To https://github.com/coderbea/cohort-1.git
-
-   02c27bb..be543f1  master → master
-</pre>
-
-h2. Take a look at your change online!
-
-p. Remember, pushing to origin means we push it to the url listed on git remote -v for origin. Go to that URL, which is just your fork of the repo 
-
-<video width="960" height="720" autoplay controls controlsList="nofullscreen nodownload novolume" >
-  <source type="video/mp4" src="pushed.mp4"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
+<pre class="instructions">cd ~/Development/polyglot/cohort-1/quizzes</pre>
+<pre class="instructions">jupyter notebook</pre>
 
 
+2. Open up @python101_quiz_00_data_types_and_structures.ipynb@ and begin
 
-
-h2. Summary!
-
-p. You'll be surprised to learn that our git "workflow" and most of the commands we'll use
-will consist of the below.
-
-Code:
-git pull upstream master  #get the latest code from polyglot's master "branch"
-<fill out handout / make a change>
-git diff  # Optional. See all the changes you made
-git status # Optional. See changes before adding it to "staging"
-git add . # Add all changes to "staging" (like a draft, no saving)
-git status # Optional. Confirm that the changes are staged
-git commit -m "Finished handout 1"  # commit all changes (saying yes, I want to name and log this change to my computer)
-git push origin master  # push changes online to github (I want to save it on the internet!)
-
-If we take out all the optional code:
-
-Code:
-git pull upstream master # Get all changes from polyglot's offical repo
-<fill out handout / make a change> # Make all changes at "local"
-git add . # Add all changes to "staging"
-git commit -m "Finished handout 1" # Add all changes to "commited"
-git push origin master
-
-
+----------------------------------------------------------------------

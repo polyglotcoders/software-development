@@ -24,13 +24,11 @@ task :not_dirty do
   fail "Directory not clean" if /nothing to commit/ !~ `git status`
 end
 
-desc "Publish the Polyglot Coding web site."
+desc "Publish the Git Immersion web site."
 task :publish => [:not_dirty, :build, :labs] do
   sh 'git checkout master'
   head = `git log --pretty="%h" -n1`.strip
   sh 'git checkout gh-pages'
-  #sh 'git checkout master git_tutorial/html/'
-
   cp FileList['git_tutorial/html/*'], '.'
   sh 'git add .'
   sh "git commit -m 'Updated docs to #{head}'"
