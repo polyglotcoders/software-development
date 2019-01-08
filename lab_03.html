@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lab 3 - Python 101</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
+    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="theme-color" content="#0000ff">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" media="screen" href="reset.css">
+    <link rel="stylesheet" media="screen" href="screen.css">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1142510-7']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script type="text/javascript" src="UI.js"></script>
+  </head>
+
+  <body data-lab-id="3">
+    <a href="#content" tabindex="1" class="skip-to-content">
+      Skip to content
+    </a>
+
+    <div class="layout">
+      <div id="index">
+        <p class="link-home">
+          <a href="index.html"><span>Python 101</span></a>
+        </p>
+        <button class="link-menu">Menu</button>
+        <nav tabindex="0">
+          <ol>
+              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+
+          </ol>
+        </nav>
+      </div>
+
+      <div id="content" tabindex="-1">
+        <h1 class="lab_title"><em>lab 3</em>  Data types and Data Structures</h1>
+<h2>Goals</h2>
+<ul>
+	<li>Learn primitive / basic data types</li>
+	<li>Learn non-primitive / composite data structures</li>
+</ul>
+<h2>Primitive types</h2>
+<table>
+<tr>
+    <th>Symbol</th>
+    <th>Example</th> 
+</tr>
+<tr>
+    <td>str</td>
+    <td>&#8216;Hello&#8217; or &#8220;Hello&#8221;</td>
+</tr>
+<tr>
+    <td>int</td>
+    <td>0,1,2,3,4</td>
+</tr>
+<tr>
+    <td>float</td>
+    <td>0.123, 0.456</td>
+</tr>
+<tr>
+    <td>bool</td>
+    <td>false</td>
+</tr>
+</table>
+<h2>Non-primitive / Composite Data Structures</h2>
+<table>
+<tr>
+    <th>Symbol</th>
+    <th>Example</th> 
+    <th>Notes</th>
+</tr>
+<tr>
+    <td>list</td>
+    <td>[&#8216;kevin&#8217;, &#8216;kevin&#8217;, &#8216;tim&#8217;, &#8216;david&#8217;]</td> 
+    <td>can have duplicates, ordered by insertion</td>
+</tr>
+<tr>
+    <td>set</td>
+    <td>{&#8217;kevin&#8217;, &#8216;david&#8217;, &#8217;tim&#8217;}</td> 
+    <td>no duplicates, unordered by insertion</td>
+</tr>
+<tr>
+    <td>dict</td>
+    <td>{&#8217;kevin&#8217;: 25, &#8216;david&#8217;: 26, &#8216;tim&#8217;: 29} </td> 
+    <td>key-value pair. no duplicates. unordered by insertion</td>
+</tr>
+</table>
+<h2>Mutable vs Immutable</h2>
+<p>The composite data structures talked about above are mutable data structures, while the primitive data types are immutable</p>
+<p>What does this mean? If a Mutable object&#8217;s state/value is changed, and all variables that references it will also change</p>
+<p>For example:</p>
+<h3 class="file-heading"><em>immutable.py</em></h3>
+<pre class="file">
+x = 5
+y = x
+
+# modify x
+x = x + 1
+
+print("x: {}, address: {}".format(str(x), str(id(x))))
+print("y: {}, address: {}".format(str(y), str(id(y))))
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python immutable.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python immutable.py</div>
+<p>x: 6, address: 140497578403904<br />
+y: 5, address: 140497578403928<br />
+</pre></p>
+<p>You notice that if we do an operation to x, it does not affect y and the addresses of the objects are different!</p>
+<h3 class="file-heading"><em>mutable.py</em></h3>
+<pre class="file">x = ['kevin', 'james', 'tim']
+y = x
+
+# modify x
+x.append('rose')
+
+print("x: {}, address: {}".format(str(x), str(id(x))))
+print("y: {}, address: {}".format(str(y), str(id(y))))
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python mutable.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python mutable.py</div>
+<p>x: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4431035064<br />
+y: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4431035064<br />
+</pre></p>
+<p>You&#8217;ll now notice that even if we modify x, y is affected</p>
+<p>Why does this happen?</p>
+<ul>
+	<li>For strings, ints, and other immutable objects, when the value is modified, it points to a different object. The new int, or string</li>
+</ul>
+<p><img src="immutable.png" style="width: 750px;"></img></p>
+<ul>
+	<li>For sets, lists, and dicts, and other mutable objects, when the value is modified, the variables that point to it still point to the same object in its entirety</li>
+</ul>
+<p><img src="mutable.png" style="width: 750px;"></img></p>
+<p>Why does this matter in the real world?</p>
+<ul>
+	<li>At one point, you&#8217;d want to copy a dictionary or a set or a list. If you wanted a copy of a dictionary but not change the original copy, you cannot simply do <code>new_dict = original_dict</code>, or else you&#8217;ll end up changing both!</li>
+</ul>
+<h2>Written Questions</h2>
+<p>1. You have a grocery store. Which composite data structure is best to store items and their respective prices?</p>
+<p>2. You want to get all the unique words in an essay. What composite data structure is best for this?</p>
+<p>3. You run a fast-food restaurant. What data structure is best to use to store all the orders coming in?</p>
+<p>4.  How much money does sam have?</p>
+<h3 class="file-heading"><em>written_q.py</em></h3>
+<pre class="file">
+bank = {
+  'sam': {
+    'money': 500
+  }
+}
+
+bank['sam']['money'] == 200
+</pre>
+<p>5.  How much money does sam have?</p>
+<h3 class="file-heading"><em>written_q.py</em></h3>
+<pre class="file">
+bank = {
+  'sam': {
+    'money': 500
+  }
+}
+
+bank['sam']['money'] = 200
+</pre>
+<h2>Coding Exercises</h2>
+<p>1. Create a file within lectures called <code>lecture_00_lab_03_data_types_and_structures.py</code></p>
+<p>2. Let&#8217;s create the grocery store price list. The list of ingredients and their respective prices are</p>
+<ul>
+	<li>grapes 4.99</li>
+	<li>apples 2.00</li>
+	<li>tomato soup 3.00</li>
+</ul>
+<p>3. To test it out, run your file by running</p>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python lecture_00_lab_03_data_types_and_structures.py</pre>
+<p>4. You&#8217;ll notice that there is no output. Print out your grocery list by adding an additional line to print out the price list data structure you made. Google &#8220;how do I print something in python?&#8221;</p>
+<p>5. Test your file out by running it again. You should see the dictionary you created</p>
+<p>6. Grapes are being discontinued from your grocery store. Write another line of code that will remove it from your price list</p>
+        <nav class="foot-navigation">
+      <a href="lab_02.html">
+      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
+      Previous
+    </a>
+  
+      <a href="lab_04.html">
+      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
+      Next
+    </a>
+  </nav>
+
+      </div>
+    </div>
+  </body>
+</html>

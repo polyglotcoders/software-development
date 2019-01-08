@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lab 1 - Python 101</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
+    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="theme-color" content="#0000ff">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" media="screen" href="reset.css">
+    <link rel="stylesheet" media="screen" href="screen.css">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1142510-7']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script type="text/javascript" src="UI.js"></script>
+  </head>
+
+  <body data-lab-id="1">
+    <a href="#content" tabindex="1" class="skip-to-content">
+      Skip to content
+    </a>
+
+    <div class="layout">
+      <div id="index">
+        <p class="link-home">
+          <a href="index.html"><span>Python 101</span></a>
+        </p>
+        <button class="link-menu">Menu</button>
+        <nav tabindex="0">
+          <ol>
+              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+
+          </ol>
+        </nav>
+      </div>
+
+      <div id="content" tabindex="-1">
+        <h1 class="lab_title"><em>lab 1</em>  Top Down</h1>
+<h2>Goals</h2>
+<ul>
+	<li>Understand how code can be used in a real application</li>
+</ul>
+<h2>Stare at this code for a couple of minutes</h2>
+<h3 class="file-heading"><em>user.py</em></h3>
+<pre class="file">import datetime # this is how we import methods / functions from other places
+
+# Here is a class
+class User:
+  def __init__(self, name, lastname, password, birthday, address, telephone, hobbies, email):
+    self.name = name
+    self.lastname = lastname
+    self.password = password
+    self.birthday = birthday
+    self.address = address
+    self.telephone = telephone
+    self.hobbies = hobbies
+    self.email = email
+
+  def get_age(self):
+    # Get today's date
+    today = datetime.datetime.today()
+    age = today.year - self.birthday.year
+
+    return age
+
+  def change_password(self, new_password):
+    if len(new_password) &lt; 6:
+      raise ValueError('New password cannot contain less than 6 characters')
+
+    self.password  = new_password
+
+  def add_hobby(self, hobby):
+    self.hobbies.append(hobby)
+
+# Here is how to "instantiate" a class
+
+bob = User(
+  "bob",
+  "jones",
+  "supersecretpassword",
+  datetime.date(1992, 3, 12),
+  "450 SW Marine Drive",
+  "604 123 4567",
+  ["basketball", "baking"],
+  "bob.jones@gmail.com"
+)
+
+print("Bob's age: {}".format(bob.get_age()))
+print("Bob's original password {}".format(bob.password))
+bob.change_password("newpassword")
+print("Bob's new password {}".format(bob.password))
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python user.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python user.py</div>
+<p>Bob&#8217;s age: 27<br />
+Bob&#8217;s original password supersecretpassword<br />
+Bob&#8217;s new password newpassword<br />
+</pre></p>
+        <nav class="foot-navigation">
+  
+    <span></span>
+  
+      <a href="lab_02.html">
+      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
+      Next
+    </a>
+  </nav>
+
+      </div>
+    </div>
+  </body>
+</html>

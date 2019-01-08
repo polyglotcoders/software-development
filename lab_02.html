@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lab 2 - Python 101</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
+    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="theme-color" content="#0000ff">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" media="screen" href="reset.css">
+    <link rel="stylesheet" media="screen" href="screen.css">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1142510-7']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script type="text/javascript" src="UI.js"></script>
+  </head>
+
+  <body data-lab-id="2">
+    <a href="#content" tabindex="1" class="skip-to-content">
+      Skip to content
+    </a>
+
+    <div class="layout">
+      <div id="index">
+        <p class="link-home">
+          <a href="index.html"><span>Python 101</span></a>
+        </p>
+        <button class="link-menu">Menu</button>
+        <nav tabindex="0">
+          <ol>
+              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+
+          </ol>
+        </nav>
+      </div>
+
+      <div id="content" tabindex="-1">
+        <h1 class="lab_title"><em>lab 2</em>  Variables</h1>
+<h2>Goals</h2>
+<ul>
+	<li>Start creating your own variables</li>
+	<li>Understand what variables are</li>
+</ul>
+<h2>A variable is a value that can change</h2>
+<p>Try to predict what lucy would be on each print</p>
+<h3 class="file-heading"><em>variables.py</em></h3>
+<pre class="file">lucy = 10 + 2 - 1
+print("lucy variable value: {}".format(lucy))
+lucy = 13 + 2 - 1
+print("lucy variable value: {}".format(lucy))
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python variables.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python variables.py</div>
+<p>lucy variable value: 11<br />
+lucy variable value: 14<br />
+</pre></p>
+<h2>Python has untyped variables</h2>
+<ul>
+	<li>In python, variables can be of <span class="caps">ANY</span> type and you don&#8217;t have to declare it.</li>
+</ul>
+<p>This is what it looks like in C / C++, where you have to declare the type of variable</p>
+<h3 class="file-heading"><em>typed_variables.h</em></h3>
+<pre class="file">int lucy = 1;
+string colm = "Hello";
+float morsal = 3.705;
+</pre>
+<p>This is what it looks like in python</p>
+<h3 class="file-heading"><em>untyped_variables.py</em></h3>
+<pre class="file">lucy = 1
+colm = "Hello"
+morsal = 3.705
+</pre>
+<h2>Unlike normal math equations, the &#8220;conclusion&#8221; is on the left side</h2>
+<p>In math we do something like <code>1 + 2 + 3 = answer</code> in programming however, we set the answer to the equation. <code>answer = 1 + 2 + 3</code> The lefthand side almost always contains only one word.</p>
+<h2>Name of the variable does not matter</h2>
+<p>A common mistake people often make is thinking that the name of the variable matters. it does not.</p>
+<h3 class="file-heading"><em>name_does_not_matter.py</em></h3>
+<pre class="file">harry = 1.385
+one = "Harry"
+</pre>
+<p>Run this file and you will see that it won&#8217;t throw any errors</p>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python name_does_not_matter.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python name_does_not_matter.py</div>
+<p></pre></p>
+<p>Another common mistake people make is thinking that there has to be quotation marks to variables. Variables never have quotation marks. They aren&#8217;t strings! Their value could be strings, but they are not.</p>
+<h3 class="file-heading"><em>quotation_marks_around_vars.py</em></h3>
+<pre class="file">"one" = "Harry"
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python quotation_marks_around_vars.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python quotation_marks_around_vars.py</div>
+File &#8220;quotation_marks_around_vars.py&#8221;, line 1
+&#8220;one&#8221; = &#8220;Harry&#8221;
+<p>SyntaxError: can&#8217;t assign to literal<br />
+</pre></p>
+<h2>Advanced: Return multiple values in python.</h2>
+<p>Python is quite unique in that you can make two variables equal to two statements. An example of this would be a function that returns two values.</p>
+<h3 class="file-heading"><em>return_two_values.py</em></h3>
+<pre class="file">def fn_return_two():
+  return "a", "b"
+
+str_1, str_2 = fn_return_two()
+
+print("This is the first value returned {}".format(str_1))
+print("This is the second value returned {}".format(str_2))
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python return_two_values.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python return_two_values.py</div>
+<p>This is the first value returned a<br />
+This is the second value returned b<br />
+</pre></p>
+<h2>Coding Exercises</h2>
+<p>Remember to add, commit, and push the file to your own forked repo!</p>
+<p>1. Create a file called <code>lecture_00_lab02_variables.py</code></p>
+<p>2. Create variables for your first name, last name, your school, your favorite number, and your favorite color!</p>
+<p>3. Return the string &#8220;42&#8221; by adding <span class="caps">TWO</span> strings together. Do not just give <code>forty_two = "42"</code></p>
+<p>4. Return the integer value 5 by using addition, subtraction, and division</p>
+        <nav class="foot-navigation">
+      <a href="lab_01.html">
+      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
+      Previous
+    </a>
+  
+      <a href="lab_03.html">
+      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
+      Next
+    </a>
+  </nav>
+
+      </div>
+    </div>
+  </body>
+</html>
