@@ -120,8 +120,8 @@ print("y: {}, address: {}".format(str(y), str(id(y))))
 <h3><b>Output:</b></h3>
 <pre class="sample">
 <div class="sample_command">$ python immutable.py</div>
-<p>x: 6, address: 140497578403904<br />
-y: 5, address: 140497578403928<br />
+<p>x: 6, address: 140387821856960<br />
+y: 5, address: 140387821856984<br />
 </pre></p>
 <p>You notice that if we do an operation to x, it does not affect y and the addresses of the objects are different!</p>
 <h3 class="file-heading"><em>mutable.py</em></h3>
@@ -139,8 +139,8 @@ print("y: {}, address: {}".format(str(y), str(id(y))))
 <h3><b>Output:</b></h3>
 <pre class="sample">
 <div class="sample_command">$ python mutable.py</div>
-<p>x: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4431035064<br />
-y: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4431035064<br />
+<p>x: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4355533496<br />
+y: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4355533496<br />
 </pre></p>
 <p>You&#8217;ll now notice that even if we modify x, y is affected</p>
 <p>Why does this happen?</p>
