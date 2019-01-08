@@ -1,11 +1,11 @@
 ----------------------------------------------------------------------
-h1. Top-down
+h1. Top Down
 
 h2. Goals
 
 * Understand how code can be used in a real application
 
-h2. Here is the structure of a class
+h2. Stare at this code for a couple of minutes
 
 File: user.py
 import datetime # this is how we import methods / functions from other places
@@ -51,10 +51,10 @@ bob = User(
   "bob.jones@gmail.com"
 )
 
-print("Bob's age:", bob.get_age())
-print("Bob's original password", bob.password)
+print("Bob's age: {}".format(bob.get_age()))
+print("Bob's original password {}".format(bob.password))
 bob.change_password("newpassword")
-print("Bob's new password", bob.password)
+print("Bob's new password {}".format(bob.password))
 EOF
 
 Execute:
@@ -64,16 +64,6 @@ python user.py
 Output: 
 =user_out
 EOF
-
-h2. Coding Exercises
-
-1. Copy and paste the code above into a file within @lectures@ called @python101_lab_01_top_down.py@
-
-2. Add a new hobby to bo
-
-3. Create another person by instantiating a new object using the User class
-
-4. Raise a Value error if the length of the password is greater than or equal to 12
 
 ----------------------------------------------------------------------
 h1. Variables
@@ -89,9 +79,9 @@ Try to predict what lucy would be on each print
 
 File: variables.py
 lucy = 10 + 2 - 1
-print("lucy variable value:", lucy)
+print("lucy variable value: {}".format(lucy))
 lucy = 13 + 2 - 1
-print("lucy variable value:", lucy)
+print("lucy variable value: {}".format(lucy))
 EOF
 
 Execute:
@@ -170,8 +160,8 @@ def fn_return_two():
 
 str_1, str_2 = fn_return_two()
 
-print("This is the first value returned", str_1)
-print("This is the second value returned", str_2)
+print("This is the first value returned {}".format(str_1))
+print("This is the second value returned {}".format(str_2))
 EOF
 
 Execute:
@@ -186,7 +176,7 @@ h2. Coding Exercises
 
 p. Remember to add, commit, and push the file to your own forked repo!
 
-1. Create a file called @python101_lab_02_variables.py@
+1. Create a file called @lecture_00_lab02_variables.py@
 
 2. Create variables for your first name, last name, your school, your favorite number, and your favorite color!
 
@@ -253,7 +243,71 @@ h2. Non-primitive / Composite Data Structures
   </tr>
 </table>
 
-p. What does ordered by insertion mean? It means that you can expect that the data structure will retain the same elements in order of insertion.
+h2. Mutable vs Immutable
+
+The composite data structures talked about above are mutable data structures, while the primitive data types are immutable
+
+What does this mean? If a Mutable object's state/value is changed, and all variables that references it will also change
+
+For example:
+
+File: immutable.py
+
+x = 5
+y = x
+
+# modify x
+x = x + 1
+
+print("x: {}, address: {}".format(str(x), str(id(x))))
+print("y: {}, address: {}".format(str(y), str(id(y))))
+EOF
+
+
+Execute:
+python immutable.py
+=immpy
+
+Output:
+=immpy
+EOF
+
+p. You notice that if we do an operation to x, it does not affect y and the addresses of the objects are different!
+
+File: mutable.py
+x = ['kevin', 'james', 'tim']
+y = x
+
+# modify x
+x.append('rose')
+
+print("x: {}, address: {}".format(str(x), str(id(x))))
+print("y: {}, address: {}".format(str(y), str(id(y))))
+EOF
+
+Execute:
+python mutable.py
+=mpy
+
+Output:
+=mpy
+EOF
+
+p. You'll now notice that even if we modify x, y is affected
+
+p. Why does this happen?
+
+* For strings, ints, and other immutable objects, when the value is modified, it points to a different object. The new int, or string
+
+<img src="immutable.png" style="width: 750px;"></img>
+
+* For sets, lists, and dicts, and other mutable objects, when the value is modified, the variables that point to it still point to the same object in its entirety
+
+<img src="mutable.png" style="width: 750px;"></img>
+
+p. Why does this matter in the real world?
+
+* At one point, you'd want to copy a dictionary or a set or a list. If you wanted a copy of a dictionary but not change the original copy, you cannot simply do @new_dict = original_dict@, or else you'll end up changing both!
 
 h2. Written Questions
 
@@ -268,7 +322,9 @@ h2. Written Questions
 File: written_q.py
 
 bank = {
-  'sam': 500
+  'sam': {
+    'money': 500
+  }
 }
 
 bank['sam']['money'] == 200
@@ -279,7 +335,9 @@ EOF
 File: written_q.py
 
 bank = {
-  'sam': 500
+  'sam': {
+    'money': 500
+  }
 }
 
 bank['sam']['money'] = 200
@@ -289,7 +347,7 @@ EOF
 
 h2. Coding Exercises
 
-1. Create a file within lectures called @python101_lab_03_data_types_and_structures.py@
+1. Create a file within lectures called @lecture_00_lab_03_data_types_and_structures.py@
 
 2. Let's create the grocery store price list. The list of ingredients and their respective prices are
 
@@ -300,7 +358,7 @@ h2. Coding Exercises
 3. To test it out, run your file by running
 
 Execute:
-python python101_lab_01_data_types_and_structures.py
+python lecture_00_lab_03_data_types_and_structures.py
 
 4. You'll notice that there is no output. Print out your grocery list by adding an additional line to print out the price list data structure you made. Google "how do I print something in python?"
 
@@ -456,7 +514,9 @@ h2. Written Exercises
 
 7. What is the difference @between = and ==@?
 
-8. What is the difference between @and@ and @or@? Give an example that shows the difference
+8. What is the result of @false != @false@?
+
+9. What is the difference between @and@ and @or@? Give an example that shows the difference
 
 ----------------------------------------------------------------------
 h1. Quiz 00
@@ -468,6 +528,11 @@ h1. Quiz 00
 <pre class="instructions">jupyter notebook</pre>
 
 
-2. Open up @python101_quiz_00_data_types_and_structures.ipynb@ and begin
+2. Open up @quiz_00_python101.ipynb@ and begin
+
+----------------------------------------------------------------------
+h1. Homework Assignment 00
+
+1. Open up @ha_00_python101.ipynb@ and finish by next class
 
 ----------------------------------------------------------------------
