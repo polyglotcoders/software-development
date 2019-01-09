@@ -120,8 +120,8 @@ print("y: {}, address: {}".format(str(y), str(id(y))))
 <h3><b>Output:</b></h3>
 <pre class="sample">
 <div class="sample_command">$ python immutable.py</div>
-<p>x: 6, address: 140472806844608<br />
-y: 5, address: 140472806844632<br />
+<p>x: 6, address: 140306947287232<br />
+y: 5, address: 140306947287256<br />
 </pre></p>
 <p>You notice that if we do an operation to x, it does not affect y and the addresses of the objects are different!</p>
 <h3 class="file-heading"><em>mutable.py</em></h3>
@@ -139,8 +139,8 @@ print("y: {}, address: {}".format(str(y), str(id(y))))
 <h3><b>Output:</b></h3>
 <pre class="sample">
 <div class="sample_command">$ python mutable.py</div>
-<p>x: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4461767352<br />
-y: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4461767352<br />
+<p>x: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4345252536<br />
+y: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4345252536<br />
 </pre></p>
 <p>You&#8217;ll now notice that even if we modify x, y is affected</p>
 <p>Why does this happen?</p>
@@ -181,6 +181,21 @@ bank = {
 }
 
 bank['sam']['savings'] = 200
+</pre>
+<p>6. What is y at the end of this file?</p>
+<h3 class="file-heading"><em>written_q6.py</em></h3>
+<pre class="file">
+x = ['a', 'b', 'c']
+y = x
+x.append('d')
+</pre>
+<p>7. What is y at the end of this file?</p>
+<h3 class="file-heading"><em>written_q7.py</em></h3>
+<pre class="file">
+x = 'hello'
+y = x
+
+y += ' world'
 </pre>
 <h2>Coding Exercises</h2>
 <p>1. Create a file within lectures called <code>lecture_00_lab_03_data_types_and_structures.py</code></p>
