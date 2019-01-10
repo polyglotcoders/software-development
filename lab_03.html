@@ -115,10 +115,10 @@ f.close()
 <p>We prefer not to write explicit opens and closes. From now on use this format. This &#8220;automatically&#8221; closes the file after this code block is executed</p>
 <h3 class="file-heading"><em>read_and_write.py</em></h3>
 <pre class="file">
-with open("positive.txt", "w+") as f:
+with open("hello_world.txt", "w+") as f:
   f.write("hello world")
 
-with open("positive.txt", "r") as f:
+with open("hello_world.txt", "r") as f:
   print(f.readlines())
 </pre>
 <h3><b>Execute:</b></h3>
@@ -128,14 +128,50 @@ with open("positive.txt", "r") as f:
 <div class="sample_command">$ python read_and_write.py</div>
 <p>[&#8216;hello world&#8217;]<br />
 </pre></p>
+<h2>Getting the path of the files we want from the program we&#8217;re running</h2>
+<p>Knowing how to access particular files from the file you&#8217;re running and checking for their existence is important!</p>
+<h3 class="file-heading"><em>os_examples.py</em></h3>
+<pre class="file">import os
+
+current_file = os.path.realpath('../../../polyglot/cohort-1/data/employees.csv')  
+print('current file: {}'.format(current_file))
+# Note: in .py files you can get the path of current file by __file__
+
+current_dir = os.path.dirname(current_file)  
+print('current directory: {}'.format(current_dir))
+# Note: in .py files you can get the dir of current file by os.path.dirname(__file__)
+
+data_dir = os.path.join(os.path.dirname(current_dir), 'data')
+print('data directory: {}'.format(data_dir))
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python os_examples.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python os_examples.py</div>
+<p>current file: /Users/bea/Development/polyglot-course/polyglot/cohort-1/data/employees.csv<br />
+current directory: /Users/bea/Development/polyglot-course/polyglot/cohort-1/data<br />
+data directory: /Users/bea/Development/polyglot-course/polyglot/cohort-1/data<br />
+</pre></p>
 <h2>Coding exercises</h2>
-<p>1. Read and print out the file loremipsum.txt</p>
-<p>2. Create a new file within data titled loremipsum_extended.txt</p>
-<p>Execute: <br />
-touch data/loremipsumextended.txt</p>
-<p>In this program, you will read everything within loremipsum.txt, add the new paragraph below and write it to the new file</p>
+<p>Remember to add, commit, and push the file to your own forked repo!</p>
+<p>1. Create a file called <code>lecture_01_lab_f03_file_io.py</code>. This is where you will store all your code</p>
+<p>2. Read and print out the file loremipsum.txt</p>
+<p>3.</p>
+<p>In this program, you will read everything within loremipsum.txt, add the new paragraph below and write it to a new file called loremipsum_extended.txxt</p>
 <p><code>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</code></p>
-<p>3. You&#8217;ll notice that when you run readlines() on positive.txt above, you&#8217;ll see a new line &#8220;\n&#8221;. Store the output of readlines into a list and remove all the new lines</p>
+<p>4. You&#8217;ll notice that when you run readlines() on positive.txt above, you&#8217;ll see a new line &#8220;\n&#8221;. Create a positive.txt file within the data folder. Store the output of readlines into a list and remove all the new lines</p>
+<p>5. Convert data/employees.csv into a dictionary. The first line in the csv are the keys, the rest are values. Your output should look something like</p>
+<h3 class="file-heading"><em>example_employees_output.py:</em></h3>
+<pre class="file">
+employees_dict = {
+  'emp_name': 'John Smith',
+  'dept': 'Accounting',
+  'birth_month': 'November'
+  ...
+}
+</pre>
+<p>6. Store all the file contents in the data folder into separate variables. For example, there should be a variable called <code>loremimpsum</code> which should equal to the contents of the loremipsum text file. Try to write this code cleanly, think about using for loops, taking advantage of splitting strings, and referencing the os examples above</p>
         <nav class="foot-navigation">
       <a href="lab_02.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
