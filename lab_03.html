@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 3 - Python 101</title>
+    <title>Lab 3 - Python 102</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
@@ -31,186 +31,111 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 101</span></a>
+          <a href="index.html"><span>Python 102</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">If statement</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">Iterating</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">File I/O</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">Quiz 01</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">Homework Assignment 01</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 3</em>  Data types and Data Structures</h1>
+        <h1 class="lab_title"><em>lab 3</em>  File I/O</h1>
 <h2>Goals</h2>
 <ul>
-	<li>Learn primitive / basic data types</li>
-	<li>Learn non-primitive / composite data structures</li>
+	<li>Understand File I/O</li>
+	<li>Read txt files, csv files and run list operations on them</li>
 </ul>
-<h2>Primitive types</h2>
-<table>
-<tr>
-    <th>Symbol</th>
-    <th>Example</th> 
-</tr>
-<tr>
-    <td>str</td>
-    <td>&#8216;Hello&#8217; or &#8220;Hello&#8221;</td>
-</tr>
-<tr>
-    <td>int</td>
-    <td>0,1,2,3,4</td>
-</tr>
-<tr>
-    <td>float</td>
-    <td>0.123, 0.456</td>
-</tr>
-<tr>
-    <td>bool</td>
-    <td>false</td>
-</tr>
-</table>
-<h2>Non-primitive / Composite Data Structures</h2>
-<table>
-<tr>
-    <th>Symbol</th>
-    <th>Example</th> 
-    <th>Notes</th>
-</tr>
-<tr>
-    <td>list</td>
-    <td>[&#8216;kevin&#8217;, &#8216;kevin&#8217;, &#8216;tim&#8217;, &#8216;david&#8217;]</td> 
-    <td>can have duplicates, ordered by insertion</td>
-</tr>
-<tr>
-    <td>set</td>
-    <td>{&#8217;kevin&#8217;, &#8216;david&#8217;, &#8217;tim&#8217;}</td> 
-    <td>no duplicates, unordered by insertion</td>
-</tr>
-<tr>
-    <td>dict</td>
-    <td>{&#8217;kevin&#8217;: 25, &#8216;david&#8217;: 26, &#8216;tim&#8217;: 29} </td> 
-    <td>key-value pair. no duplicates. unordered by insertion</td>
-</tr>
-</table>
-<h2>Mutable vs Immutable</h2>
-<p>The composite data structures talked about above are mutable data structures, while the primitive data types are immutable</p>
-<p>What does this mean? If a Mutable object&#8217;s state/value is changed, and all variables that references it will also change</p>
-<p>For example:</p>
-<h3 class="file-heading"><em>immutable.py</em></h3>
-<pre class="file">
-x = 5
-y = x
-
-# modify x
-x = x + 1
-
-print("x: {}, address: {}".format(str(x), str(id(x))))
-print("y: {}, address: {}".format(str(y), str(id(y))))
+<h2>Reading a file and explicit opening, closing</h2>
+<h3 class="file-heading"><em>positive.txt</em></h3>
+<pre class="file">yay
+youthful
+zeal
+zenith
+zest
+zippy
+</pre>
+<h3 class="file-heading"><em>open_and_close.py</em></h3>
+<pre class="file">f = open("positive.txt", "r")
+print(f.read(4))
+print(f.read(4))
+f.close()
 </pre>
 <h3><b>Execute:</b></h3>
-<pre class="instructions">python immutable.py</pre>
+<pre class="instructions">python open_and_close.py</pre>
 <h3><b>Output:</b></h3>
 <pre class="sample">
-<div class="sample_command">$ python immutable.py</div>
-<p>x: 6, address: 140669058328768<br />
-y: 5, address: 140669058328792<br />
+<div class="sample_command">$ python open_and_close.py</div>
+<p>yay</p>
+<p>yout<br />
 </pre></p>
-<p>You notice that if we do an operation to x, it does not affect y and the addresses of the objects are different!</p>
-<h3 class="file-heading"><em>mutable.py</em></h3>
-<pre class="file">x = ['kevin', 'james', 'tim']
-y = x
+<h2>Appending to a file and explicit open/close</h2>
+<p>Using an &#8220;a&#8221; will append to the end of the file.</p>
+<h3 class="file-heading"><em>open_and_close_append.py</em></h3>
+<pre class="file">f = open("positive.txt", "a")
+f.write("yahoo\n")
+f.close()
 
-# modify x
-x.append('rose')
-
-print("x: {}, address: {}".format(str(x), str(id(x))))
-print("y: {}, address: {}".format(str(y), str(id(y))))
+f = open("positive.txt", "r")
+print(f.readlines())
+f.close()
 </pre>
 <h3><b>Execute:</b></h3>
-<pre class="instructions">python mutable.py</pre>
+<pre class="instructions">python open_and_close_append.py</pre>
 <h3><b>Output:</b></h3>
 <pre class="sample">
-<div class="sample_command">$ python mutable.py</div>
-<p>x: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4502100664<br />
-y: [&#8216;kevin&#8217;, &#8216;james&#8217;, &#8216;tim&#8217;, &#8216;rose&#8217;], address: 4502100664<br />
+<div class="sample_command">$ python open_and_close_append.py</div>
+<p>[&#8216;yay\n&#8217;, &#8216;youthful\n&#8217;, &#8216;zeal\n&#8217;, &#8216;zenith\n&#8217;, &#8216;zest\n&#8217;, &#8216;zippy\n&#8217;, &#8216;yahoo\n&#8217;]<br />
 </pre></p>
-<p>You&#8217;ll now notice that even if we modify x, y is affected</p>
-<p>Why does this happen?</p>
-<ul>
-	<li>For strings, ints, and other immutable objects, when the value is modified, it points to a different object. The new int, or string</li>
-</ul>
-<p><img src="immutable.png" style="width: 750px;"></img></p>
-<ul>
-	<li>For sets, lists, and dicts, and other mutable objects, when the value is modified, the variables that point to it still point to the same object in its entirety</li>
-</ul>
-<p><img src="mutable.png" style="width: 750px;"></img></p>
-<p>Why does this matter in the real world?</p>
-<ul>
-	<li>At one point, you&#8217;d want to copy a dictionary or a set or a list. If you wanted a copy of a dictionary but not change the original copy, you cannot simply do <code>new_dict = original_dict</code>, or else you&#8217;ll end up changing both!</li>
-</ul>
-<h2>Written Questions</h2>
-<p>1. You have a grocery store. Which composite data structure is best to store items and their respective prices?</p>
-<p>2. You want to get all the unique words in an essay. What composite data structure is best for this?</p>
-<p>3. You run a fast-food restaurant. What data structure is best to use to store all the orders coming in?</p>
-<p>4.  How much money does sam have?</p>
-<h3 class="file-heading"><em>written_q0.py</em></h3>
-<pre class="file">
-bank = {
-  'sam': {
-    'savings': 500
-  }
-}
+<h2>Writing to a file and explicit open/close</h2>
+<h3 class="file-heading"><em>open_and_close_writing.py</em></h3>
+<pre class="file">f = open("positive.txt", "w")
+f.write("yahoo")
+f.close()
 
-bank['sam']['savings'] == 200
+f = open("positive.txt", "r")
+print(f.readlines())
+f.close()
 </pre>
-<p>5.  How much savings does sam have?</p>
-<h3 class="file-heading"><em>written_q1.py</em></h3>
-<pre class="file">
-bank = {
-  'sam': {
-    'savings': 500
-  }
-}
-
-bank['sam']['savings'] = 200
-</pre>
-<p>6. What is x at the end of this file?</p>
-<h3 class="file-heading"><em>written_q6.py</em></h3>
-<pre class="file">
-x = ['a', 'b', 'c']
-y = x
-y.append('d')
-</pre>
-<p>7. What is x at the end of this file?</p>
-<h3 class="file-heading"><em>written_q7.py</em></h3>
-<pre class="file">
-x = 'hello'
-y = x
-
-y += ' world'
-</pre>
-<h2>Coding Exercises</h2>
-<p>1. Create a file within lectures called <code>lecture_00_lab_03_data_types_and_structures.py</code></p>
-<p>2. Let&#8217;s create the grocery store price list. The list of ingredients and their respective prices are</p>
-<ul>
-	<li>grapes 4.99</li>
-	<li>apples 2.00</li>
-	<li>tomato soup 3.00</li>
-</ul>
-<p>3. To test it out, run your file by running</p>
 <h3><b>Execute:</b></h3>
-<pre class="instructions">python lecture_00_lab_03_data_types_and_structures.py</pre>
-<p>4. You&#8217;ll notice that there is no output. Print out your grocery list by adding an additional line to print out the price list data structure you made. Google &#8220;how do I print something in python?&#8221;</p>
-<p>5. Test your file out by running it again. You should see the dictionary you created</p>
-<p>6. Grapes are being discontinued from your grocery store. Write another line of code that will remove it from your price list</p>
+<pre class="instructions">python open_and_close_writing.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python open_and_close_writing.py</div>
+<p>[&#8216;yahoo&#8217;]<br />
+</pre></p>
+<h2>De-facto way to open files:</h2>
+<p>We prefer not to write explicit opens and closes. From now on use this format. This &#8220;automatically&#8221; closes the file after this code block is executed</p>
+<h3 class="file-heading"><em>read_and_write.py</em></h3>
+<pre class="file">
+with open("positive.txt", "w+") as f:
+  f.write("hello world")
+
+with open("positive.txt", "r") as f:
+  print(f.readlines())
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python read_and_write.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python read_and_write.py</div>
+<p>[&#8216;hello world&#8217;]<br />
+</pre></p>
+<h2>Coding exercises</h2>
+<p>1. Read and print out the file loremipsum.txt</p>
+<p>2. Create a new file within data titled loremipsum_extended.txt</p>
+<p>Execute: <br />
+touch data/loremipsumextended.txt</p>
+<p>In this program, you will read everything within loremipsum.txt, add the new paragraph below and write it to the new file</p>
+<p><code>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</code></p>
+<p>3. You&#8217;ll notice that when you run readlines() on positive.txt above, you&#8217;ll see a new line &#8220;\n&#8221;. Store the output of readlines into a list and remove all the new lines</p>
         <nav class="foot-navigation">
       <a href="lab_02.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
