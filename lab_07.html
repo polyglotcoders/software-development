@@ -42,20 +42,120 @@
   <li id="lab_4_link"><a href="lab_04.html">Quiz 01</a></li>
   <li id="lab_5_link"><a href="lab_05.html">Homework Assignment 01</a></li>
   <li id="lab_6_link"><a href="lab_06.html">Functions</a></li>
-  <li id="lab_7_link"><a href="lab_07.html">Quiz 01</a></li>
-  <li id="lab_8_link"><a href="lab_08.html">Homework Assignment 02</a></li>
+  <li id="lab_7_link"><a href="lab_07.html">Classes</a></li>
+  <li id="lab_8_link"><a href="lab_08.html">Quiz 01</a></li>
+  <li id="lab_9_link"><a href="lab_09.html">Homework Assignment 02</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 7</em>  Quiz 01</h1>
-<p>1. Start quiz</p>
+        <h1 class="lab_title"><em>lab 7</em>  Classes</h1>
+<p>1. Creating a class creates a new type of object. It thus allows new instances of that class to be made.</p>
+<h2>Overview</h2>
+<h3 class="file-heading"><em>bank_account.py</em></h3>
+<pre class="file">class BankAccount:
+    def __init__(self, name, balance=0.00):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        """make a deposit"""
+        self.balance += amount
+
+    def withdraw(self, amount):
+        """make a withdraw"""
+        if amount &gt; self.balance:
+            raise ValueError("insufficient funds")
+        self.balance -= amount
+
+    def get_balance(self): #are accessor methods needed in Python?
+        """check the balance"""
+        return self.balance
+
+
+customer1 = BankAccount('Alex')
+print(customer1.get_balance())
+customer1.deposit(100)
+customer1.withdraw(30)
+print(customer1.get_balance())
+
+customer2 = BankAccount('Sam', 200)
+print(customer2.get_balance())
+</pre>
 <h3><b>Execute:</b></h3>
-<pre class="instructions">cd ~/Development/polyglot/cohort-1/quizzes</pre>
-<pre class="instructions">jupyter notebook</pre>
-<p>2. Open up <code>quiz_01b_python102.ipynb</code> and begin</p>
+<pre class="instructions">python bank_account.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python bank_account.py</div>
+<p>0.0<br />
+70.0<br />
+200<br />
+</pre></p>
+<h2>Object inheritance</h2>
+<p><a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">Object inheritence</a></p>
+<p>Classes can inherit from other classes. A class can inherit attributes and behaviour methods from another class, called the superclass. A class which inherits from a superclass is called a subclass, also called heir class or child class. Superclasses are sometimes called ancestors as well. There exists a hierarchy relationship between classes.</p>
+<p><img src="inheritance.png"></img></p>
+<h3 class="file-heading"><em>inheritance.py</em></h3>
+<pre class="file">class Animal:
+    def __init__(self, kind, place):
+        self.kind = kind
+        self.place = place
+
+    def speak(self, adverb):
+        print("%s just did a %s %s" % (self.name, adverb, self.speechtype))
+
+    #getallinfo method, get's all the parametrs of both classes.
+    def getallinfo(self):
+        print("%s is a %s %s %s, sitting on the %s" % (self.name, self.gender, self.breed, self.kind, self.place))
+
+#This class inherits kind and place arguments from Animal class (which can work for any animal)
+#Initiates a Dog object with name, gender and breed parameters.
+
+class Dog(Animal):
+    def __init__(self, name, gender, breed):
+        self.name = name
+        self.gender = gender
+        self.breed = breed
+        self.speechtype = "woof";
+        Animal.__init__(self, 'Dog', 'Ground')
+
+
+#Cat class inherits the paramets of use for a Cat (similar things) like name, gender and breed, which they both share, also the getallinfo method and initiate them. 
+class Cat(Animal):
+    def __init__(self, name, gender, breed):
+        self.name = name
+        self.gender = gender
+        self.breed = breed
+        self.speechtype = "meow";
+        Animal.__init__(self, 'Cat', 'Ground')
+
+
+#Here I create 3 objects, 2 dogs and 1 cat with selected arguments.
+#And check for some methods on the objects.
+Mickey = Dog('Mickey', 'Male', 'Bulldog')
+Flora = Dog('Flora','Female','Pug')
+Tina = Cat('Tina','Female','Persian')
+Tina.getallinfo()
+Tina.speak('soft')
+Flora.getallinfo()
+Mickey.speak('loud')
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python bank_account.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python bank_account.py</div>
+<p>0.0<br />
+70.0<br />
+200<br />
+</pre></p>
+<h2>Coding exercises</h2>
+<p>1. Create a User class that has the following attributes: username, password, first name, last name, email, birthday</p>
+<p>2. Add the function get_full_name which returns the first name and last name</p>
+<p>3. Add the function change password which changes the previous password to the new password. You do not need to return anything.</p>
+<p>4. Add a new subclass to inheritance.py above with any animal of your choosing</p>
         <nav class="foot-navigation">
       <a href="lab_06.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
