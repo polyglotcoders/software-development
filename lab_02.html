@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 2 - Python 102</title>
+    <title>Lab 2 - Software Development</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
-    <meta name="description" content="A guided tour that walks through file i/o, if statements, and for loops">
+    <meta name="description" content="A guided tour thatintroduces students to building web applications">
     <meta name="theme-color" content="#0000ff">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="screen" href="reset.css">
@@ -31,139 +31,45 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 102</span></a>
+          <a href="index.html"><span>Software Development</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">If statement</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Iterating</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">File I/O</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Quiz 01</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Homework Assignment 01</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Functions</a></li>
-  <li id="lab_7_link"><a href="lab_07.html">Classes</a></li>
-  <li id="lab_8_link"><a href="lab_08.html">Quiz 01</a></li>
-  <li id="lab_9_link"><a href="lab_09.html">Homework Assignment 02</a></li>
-  <li id="lab_10_link"><a href="lab_10.html">Homework Assignment 03</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">Client-Server Model</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">API</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 2</em>  Iterating</h1>
+        <h1 class="lab_title"><em>lab 2</em>  <span class="caps">API</span></h1>
 <h2>Goals</h2>
 <ul>
-	<li>Understand for loops / nested for loops</li>
+	<li>To understand what an <span class="caps">API</span> is</li>
+	<li>Make <span class="caps">API</span> calls from the console</li>
+	<li>Make <span class="caps">API</span> calls from python code</li>
 </ul>
-<h2>Overview</h2>
-<p>A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string)</p>
-<p>Here are a couple of for loops in action</p>
-<h2>Iterating by item with a for loop</h2>
-<h3 class="file-heading"><em>by_item.py</em></h3>
-<pre class="file">fruits = ["apple", "banana", "cherry"]
-
-for x in fruits:
-  print(x)
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python by_item.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python by_item.py</div>
-<p>apple<br />
-banana<br />
-cherry<br />
-</pre></p>
-<h2>Iterate via index with a for loop</h2>
-<p>Another useful way to iterate over items is via their index. Say that we only wanted to iterate over the first 2 words</p>
-<h3 class="file-heading"><em>by_range.py</em></h3>
-<pre class="file">fruits = ["apple", "banana", "cherry"]
-
-for i in range(0,2):
-  print(fruits[i])
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python by_range.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python by_range.py</div>
-<p>apple<br />
-banana<br />
-</pre></p>
-<p>Now by_range.py is equivalent to</p>
-<h3 class="file-heading"><em>clone_list.py</em></h3>
-<pre class="file">fruits = ["apple", "banana", "cherry"]
-first_two = fruits[:2]
-
-for x in first_two:
-  print(x)
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python clone_list.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python clone_list.py</div>
-<p>apple<br />
-banana<br />
-</pre></p>
-<p>However, <code>by_range.py</code> is more ideal because it takes up less memory as it doesn&#8217;t have to allocate more space for a cloned list</p>
-<h2>Advanced: List comprehension</h2>
-<p>To create a new list in one line, use list comprehension</p>
-<h3 class="file-heading"><em>one_line.py</em></h3>
-<pre class="file">fruits = ["apple", "banana", "cherry"]
-
-# Via item
-
-# List iterator
-uppercased_list = [x.upper() for x in fruits]
-
-# Which is equivalent to this for loop
-uppercased_list = []
-for x in fruits:
-  uppercased_list.append(x.upper())
-
-# Via index
-
-# List iterator
-uppercased_list_via_index = [fruits[i].upper() for i in range(0, 2)]
-
-# For loop
-uppercased_list_via_index = []
-for i in range(0,2):
-  uppercased_list_via_index.append(fruits[i].upper())
-</pre>
-<h2>Coding Exercises</h2>
-<p>Remember to add, commit, and push the file to your own forked repo!</p>
-<p>1. Create a file called <code>lecture_01_lab_02_iterating.py</code></p>
-<p>2. Write a program that checks the validity of a password. You can &#8220;hardcode&#8221; the password by setting the variable to any password you like. Print out &#8220;valid&#8221; if valid, and &#8220;invalid&#8221; if invalid</p>
-<ul>
-	<li>The length must be greater than 6 and less than 12</li>
-	<li>At least 1 letter between [a-z] and 1 letter between [A-Z].</li>
-	<li>At least 1 number between [0-9].</li>
-	<li>At least 1 character from [$#@].</li>
-</ul>
-<p>3. Write a program that prints the numbers from 1 to 20. But for multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”. For numbers which are multiples of both three and five print “FizzBuzz”.</p>
-<p>4.</p>
-<p>Here is a list of sentences:<br />
-<code>['great day today', 'horrible weather tomorrow', 'cool story bro']</code></p>
-<p>Here is a set of good words:<br />
-<code>{'great', 'good', 'cool', 'fantastic'}</code></p>
-<p>Here is a set of bad words:<br />
-<code>{'bad', 'sad', 'horrible'}</code></p>
-<p>Count the number of good words in each sentence and bad words, and print out which one is greater in number</p>
-<p>5. Add, commit, and push up code. (<span class="caps">REQUIRED</span>)</p>
+<h2>What is an <span class="caps">API</span>?</h2>
+<p>An <span class="caps">API</span> is a software-to-software interface. Recall in class us talking about computers fetching information or data from another computer. In our case we might fetch the latest Tweets from Twitter&#8217;s <span class="caps">API</span>, or the latest posts in Reddit&#8217;s <span class="caps">API</span>.</p>
+<h2>What is an endpoint?</h2>
+<p>Just an <span class="caps">HTML</span> address that gives you access to data</p>
+<p>Let&#8217;s install Postman <a href=":https://www.getpostman.com/">https://www.getpostman.com/</a>!</p>
+<p>Now let&#8217;s first take a look at reddit&#8217;s <span class="caps">API</span> for a particular subreddit.</p>
+<p>Go to <a href="https://www.reddit.com/r/ubc.json">https://www.reddit.com/r/ubc.json</a>. You&#8217;ll see that this gives us data for that particular subreddit. Now let&#8217;s use postman to fetch it.</p>
+<h2>So what&#8217;s the point of all of this?</h2>
+<p>Well, you&#8217;ll be running your sentiment analyzer on all the posts of a particular subreddit of your choice by fetching data for that subreddit. We&#8217;ll first be hardcoding it to return values, then we&#8217;ll start doing javascript to take in inputs</p>
+<h2>Code pointers!</h2>
+<p>To make requests: <a href=":http://docs.python-requests.org/en/latest/">http://docs.python-requests.org/en/latest/</a></p>
         <nav class="foot-navigation">
       <a href="lab_01.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
       Previous
     </a>
   
-      <a href="lab_03.html">
-      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
-      Next
-    </a>
+  
+    <span></span
   </nav>
 
       </div>
