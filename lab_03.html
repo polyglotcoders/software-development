@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 3 - Python 102</title>
+    <title>Lab 3 - Software Development</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
-    <meta name="description" content="A guided tour that walks through file i/o, if statements, and for loops">
+    <meta name="description" content="A guided tour thatintroduces students to building web applications">
     <meta name="theme-color" content="#0000ff">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="screen" href="reset.css">
@@ -31,162 +31,48 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 102</span></a>
+          <a href="index.html"><span>Software Development</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">If statement</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Iterating</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">File I/O</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Quiz 01</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Homework Assignment 01</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Functions</a></li>
-  <li id="lab_7_link"><a href="lab_07.html">Classes</a></li>
-  <li id="lab_8_link"><a href="lab_08.html">Quiz 01</a></li>
-  <li id="lab_9_link"><a href="lab_09.html">Homework Assignment 02</a></li>
-  <li id="lab_10_link"><a href="lab_10.html">Homework Assignment 03</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">Client-Server Model</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">API</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Homework Assignment 04</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 3</em>  File I/O</h1>
-<h2>Goals</h2>
-<ul>
-	<li>Understand File I/O</li>
-	<li>Read txt files, csv files and run list operations on them</li>
-</ul>
-<h2>Reading a file and explicit opening, closing</h2>
-<h3 class="file-heading"><em>positive.txt</em></h3>
-<pre class="file">yay
-youthful
-zeal
-zenith
-zest
-zippy
+        <h1 class="lab_title"><em>lab 3</em>  Homework Assignment 04</h1>
+<h2>Option 1: Create your Hacker News Sentiment Analyzer</h2>
+<p>1. Within server.py call the hacker news api, fetch the latest comments, and run sentiment analysis on it.</p>
+<h2>Option 2: Create your Twitter Sentiment Analyzer</h2>
+<p>1. Create a twitter account and use twitter&#8217;s search <span class="caps">API</span> to fetch the latest tweets based on an input and run sentiment analysis on it. You will need to learn about <span class="caps">HTML</span> inputs, <span class="caps">POST</span> requests, flask templates, and also fetch your bearer token to access Twitter&#8217;s <span class="caps">API</span>.</p>
+<p><a href="https://stackoverflow.com/questions/12277933/send-data-from-a-textbox-into-flask">Inputs and Flask</a><br />
+<a href="http://flask.pocoo.org/docs/1.0/tutorial/templates/">Flask templates</a><br />
+<a href="https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens.html">Generating a bearer token</a></p>
+<p><span class="caps">TLDR</span>: To make a request via twitter&#8217;s <span class="caps">API</span>:</p>
+<h3 class="file-heading"><em>request_twitter_data</em></h3>
+<pre class="file">def get_tweets(searchitem)
+    url = 'https://api.twitter.com/1.1/search/tweets.json?q=%23{}&amp;result_type=recent'.format(searchitem)
+    headers = {'authorization': 'Bearer &lt;BEARERTOKEN&gt;'}
+    res = requests.get(url, headers=headers)
 </pre>
-<h3 class="file-heading"><em>open_and_close.py</em></h3>
-<pre class="file">f = open("positive.txt", "r")
-print(f.read(4))
-print(f.read(4))
-f.close()
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python open_and_close.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python open_and_close.py</div>
-<p>yay</p>
-<p>yout<br />
-</pre></p>
-<h2>Appending to a file and explicit open/close</h2>
-<p>Using an &#8220;a&#8221; will append to the end of the file.</p>
-<h3 class="file-heading"><em>open_and_close_append.py</em></h3>
-<pre class="file">f = open("positive.txt", "a")
-f.write("yahoo\n")
-f.close()
-
-f = open("positive.txt", "r")
-print(f.readlines())
-f.close()
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python open_and_close_append.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python open_and_close_append.py</div>
-<p>[&#8216;yay\n&#8217;, &#8216;youthful\n&#8217;, &#8216;zeal\n&#8217;, &#8216;zenith\n&#8217;, &#8216;zest\n&#8217;, &#8216;zippy\n&#8217;, &#8216;yahoo\n&#8217;]<br />
-</pre></p>
-<h2>Writing to a file and explicit open/close</h2>
-<h3 class="file-heading"><em>open_and_close_writing.py</em></h3>
-<pre class="file">f = open("positive.txt", "w")
-f.write("yahoo")
-f.close()
-
-f = open("positive.txt", "r")
-print(f.readlines())
-f.close()
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python open_and_close_writing.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python open_and_close_writing.py</div>
-<p>[&#8216;yahoo&#8217;]<br />
-</pre></p>
-<h2>De-facto way to open files:</h2>
-<p>We prefer not to write explicit opens and closes. From now on use this format. This &#8220;automatically&#8221; closes the file after this code block is executed</p>
-<h3 class="file-heading"><em>read_and_write.py</em></h3>
-<pre class="file">
-with open("hello_world.txt", "w+") as f:
-  f.write("hello world")
-
-with open("hello_world.txt", "r") as f:
-  print(f.readlines())
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python read_and_write.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python read_and_write.py</div>
-<p>[&#8216;hello world&#8217;]<br />
-</pre></p>
-<h2>Getting the path of the files we want from the program we&#8217;re running</h2>
-<p>Knowing how to access particular files from the file you&#8217;re running and checking for their existence is important!</p>
-<h3 class="file-heading"><em>os_examples.py</em></h3>
-<pre class="file">import os
-
-current_file = os.path.realpath('../../../polyglot/cohort-1/data/employees.csv')  
-print('current file: {}'.format(current_file))
-# Note: in .py files you can get the path of current file by __file__
-
-current_dir = os.path.dirname(current_file)  
-print('current directory: {}'.format(current_dir))
-# Note: in .py files you can get the dir of current file by os.path.dirname(__file__)
-
-data_dir = os.path.join(os.path.dirname(current_dir), 'data')
-print('data directory: {}'.format(data_dir))
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python os_examples.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python os_examples.py</div>
-<p>current file: /Users/bea/Development/polyglot-course/polyglot/cohort-1/data/employees.csv<br />
-current directory: /Users/bea/Development/polyglot-course/polyglot/cohort-1/data<br />
-data directory: /Users/bea/Development/polyglot-course/polyglot/cohort-1/data<br />
-</pre></p>
-<h2>Coding exercises</h2>
-<p>Remember to add, commit, and push the file to your own forked repo!</p>
-<p>1. Create a file called <code>lecture_01_lab_f03_file_io.py</code>. This is where you will store all your code</p>
-<p>2. Read and print out the file loremipsum.txt</p>
-<p>3.</p>
-<p>In this program, you will read everything within loremipsum.txt, add the new paragraph below and write it to a new file called loremipsum_extended.txt. Do not create this file explicitly. Using <code>with</code> and <code>w</code> or <code>w+</code> should be enough.</p>
-<p><code>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</code></p>
-<p>4. You&#8217;ll notice that when you run readlines() on positive.txt above, you&#8217;ll see a new line &#8220;\n&#8221;. The positive.txt file should be created and written into the data folder. Do not create this file explicitly. Using <code>with</code> and <code>w</code> or <code>w+</code> should be enough. Store the output of readlines into a list and remove all the new lines</p>
-<p>5. Convert data/employees.csv into a dictionary. The first line in the csv are the keys, the rest are values. Your output should look something like</p>
-<h3 class="file-heading"><em>example_employees_output.py:</em></h3>
-<pre class="file">
-employees_dict = {
-  'emp_name': 'John Smith',
-  'dept': 'Accounting',
-  'birth_month': 'November'
-  ...
-}
-</pre>
-<p>6. Store all the file contents in the data folder into separate variables. For example, there should be a variable called <code>loremimpsum</code> which should equal to the contents of the loremipsum text file. Try to write this code cleanly, think about using for loops, taking advantage of splitting strings, and referencing the os examples above</p>
+<p>Your end result should look something like this</p>
+<video width="768" height="576" autoplay controls controlsList="nofullscreen nodownload novolume" >
+  <source type="video/mp4" src="tweet_analyzer.mp4"></source>
+  <p>Your browser does not support the video element.</p>
+</video>
         <nav class="foot-navigation">
       <a href="lab_02.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
       Previous
     </a>
   
-      <a href="lab_04.html">
-      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
-      Next
-    </a>
+  
+    <span></span
   </nav>
 
       </div>
