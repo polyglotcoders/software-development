@@ -49,10 +49,11 @@
 <h2>Option 1: Create your Hacker News Sentiment Analyzer</h2>
 <p>1. Within server.py call the hacker news api, fetch the latest comments, and run sentiment analysis on it.</p>
 <h2>Option 2: Create your Twitter Sentiment Analyzer</h2>
-<p>1. Create a twitter account and use twitter&#8217;s search <span class="caps">API</span> to fetch the latest tweets based on an input and run sentiment analysis on it. You will need to learn about <span class="caps">HTML</span> inputs, <span class="caps">POST</span> requests, flask templates, and also fetch your bearer token to access Twitter&#8217;s <span class="caps">API</span>.</p>
+<p>1. Create a twitter account and use twitter&#8217;s search <span class="caps">API</span> to fetch the latest tweets based on an input and run sentiment analysis on it. You will need to learn about <span class="caps">HTML</span> inputs, <span class="caps">POST</span> requests, redirects, flask templates, and also fetch your bearer token to access Twitter&#8217;s <span class="caps">API</span>.</p>
 <p><a href="https://stackoverflow.com/questions/12277933/send-data-from-a-textbox-into-flask">Inputs and Flask</a><br />
 <a href="http://flask.pocoo.org/docs/1.0/tutorial/templates/">Flask templates</a><br />
-<a href="https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens.html">Generating a bearer token</a></p>
+<a href="https://developer.twitter.com/en/docs/basics/authentication/guides/bearer-tokens.html">Generating a bearer token</a><br />
+<a href="https://stackoverflow.com/questions/49861167/how-to-get-html-input-using-python-flask">Redirecting after a post request on a form</a></p>
 <p><span class="caps">TLDR</span>: To make a request via twitter&#8217;s <span class="caps">API</span>:</p>
 <h3 class="file-heading"><em>request_twitter_data</em></h3>
 <pre class="file">def get_tweets(searchitem)
