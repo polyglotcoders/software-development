@@ -64,6 +64,41 @@
 </ul>
 <h2>What is <span class="caps">SQL</span>?</h2>
 <p><span class="caps">SQL</span> is a standard language for storing, manipulating and retrieving data in databases.</p>
+<h2>Install and setup SQLite3</h2>
+<p>We will initially use SQLite3 which is serverless.</p>
+<ul>
+	<li><code>brew install sqlite3</code></li>
+	<li>Run <code>sqlite3 classes.db</code></li>
+	<li>From the sqlite terminal you just opened do .table to display the tables of the database. You should see several table names including classes, teachers and more</li>
+</ul>
+<h2>Schema</h2>
+<p>Relational data lives inside tables contained in columns and rows. The rows and columns of a table define the properties and attributes of the kind of thing the table is storing. Each row is an instance of that kind of thing.</p>
+<p>For example, a given table might store data on songs. The columns represent the <code>song name</code>, <code>artist</code>, <code>genre</code>, and <code>release date</code>. Each row represents a given song and contains an entry for each of the columns like so:</p>
+<p><img src="schema.png" style="max-width: 700px"></img></p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>In sql you can view the schema of a table by typing <code>.schema &lt;tablename&gt;</code>. What&#8217;s the schema for the <code>departments</code> table in the classes database provided to you?</li>
+	<li>Look up what a <span class="caps">PRIMARY</span> key is.</li>
+	<li>Which column in the <code>departments</code> table is uniquely identifying?</li>
+</ul>
+<p>Primary keys from one table are often referred to in another. When the value of a column is used to refer to another column in a different table, it&#8217;s called a foreign key.</p>
+<p>Using foreign keys is quintissential in relational databases. By referring to two data in columns of other tables, rather than storing the same data in two different tables, we can store it in a much more efficient way, and also will be easier to debug because we will only have to change it in one table.</p>
+<p><img src="foreign_key.png" style="max-width: 700px"></img></p>
+<ul>
+	<li>Look at the <code>teachers</code> schema. What column is being used as a foreign key? Why might we use a foreign key here instead of storing the data directly in this table?</li>
+	<li>Use pen and paper for these 5 tables representing them as a simple spreadsheet like grids, using arrows to indicate where a particular column is stored in another table.</li>
+</ul>
+<h2>Install and setup a Local <span class="caps">MYSQL</span> server</h2>
+<p>You will be using <span class="caps">MYSQL</span> as an <span class="caps">RDBMS</span>.</p>
+<ul>
+	<li>Ensure you have <code>mysql</code> installed by running <code>which mysql</code>. Run <code>brew install mysql</code> if it is not installed</li>
+	<li>Run <code>brew services start mysql</code> to start mysql</li>
+	<li>Run <code>brew services stop mysql</code> to stop mysql</li>
+</ul>
+<p>When you interact with mysql you always interact as a specific user. MySQL comes out of the box with a single user already created called <code>root</code>.</p>
+<ul>
+	<li>Create a password for <code>root</code> by using <code>mysqladmin -u root password</code>. You will be asked to enter and confirm a new password. Make it really short for development purposes.</li>
+</ul>
 <h2>Coding exercise</h2>
 <ul>
 	<li>Create a <span class="caps">MYSQL</span> database from an interactive shell.</li>
