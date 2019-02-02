@@ -40,21 +40,40 @@
   <li id="lab_2_link"><a href="lab_02.html">API</a></li>
   <li id="lab_3_link"><a href="lab_03.html">Homework Assignment 04</a></li>
   <li id="lab_4_link"><a href="lab_04.html">REST</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Intro to SQL</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">SQL</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 5</em>  Intro to <span class="caps">SQL</span></h1>
+        <h1 class="lab_title"><em>lab 5</em>  <span class="caps">SQL</span></h1>
+<h2>Goals</h2>
 <ul>
-	<li>Get accustomed with sql syntax</li>
+	<li>To understand what a database is</li>
 </ul>
-<h2>Install sqlite3</h2>
-<p><pre><code>brew install sqlite</code></pre>
-</p>
-<h2>C</h2>
+<h2>What is a database?</h2>
+<ul>
+	<li>We&#8217;ve already learned how to store data &#8220;in memory&#8221;. For example you can store things in a dictionary.  But that gets inefficient very quickly, and when you restart your server, you reset all your values.</li>
+</ul>
+<p><img src="image_gallery.png" style="max-width: 600px"></img></p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>Create a new form where people can submit tweets (via a <span class="caps">POST</span> request) and save the value in a dictionary, which you then display on <span class="caps">HTML</span></li>
+	<li>Create a new form where people can submit tweets (via a <span class="caps">POST</span> request) and save the value into a file, which you then display on <span class="caps">HTML</span></li>
+</ul>
+<h2>What is <span class="caps">SQL</span>?</h2>
+<p><span class="caps">SQL</span> is a standard language for storing, manipulating and retrieving data in databases.</p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>Create a <span class="caps">MYSQL</span> database from an interactive shell.</li>
+</ul>
+<p>1. mysql -u root -p, give the password  you just created when prompted</p>
+<p>2. Use <code>CREATE</code> and <code>USE</code> a new database</p>
+<p>3. Create a table with at least 4 columns, one of them set as a primary key</p>
+<p>4. Use <code>DESCRIBE &lt;tablename&gt;</code> to ensure you made the table</p>
+<p>5. <code>INSERT</code> some rows into your table</p>
+<p>6. Execute queries</p>
         <nav class="foot-navigation">
       <a href="lab_04.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
