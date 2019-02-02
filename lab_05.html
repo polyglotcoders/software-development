@@ -88,6 +88,14 @@
 	<li>Look at the <code>teachers</code> schema. What column is being used as a foreign key? Why might we use a foreign key here instead of storing the data directly in this table?</li>
 	<li>Use pen and paper for these 5 tables representing them as a simple spreadsheet like grids, using arrows to indicate where a particular column is stored in another table.</li>
 </ul>
+<h2>Querying the database</h2>
+<p>The most common <span class="caps">SQL</span> statement is <span class="caps">SELECT</span>, which is used to query the database using the following template: <code>SELECT &lt;column_name&gt; [, &lt;additional_column_names] FROM &lt;table_name&gt;</code>. If you wish to select every column use a <code>*</code></p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>Display the <code>name</code> column for every row in the students table</li>
+	<li>Display every column for the <code>teachers</code> table. The <code>department</code> column just displays numbers. What do these numbers represent? Look at the <code>teachers</code> schema if you need to</li>
+	<li>Display every column in the <code>teachers</code> table then every column in the <code>departments</code> table. Just by looking at the tables, what is the name of the department that <code>beth</code> is of?</li>
+</ul>
 <h2>Install and setup a Local <span class="caps">MYSQL</span> server</h2>
 <p>You will be using <span class="caps">MYSQL</span> as an <span class="caps">RDBMS</span>.</p>
 <ul>
