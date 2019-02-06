@@ -70,6 +70,7 @@
 	<li><code>brew install sqlite3</code></li>
 	<li>Run <code>sqlite3 classes.db</code></li>
 	<li>From the sqlite terminal you just opened do .table to display the tables of the database. You should see several table names including classes, teachers and more</li>
+	<li>To make tables look pretty run <code>.header on</code> and <code>.mode column</code></li>
 </ul>
 <h2>Schema</h2>
 <p>Relational data lives inside tables contained in columns and rows. The rows and columns of a table define the properties and attributes of the kind of thing the table is storing. Each row is an instance of that kind of thing.</p>
@@ -96,6 +97,81 @@
 	<li>Display every column for the <code>teachers</code> table. The <code>department</code> column just displays numbers. What do these numbers represent? Look at the <code>teachers</code> schema if you need to</li>
 	<li>Display every column in the <code>teachers</code> table then every column in the <code>departments</code> table. Just by looking at the tables, what is the name of the department that <code>beth</code> is of?</li>
 </ul>
+<h2>Filtering the database</h2>
+<p>By default, <code>SELECT</code> will return all rows of a table. However, you will frequently wish to trim down which rows match your query. One way to do this is with a <code>WHERE</code> using the following syntax:</p>
+<p><code>SELECT &lt;column_name&gt; from &lt;table_name WHERE &lt;some-condition&gt;;</code></p>
+<p>A simple <code>some-condition</code> is a value for a given column. You can evaluate<br />
+this value using <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, amongst others. Chain<br />
+together your conditions using <code>AND</code> and <code>OR</code></p>
+<p>For example, if I wanted to display all the columns for teh teachers table where the department id is 1 or 2:</p>
+<p><code>SELECT * FROM teachers WHERE department = 1 OR department = 2;</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display just the name column for all the students whose names are not naomi. (Note, <code>naomi</code> being text, should be placed in single quotes)</li>
+	<li>Display the name and department id of teachers whose own id is greater than 2 or whose name is &#8216;fred&#8217;</li>
+</ul>
+<h2>Pattern matching with <code>LIKE</code></h2>
+<p>Aside from the comparison operators above, you can also use the <code>LIKE</code> keyword in conjunction with the <code>%</code> wildcard symbol to select rows based on patters you write. <code>%</code> will match 0 or more of any character. Using <code>NOT LIKE</code> instead of <code>LIKE</code> will select rows that do not much the pattern.</p>
+<p>For example, to select all the class names that start with the letter &#8216;c&#8217;:</p>
+<p><code>SELECT name from CLASSES WHERE name LIKE 'c%';</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display the id and name of all the students whose names end in &#8216;m&#8217;</li>
+	<li>Display all columns for students whose names do not contain the letter &#8216;a&#8217;. <span class="caps">HINT</span>: a more long-winded way to say &#8220;includes the letter &#8216;a&#8217;&#8221; is includes 0 or more of any letter followed by an &#8216;a&#8217; followed by 0 or more of any letter</li>
+</ul>
+<h2>Limiting <code>WHERE</code> to a defined set with <code>IN</code></h2>
+<ul>
+	<li>Using <code>IN</code> you can filter your query against a set of matches you define. For example, to get the entries for teachers whose names are either &#8216;pamela&#8217; or &#8216;sunny&#8217;:</li>
+</ul>
+<p><code>SELECT * FROM teachers WHERE name IN ('pamela', 'sunny');</code></p>
+<p>Perhaps you&#8217;re thinking you can have done this so:</p>
+<p><code>SELECT * FROM teachers WHERE name = 'pamela' OR name = 'sunny';</code></p>
+<p>You can. This is part of programming. When your work begins to get more complicated, there often is not a single correct way to proceed.</p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display the  names of all the teachers whose id is <code>NOT</code> either 1,2, or 4</li>
+	<li>Display the names of all the teachers whose department is either 1 or 4</li>
+</ul>
+<h2>Using <code>IN</code> to compose subqueries</h2>
+<p>Set it up so that you  can view all the teavcher and department entries while reading this section.</p>
+<p>In the last exxercise, you were able to print out teachers who had particular department ids. The <code>department</code> field in the <code>teachers</code> table. If  you recall (look at the <code>teacher</code> schema if you do not), is a foreign key, referencing  the <code>id</code> column (which is a uniquely identifying  primary key) in the <code>departments</code> table. You might imagine wanting to answer a question like &#8220;who are all the teachers in &#8216;cs&#8217; department&#8221;, instead of &#8220;all the teachers in the department with an id of 1&#8221;. In order to do this you would first need to find out what the <code>id</code> field is for the department with the name &#8216;cs&#8217;, and then, with that id, ask for any of the teachers whose department foreign key equals the id you just retrieved.</p>
+<p>Thus we could first:</p>
+<p><code>SELECT id from departments WHERE name = 'cs';</code></p>
+<p>And then with our result, 1, issue a second query:</p>
+<p><code>SELECT name FROM teachers WHERE department = 1;</code></p>
+<p>The following is not legitimate <span class="caps">SQL</span> but represents what we would like to be  able to do, namely, filter our second  query by the results of the first.</p>
+<p><code>SELECT name from teachers WHERE department = (SELECT id from departments WHERE name = 'cs');</code></p>
+<p>The above can be only slightly modified to be valid <span class="caps">SQL</span>. Review the syntaxx for <code>IN</code> above,  and you&#8217;ll  notice the use of <code>(</code> and <code>)</code>. In order to make this nested selection, simply use the <code>IN</code> command passing in a separate query as the possibilities to filter by. Thus:</p>
+<p><code>SELECT name FROM  teachers WHERE department IN (SELECT id from departments WHERE name = 'cs');</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display the name and id of all the teachers in the &#8216;psy&#8217; department. Should be &#8216;pamela&#8217; and &#8216;sunny&#8217; with their respective ids.</li>
+	<li>Display  the name of the department that &#8216;sunny&#8217; teaches for (should be &#8216;psy&#8217;)</li>
+</ul>
+<h2>Querying multiple tables</h2>
+<p>You can select from multiple tables in <span class="caps">SQL</span> with the following syntax:</p>
+<p><code>SELECT * FROM &lt;table1&gt;, &lt;table2&gt; [, &lt;tablen&gt;];</code></p>
+<p>To help gain intuition about what will happen during a multitable select statement, display all the rows of the <code>departments</code> and then, in a separate query, all the rows from <code>classes</code></p>
+<p><img src="multi0.png" style="max-width: 500px"></img></p>
+<p>Let&#8217;s create a new supertable that joins both tables together and let&#8217;s call it departments, classes. It will have all the columns of both tables joined together side by side.</p>
+<p><img src="multi1.png"  style="max-width: 500px"></img></p>
+<p>Now let&#8217;s take every single row of the <code>departments</code> table and join it with every single row in the <code>classes</code> table</p>
+<p><img src="multi2.png"  style="max-width: 500px"></img></p>
+<p>Then we get the next row<br />
+<img src="multi3.png"  style="max-width: 500px"></img></p>
+<p>Eventually we get to the last combination<br />
+<img src="multi4.png"  style="max-width: 500px"></img></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Try to find out a way to get all the foreign keys of the classes table to match up with what it references to in the departments table. This will give you  a supertable that will reflect what you expect in the real world.</li>
+</ul>
+<h2>Changing column names by using <code>AS</code></h2>
+<p>We can modify column names by using the keyword <code>AS</code> for example, if we wanted to change the column name <code>id</code> within the table <code>departments</code> to <code>dept_id</code> we do</p>
+<p><code>SELECT id AS dept_id from departments</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Select from the teachers and departments table but call the <code>id</code> of teachers <code>teacher_id</code> and the <code>id</code> of departments, <code>dept_id</code></li>
+</ul>
 <h2>Install and setup a Local <span class="caps">MYSQL</span> server</h2>
 <p>You will be using <span class="caps">MYSQL</span> as an <span class="caps">RDBMS</span>.</p>
 <ul>
@@ -105,7 +181,7 @@
 </ul>
 <p>When you interact with mysql you always interact as a specific user. MySQL comes out of the box with a single user already created called <code>root</code>.</p>
 <ul>
-	<li>Create a password for <code>root</code> by using <code>mysqladmin -u root password</code>. You will be asked to enter and confirm a new password. Make it really short for development purposes.</li>
+	<li>Create a password for <code>root</code> by using <code>mysqladmin -u root password</code>. You will be asked to enter and confirm a new password. Make it really short for development purposes</li>
 </ul>
 <h2>Coding exercise</h2>
 <ul>
