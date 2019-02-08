@@ -181,6 +181,9 @@ together your conditions using <code>AND</code> and <code>OR</code></p>
 <a href="https://docs.python.org/2/library/sqlite3.html">here</a></li>
 	<li>Draw your table schemas for your database. Think about what you need to store. What should the table name be? What columns should it have?</li>
 	<li>Look at how they create tables in <a href="https://docs.python.org/2/library/sqlite3.html">here</a>. Create your table in your server code</li>
+	<li>Now, every time you restart your server, you&#8217;ll be recreating the table. Add <br />
+<code>IF NOT EXISTS</code> on your <code>CREATE TABLE</code> statement. It should look something like<br />
+<code>CREATE TABLE IF NOT EXISTS some_table (id INTEGER PRIMARY KEY AUTOINCREMENT, ...);</code></li>
 	<li>Create a new route called <code>twitter_clone</code> as in number 3.</li>
 	<li>Learn how to insert into a table in <a href="https://docs.python.org/2/library/sqlite3.html">here</a>. Add this to your route&#8217;s function.</li>
 	<li>Create your html file associated with the <code>twitter_clone</code> route</li>
