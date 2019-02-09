@@ -190,6 +190,17 @@ that during an insertion to the database, you don&#8217;t have to explicitly add
 	<li>Learn how to insert into a table in <a href="https://docs.python.org/2/library/sqlite3.html">here</a>. Add this to your route&#8217;s function for a <span class="caps">POST</span>. For your get, use a <code>SELECT</code> statement</li>
 	<li>Create your html file associated with the <code>twitter_clone</code> route</li>
 </ul>
+<h2>Challenge</h2>
+<ul>
+	<li>Create a <code>User</code> table think about what columns are needed</li>
+	<li>Each Tweet is associated with one User, but one User is associated with many tweets. Therefore each tweet must have a foreign key to a user&#8217;s id. Draw out the schema and create the tables</li>
+	<li>Create a new html page called register and one called login.</li>
+	<li>Create a new route called login and a new route called register.</li>
+	<li>Create forms in each html page for login and registration</li>
+	<li>On your login page, you can expect a user to submit their username and password. Search for the User in the database with that particular userid and password combination and redirect them to all their tweets.</li>
+	<li>Learn about requiring authentication for certain pages. <a href="http://flask.pocoo.org/snippets/8/"></a> This will restrict access to the tweets page without logging in.</li>
+	<li>This is similar to authentication in the real world, but is definitely not productionizable. For one, we would want to encrypt all the passwords and decrypt them. Here&#8217;s how to store passwords in a database with <code>bcrypt</code> <a href="https://stackoverflow.com/questions/9559549/how-to-compare-plain-text-password-to-hashed-password-using-bcrypt"></a></li>
+</ul>
 <h2>Install and setup a Local <span class="caps">MYSQL</span> server</h2>
 <p>You will be using <span class="caps">MYSQL</span> as an <span class="caps">RDBMS</span>.</p>
 <ul>
