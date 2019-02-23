@@ -57,7 +57,7 @@
 	<li><code>brew update</code> to make sure you have the latest packages</li>
 	<li><code>brew install node</code> to install node</li>
 	<li><code>npm install -g n</code> to install node globally</li>
-	<li><code>n stable</code> to get the latest version of node</li>
+	<li><code>sudo n stable</code> to get the latest version of node</li>
 	<li><code>brew uninstall node</code> to uninstall the previous version of node</li>
 </ul>
 <h2>Dependencies</h2>
@@ -138,6 +138,15 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 </pre>
 <p>5. Now pause and take a look at the two files. Think about why and how this works! Look at anything that has to do with the variable <code>routes</code> within your server file.</p>
+<h2>Making additional routes<br />
+To make additional routes follow this structure</h2>
+<p>1. To make a single-nested route put it all in index.js<br />
+2. To make nested routes like <code>/user/login</code></p>
+<ul>
+	<li>Create a new file within routes and call it user.js. Don&#8217;t forget to export it at the bottom of the file</li>
+	<li>Within your server code, require it (similar to import). Look at the section that says <code>var routes = require('./routes/index');</code></li>
+	<li>Do  <code>app.use('/user', user)</code> to let express know that you&#8217;re using that new route</li>
+</ul>
         <nav class="foot-navigation">
       <a href="lab_06.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
