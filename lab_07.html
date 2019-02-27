@@ -96,11 +96,15 @@ app.listen(port, () =&gt; console.log(`Example app listening on port ${port}!`))
 3. Create a folder called <code>public</code> this will be similar to our <code>static</code> folder in flask. This is where we will house any static files we want to display or use within our html (like javascripts, css, etc.)<br />
 4. Create a folder called <code>db</code> this will be where we store all our database files</p>
 <h2>Refactor Server to show Routes</h2>
+<p>If it says something akin to &#8220;<node_module>&#8221; not found, just do an <code>npm install --save &lt;node_module&gt;</code></p>
 <p>1. Create a file called <code>index.js</code> within routes<br />
 2. Refactor your server code <br />
 h3(file-heading). <em>server.py</em></p>
 <pre class="file">var express = require('express');
 var path = require('path');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var port = 3000;
 
@@ -111,7 +115,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('public', path.join(__dirname, 'public'));
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -145,7 +149,115 @@ To make additional routes follow this structure</h2>
 <ul>
 	<li>Create a new file within routes and call it user.js. Don&#8217;t forget to export it at the bottom of the file</li>
 	<li>Within your server code, require it (similar to import). Look at the section that says <code>var routes = require('./routes/index');</code></li>
-	<li>Do  <code>app.use('/user', user)</code> to let express know that you&#8217;re using that new route</li>
+	<li>Do  <code>app.use('/user', user)</code> to let express know that you&#8217;re using that new route<br />
+p. Keep in mind that. now in your <code>routes/user.js</code> all routes will be prepended with <code>user/</code>. This means that when you do something like</li>
+</ul>
+<p><code>router.get('/', function....)</code> within user, to hit that route you would have to go to <code>https://localhost:5000/user/</code></p>
+<h2>Database</h2>
+<p>Make sure you finish the <span class="caps">MYSQL</span> portion of the databases lab.</p>
+<p>Let&#8217;s make a sql script to create the database and tables. <span class="caps">SQL</span> syntax is different from <span class="caps">SQLITE</span> syntax. get accustomed to it. To see an example, take a look <a href="https://github.com/biancasubion/304/blob/master/db/init.sql">here</a></p>
+<h3 class="file-heading"><em>init.sql</em></h3>
+<pre class="file">CREATE DATABASE IF NOT EXISTS chatapp;
+
+USE chatapp;
+
+....
+</pre>
+<p>To run this file run <code>mysql -u root &lt; db/init.sql</code></p>
+<p>Let&#8217;s go to our database folder <code>db</code> and let&#8217;s create a config folder.</p>
+<ul>
+	<li><code>mkdir config</code></li>
+	<li><code>cd config</code></li>
+	<li><code>touch config.js</code></li>
+</ul>
+<h3 class="file-heading"><em>config.js</em></h3>
+<pre class="file">const mysql = require('mysql');
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '&lt;YOUR PASSWORD&gt;',
+  database: 'chatapp'
+});
+
+db.connect((err) =&gt; {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('Connected to the database');
+  }
+});
+
+module.exports = db;
+</pre>
+<h2>Models</h2>
+<p>As mentioned above models manipulate and access data from the database.</p>
+<ul>
+	<li><code>touch models/User.js</code></li>
+</ul>
+<h3 class="file-heading"><em>&#8216;User.js&#8217;</em></h3>
+<pre class="file">// access db
+var db = require('../db/config/config');
+
+module.exports = {
+  // Return a new promise for finding a single user
+  findOne: function (user) {
+    return new Promise ((resolve, reject) =&gt; {
+      const queryString = 'SELECT * FROM Users WHERE username=?';
+      db.query(queryString, [user.username], (err, res) =&gt; {
+        if (err) {
+          // send back an error
+          reject(err);
+        } else {
+          if (res.length) {
+            // found a user with username that was passed in
+            resolve(res[0]);
+          } else {
+            // did not find a user with username
+            resolve(false);
+          }
+        }
+      });
+    });
+  },
+}
+</pre>
+<p>Now we can make an endpoint to access values in the database</p>
+<h3 class="file-heading"><em>&#8216;user.js&#8217;</em></h3>
+<pre class="file">const express = require('express');
+const router = express.Router();
+const User = require('../models/User');
+
+router.post('/login', function (req, res, next) {
+  //expect username password
+  User.findOne(req.body)
+  .then((user) =&gt; {
+    if (user) {
+      if (req.body.password === user.password) {
+        res.send(200, user);
+      } else {
+        res.send(400, {err: 'Incorrect password'});
+      }
+    }
+  })
+  .catch((err) =&gt; {
+    console.log(err);
+    res.send(500, err);
+  });
+});
+
+
+// Wildcard route
+router.get('/*', function(req, res, next) {
+  res.render('index', { title: 'Chat App' });
+});
+
+module.exports = router;
+</pre>
+<h2>Coding Exercise</h2>
+<ul>
+	<li>Create a dummy entry in your users table in your chatapp database</li>
+	<li>Test your login functionality</li>
 </ul>
         <nav class="foot-navigation">
       <a href="lab_06.html">
