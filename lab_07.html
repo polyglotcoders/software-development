@@ -315,7 +315,7 @@ module.exports = {
 	<li><code>npm install --save sequelize-cli</code></li>
 	<li><code>node_modules/.bin/sequelize init</code> to create an empty project</li>
 	<li>Read the documentation in <a href="http://docs.sequelizejs.com/manual/tutorial/migrations.html"> To set up your configuration </a></li>
-	<li>Create your first migration:  node_modules/.bin/sequelize model:generate &#8212;name User &#8212;attributes username:string,password:string@. This will create a user file in models and a migration file with name like <code>XXXXXXXXXXXXXX-create-user.js</code> in the migrations folder</li>
+	<li>Create your first migration:  <code>node_modules/.bin/sequelize model:generate --name User --attributes username:string,password:string</code>. This will create a user file in models and a migration file with name like <code>XXXXXXXXXXXXXX-create-user.js</code> in the migrations folder</li>
 	<li>To run the migration script do <code>node_modules/.bin/sequelize db:migrate</code>. This will migrate all tables yet to migrate (run all the migration files). This will create a table called Users in your database specificed in your config.</li>
 	<li>Ensure you can find the table in mysql.</li>
 	<li>Undo the most recent migration by doing <code>node_modules/.bin/sequelize db:migrate:undo</code>. (To undo all migrations do <code>node_modules/.bin/sequelize db:migrate:undo:all</code>).</li>
