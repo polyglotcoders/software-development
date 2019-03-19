@@ -65,24 +65,160 @@
 <h2>Views/index.ejs</h2>
 <p>You will notice that there is only one view in your entire app. This is because we attach all the new html to the <span class="caps">DOM</span> via React.</p>
 <p>Take a look at <code>views/index.ejs</code>. You&#8217;ll notice that there&#8217;s a pointer to the javascript at <code>dist/bundle.js</code>. This is where all your react code gets transpiled into regular javascript (not jsx).</p>
-<p><img src="./indexejs.png"/></p>
+<p><img src="./indexejs.png" style="max-width: 700px;"/></p>
 <p>It will also try to locate where to attach all the html. In <code>app/index.jsx</code> you will notice that we attach it to the id with app which is located in our view.</p>
-<p><img src="./indexjs.png"/></p>
+<p><img src="./indexjs.png" style="max-width: 700px;"></p>
 <p>To transpile your code and create a build, run <code>webpack -d</code>. To keep it running constantly as you make changes run <code>npm run dev-react</code></p>
 <h2>Nodemon</h2>
 <p>To keep your server running at all times and not have to restart it, install nodemon.</p>
 <h2>Components</h2>
 <p>React is separated into components. This makes our code a lot cleaner. We can have components for everything! We can have a component for just a picture.</p>
+<p>Here&#8217;s an example component in React.</p>
+<h3 class="file-heading"><em>Signup.jsx</em></h3>
+<pre class="file">import React            from 'react';
+import axios            from 'axios';
+
+class Signup extends React.Component {
+  constructor (props) {
+    super (props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeInput = this.changeInput.bind(this);
+
+    this.state = {
+        username: '',
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: ''
+    };
+  }
+
+  changeInput(event) {
+    const type = event.target.dataset.type;
+    const value = event.target.value;
+
+    this.setState({
+      [type]: value
+    });
+  }
+
+  handleSubmit(e) {
+    const context = this;
+
+    axios.post('/auth/signup', {
+       username: context.state.username,
+       password: context.state.password,
+       email: context.state.email,
+       firstName: context.state.firstName,
+       lastName: context.state.lastName
+    })
+    .then((response) =&gt; {
+      console.log(response);
+    })
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;form onSubmit={this.handleSubmit}&gt;
+          &lt;div className="form-inputs"&gt;
+            &lt;input 
+              onChange={this.changeInput}
+              className="login-input"
+              type='text'
+              placeholder='username'
+              data-type='username'
+              /&gt;
+            &lt;span id="username"&gt;&lt;/span&gt;
+            &lt;input 
+              onChange={this.changeInput}
+              className="login-input"
+              type='password' 
+              placeholder='password'
+              data-type='password'
+              /&gt;
+            &lt;span id="password"&gt;&lt;/span&gt;
+            &lt;input 
+              onChange={this.changeInput}
+              className="login-input"
+              type='text' 
+              placeholder='email'
+              data-type='email'
+              /&gt;
+            &lt;span id="email"&gt;&lt;/span&gt;
+            &lt;input 
+              onChange={this.changeInput}
+              className="login-input"
+              type='text' 
+              placeholder='firstName'
+              data-type='firstName'
+              /&gt;
+            &lt;span id="firstName"&gt;&lt;/span&gt;
+            &lt;input 
+              onChange={this.changeInput}
+              className="login-input"
+              type='text' 
+              placeholder='lastName'
+              data-type='lastName'
+              /&gt;
+            &lt;span id="lastName"&gt;&lt;/span&gt;
+            &lt;div className="submit"&gt;
+              &lt;button id="submit" type="submit" className="btn btn-success"&gt;Sign Up&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+        &lt;div id="error"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+module.exports = Signup;  
+</pre>
+<h2>The React lifecycle (Mounting)</h2>
+<p>React has what we call a lifecycle that&#8217;s all relative to before a render to the <span class="caps">DOM</span> is made. Reminder that the dom is literally your <span class="caps">HTML</span>.</p>
+<ul>
+	<li>constructor: Before rendering</li>
+	<li>render: Render the html</li>
+	<li>componentDidMount: After rendering</li>
+</ul>
+<p>Any server data you might fetch should be on componentDidMount. Any class variables you want to set or state changes should be set on the constructor.</p>
+<h2>State</h2>
+<p>To access variables in your render function, you&#8217;d want to change the state. States can be set by running the code</p>
+<h3 class="file-heading"><em>change_state_snippet.js</em></h3>
+<pre class="file"># get image here and set variable
+..
+this.setState({
+  img: img,
+});
+</pre>
+<h3 class="file-heading"><em>access_state_from_render.js</em></h3>
+<pre class="file">render():
+...
+  &lt;img src={this.state.img}/&gt;
+...
+</pre>
 <h2>Coding Exercise</h2>
 <ul>
-	<li>Create a component for a picture and render a hardcoded image. Create a new react route for it!</li>
+	<li>Add to the images you receive. Make sure you get at least 5 images.</li>
+	<li>Refresh the page and make sure you see all 5 images.</li>
+	<li>Shrink the size of the images so that it&#8217;s more appropriate</li>
 </ul>
 <h2>Props</h2>
 <p>To pass in data between components, use props. You can pass props between components by adding a new attribute to the html. For example, let&#8217;s look at the parent component Event that wants to pass in a post.</p>
 <p><code>&lt;Post post={post}/&gt;</code> where post is a variable set earlier on</p>
 <p>And to use it from the Post component just do <code>this.props.post</code></p>
 <h2>Coding Exercise</h2>
-<p>Create a new Photo component. Pass the picture fetched from your server in the Feed component to a new photo component.</p>
+<ul>
+	<li>Create a separate component for a picture and render a hardcoded image. Create a new react route for it on <code>app/index.js</code>!<br />
+p.  Pass the picture fetched from your server in the Feed component to a new photo component instead of using the hardcoded image source you took.</li>
+</ul>
+<h2>Coding Exercise</h2>
+<ul>
+	<li>Create a new login component</li>
+</ul>
         <nav class="foot-navigation">
       <a href="lab_07.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
