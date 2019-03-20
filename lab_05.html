@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 5 - Python 101</title>
+    <title>Lab 5 - Software Development</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
-    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="description" content="A guided tour thatintroduces students to building web applications">
     <meta name="theme-color" content="#0000ff">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="screen" href="reset.css">
@@ -31,29 +31,200 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 101</span></a>
+          <a href="index.html"><span>Software Development</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">Client-Server Model</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">API</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Homework Assignment 04</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">REST</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">SQL</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Client Side Programming</a></li>
+  <li id="lab_7_link"><a href="lab_07.html">Node</a></li>
+  <li id="lab_8_link"><a href="lab_08.html">React</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 5</em>  Quiz 00</h1>
-<p>1. Start quiz</p>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">cd ~/Development/polyglot/cohort-1/quizzes</pre>
-<pre class="instructions">jupyter notebook</pre>
-<p>2. Open up <code>quiz_00_python101.ipynb</code> and begin</p>
+        <h1 class="lab_title"><em>lab 5</em>  <span class="caps">SQL</span></h1>
+<h2>Goals</h2>
+<ul>
+	<li>To understand what a database is</li>
+</ul>
+<h2>What is a database?</h2>
+<ul>
+	<li>We&#8217;ve already learned how to store data &#8220;in memory&#8221;. For example you can store things in a dictionary.  But that gets inefficient very quickly, and when you restart your server, you reset all your values.</li>
+</ul>
+<p><img src="image_gallery.png" style="max-width: 600px"></img></p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>Create a new form where people can submit tweets (via a <span class="caps">POST</span> request) and save the value in a dictionary, which you then display on <span class="caps">HTML</span></li>
+	<li>Create a new form where people can submit tweets (via a <span class="caps">POST</span> request) and save the value into a file, which you then display on <span class="caps">HTML</span></li>
+</ul>
+<h2>What is <span class="caps">SQL</span>?</h2>
+<p><span class="caps">SQL</span> is a standard language for storing, manipulating and retrieving data in databases.</p>
+<h2>Install and setup SQLite3</h2>
+<p>We will initially use SQLite3 which is serverless.</p>
+<ul>
+	<li><code>brew install sqlite3</code></li>
+	<li>Run <code>sqlite3 classes.db</code></li>
+	<li>From the sqlite terminal you just opened do .table to display the tables of the database. You should see several table names including classes, teachers and more</li>
+	<li>To make tables look pretty run <code>.header on</code> and <code>.mode column</code></li>
+</ul>
+<h2>Schema</h2>
+<p>Relational data lives inside tables contained in columns and rows. The rows and columns of a table define the properties and attributes of the kind of thing the table is storing. Each row is an instance of that kind of thing.</p>
+<p>For example, a given table might store data on songs. The columns represent the <code>song name</code>, <code>artist</code>, <code>genre</code>, and <code>release date</code>. Each row represents a given song and contains an entry for each of the columns like so:</p>
+<p><img src="schema.png" style="max-width: 700px"></img></p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>In sql you can view the schema of a table by typing <code>.schema &lt;tablename&gt;</code>. What&#8217;s the schema for the <code>departments</code> table in the classes database provided to you?</li>
+	<li>Look up what a <span class="caps">PRIMARY</span> key is.</li>
+	<li>Which column in the <code>departments</code> table is uniquely identifying?</li>
+</ul>
+<p>Primary keys from one table are often referred to in another. When the value of a column is used to refer to another column in a different table, it&#8217;s called a foreign key.</p>
+<p>Using foreign keys is quintissential in relational databases. By referring to two data in columns of other tables, rather than storing the same data in two different tables, we can store it in a much more efficient way, and also will be easier to debug because we will only have to change it in one table.</p>
+<p><img src="foreign_key.png" style="max-width: 700px"></img></p>
+<ul>
+	<li>Look at the <code>teachers</code> schema. What column is being used as a foreign key? Why might we use a foreign key here instead of storing the data directly in this table?</li>
+	<li>Use pen and paper for these 5 tables representing them as a simple spreadsheet like grids, using arrows to indicate where a particular column is stored in another table.</li>
+</ul>
+<h2>Querying the database</h2>
+<p>The most common <span class="caps">SQL</span> statement is <span class="caps">SELECT</span>, which is used to query the database using the following template: <code>SELECT &lt;column_name&gt; [, &lt;additional_column_names] FROM &lt;table_name&gt;</code>. If you wish to select every column use a <code>*</code></p>
+<h2>Coding exercise</h2>
+<ul>
+	<li>Display the <code>name</code> column for every row in the students table</li>
+	<li>Display every column for the <code>teachers</code> table. The <code>department</code> column just displays numbers. What do these numbers represent? Look at the <code>teachers</code> schema if you need to</li>
+	<li>Display every column in the <code>teachers</code> table then every column in the <code>departments</code> table. Just by looking at the tables, what is the name of the department that <code>beth</code> is of?</li>
+</ul>
+<h2>Filtering the database</h2>
+<p>By default, <code>SELECT</code> will return all rows of a table. However, you will frequently wish to trim down which rows match your query. One way to do this is with a <code>WHERE</code> using the following syntax:</p>
+<p><code>SELECT &lt;column_name&gt; from &lt;table_name WHERE &lt;some-condition&gt;;</code></p>
+<p>A simple <code>some-condition</code> is a value for a given column. You can evaluate<br />
+this value using <code>=</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, amongst others. Chain<br />
+together your conditions using <code>AND</code> and <code>OR</code></p>
+<p>For example, if I wanted to display all the columns for teh teachers table where the department id is 1 or 2:</p>
+<p><code>SELECT * FROM teachers WHERE department = 1 OR department = 2;</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display just the name column for all the students whose names are not naomi. (Note, <code>naomi</code> being text, should be placed in single quotes)</li>
+	<li>Display the name and department id of teachers whose own id is greater than 2 or whose name is &#8216;fred&#8217;</li>
+</ul>
+<h2>Pattern matching with <code>LIKE</code></h2>
+<p>Aside from the comparison operators above, you can also use the <code>LIKE</code> keyword in conjunction with the <code>%</code> wildcard symbol to select rows based on patters you write. <code>%</code> will match 0 or more of any character. Using <code>NOT LIKE</code> instead of <code>LIKE</code> will select rows that do not much the pattern.</p>
+<p>For example, to select all the class names that start with the letter &#8216;c&#8217;:</p>
+<p><code>SELECT name from CLASSES WHERE name LIKE 'c%';</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display the id and name of all the students whose names endGG in &#8216;m&#8217;</li>
+	<li>Display all columns for students whose names do not contain the letter &#8216;a&#8217;. <span class="caps">HINT</span>: a more long-winded way to say &#8220;includes the letter &#8216;a&#8217;&#8221; is includes 0 or more of any letter followed by an &#8216;a&#8217; followed by 0 or more of any letter</li>
+</ul>
+<h2>Limiting <code>WHERE</code> to a defined set with <code>IN</code></h2>
+<ul>
+	<li>Using <code>IN</code> you can filter your query against a set of matches you define. For example, to get the entries for teachers whose names are either &#8216;pamela&#8217; or &#8216;sunny&#8217;:</li>
+</ul>
+<p><code>SELECT * FROM teachers WHERE name IN ('pamela', 'sunny');</code></p>
+<p>Perhaps you&#8217;re thinking you can have done this so:</p>
+<p><code>SELECT * FROM teachers WHERE name = 'pamela' OR name = 'sunny';</code></p>
+<p>You can. This is part of programming. When your work begins to get more complicated, there often is not a single correct way to proceed.</p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display the  names of all the teachers whose id is <code>NOT</code> either 1,2, or 4</li>
+	<li>Display the names of all the teachers whose department is either 1 or 4</li>
+</ul>
+<h2>Using <code>IN</code> to compose subqueries</h2>
+<p>Set it up so that you  can view all the teavcher and department entries while reading this section.</p>
+<p>In the last exxercise, you were able to print out teachers who had particular department ids. The <code>department</code> field in the <code>teachers</code> table. If  you recall (look at the <code>teacher</code> schema if you do not), is a foreign key, referencing  the <code>id</code> column (which is a uniquely identifying  primary key) in the <code>departments</code> table. You might imagine wanting to answer a question like &#8220;who are all the teachers in &#8216;cs&#8217; department&#8221;, instead of &#8220;all the teachers in the department with an id of 1&#8221;. In order to do this you would first need to find out what the <code>id</code> field is for the department with the name &#8216;cs&#8217;, and then, with that id, ask for any of the teachers whose department foreign key equals the id you just retrieved.</p>
+<p>Thus we could first:</p>
+<p><code>SELECT id from departments WHERE name = 'cs';</code></p>
+<p>And then with our result, 1, issue a second query:</p>
+<p><code>SELECT name FROM teachers WHERE department = 1;</code></p>
+<p>The following is not legitimate <span class="caps">SQL</span> but represents what we would like to be  able to do, namely, filter our second  query by the results of the first.</p>
+<p><code>SELECT name from teachers WHERE department = (SELECT id from departments WHERE name = 'cs');</code></p>
+<p>The above can be only slightly modified to be valid <span class="caps">SQL</span>. Review the syntaxx for <code>IN</code> above,  and you&#8217;ll  notice the use of <code>(</code> and <code>)</code>. In order to make this nested selection, simply use the <code>IN</code> command passing in a separate query as the possibilities to filter by. Thus:</p>
+<p><code>SELECT name FROM  teachers WHERE department IN (SELECT id from departments WHERE name = 'cs');</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Display the name and id of all the teachers in the &#8216;psy&#8217; department. Should be &#8216;pamela&#8217; and &#8216;sunny&#8217; with their respective ids.</li>
+	<li>Display  the name of the department that &#8216;sunny&#8217; teaches for (should be &#8216;psy&#8217;)</li>
+</ul>
+<h2>Querying multiple tables</h2>
+<p>You can select from multiple tables in <span class="caps">SQL</span> with the following syntax:</p>
+<p><code>SELECT * FROM &lt;table1&gt;, &lt;table2&gt; [, &lt;tablen&gt;];</code></p>
+<p>To help gain intuition about what will happen during a multitable select statement, display all the rows of the <code>departments</code> and then, in a separate query, all the rows from <code>classes</code></p>
+<p><img src="multi0.png" style="max-width: 500px"></img></p>
+<p>Let&#8217;s create a new supertable that joins both tables together and let&#8217;s call it departments, classes. It will have all the columns of both tables joined together side by side.</p>
+<p><img src="multi1.png"  style="max-width: 500px"></img></p>
+<p>Now let&#8217;s take every single row of the <code>departments</code> table and join it with every single row in the <code>classes</code> table</p>
+<p><img src="multi2.png"  style="max-width: 500px"></img></p>
+<p>Then we get the next row<br />
+<img src="multi3.png"  style="max-width: 500px"></img></p>
+<p>Eventually we get to the last combination<br />
+<img src="multi4.png"  style="max-width: 500px"></img></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Try to find out a way to get all the foreign keys of the classes table to match up with what it references to in the departments table. This will give you  a supertable that will reflect what you expect in the real world.</li>
+</ul>
+<h2>Changing column names by using <code>AS</code></h2>
+<p>We can modify column names by using the keyword <code>AS</code> for example, if we wanted to change the column name <code>id</code> within the table <code>departments</code> to <code>dept_id</code> we do</p>
+<p><code>SELECT id AS dept_id from departments</code></p>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Select from the teachers and departments table but call the <code>id</code> of teachers <code>teacher_id</code> and the <code>id</code> of departments, <code>dept_id</code></li>
+</ul>
+<h2>Coding Exercises</h2>
+<ul>
+	<li>Create a file called <code>twitter.db</code> in your twitter analyzer repository. This is your database. <br />
+<code>touch twitter.db</code></li>
+	<li>In your server code add <code>import sqlite3</code></li>
+	<li>Connect to your database by following the instructions in the documentation <br />
+<a href="https://docs.python.org/2/library/sqlite3.html">here</a></li>
+	<li>Draw your table schemas for your database. Think about what you need to store. What should the table name be? What columns should it have?</li>
+	<li>Make sure you have an <code>id</code> column. Make it the <code>PRIMARY KEY</code> and <code>AUTOINCREMENT</code> it. Autoincrement will mean that every time you insert a new row, it will automatically give it an ID that is incremented from the last insertion. This means<br />
+that during an insertion to the database, you don&#8217;t have to explicitly add the id value. SQLITE3 will do it for you and give it an id value</li>
+	<li>Look at how they create tables in <a href="https://docs.python.org/2/library/sqlite3.html">here</a>. Create your table in your server code</li>
+	<li>Now, every time you restart your server, you&#8217;ll be recreating the table. Add <br />
+<code>IF NOT EXISTS</code> on your <code>CREATE TABLE</code> statement. It should look something like<br />
+<code>CREATE TABLE IF NOT EXISTS some_table (id INTEGER PRIMARY KEY AUTOINCREMENT, ...);</code></li>
+	<li>Create a new route called <code>twitter_clone</code> as in number 3.</li>
+	<li>Learn how to insert into a table in <a href="https://docs.python.org/2/library/sqlite3.html">here</a>. Add this to your route&#8217;s function for a <span class="caps">POST</span>. For your get, use a <code>SELECT</code> statement</li>
+	<li>Create your html file associated with the <code>twitter_clone</code> route</li>
+</ul>
+<h2>Challenge</h2>
+<ul>
+	<li>Create a <code>User</code> table think about what columns are needed</li>
+	<li>Each Tweet is associated with one User, but one User is associated with many tweets. Therefore each tweet must have a foreign key to a user&#8217;s id. Draw out the schema and create the tables</li>
+	<li>Create a new html page called register and one called login.</li>
+	<li>Create a new route called login and a new route called register.</li>
+	<li>Create forms in each html page for login and registration</li>
+	<li>On your login page, you can expect a user to submit their username and password. Search for the User in the database with that particular userid and password combination and redirect them to all their tweets.</li>
+	<li>Learn about requiring authentication for certain pages. We will <a href="https://www.tutorialspoint.com/flask/flask_cookies.htm">use cookies</a> to keep track of users and check if they are logged in. If they are logged in, they will have a cookie set, if they log out then &lt;a href =&#8220;https://stackoverflow.com/questions/14386304/flask-how-to-remove-cookies&#8221;&gt; &#8220;delete&#8221;</a> their cookie <a href="http://flask.pocoo.org/snippets/8/">See here for auth instructions</a> This will restrict access to the tweets page without logging in.</li>
+	<li>This is similar to authentication in the real world, but is definitely not productionizable. For one, we would want to encrypt all the passwords and decrypt them. Here&#8217;s how to store passwords in a database with  <a href="https://stackoverflow.com/questions/9559549/how-to-compare-plain-text-password-to-hashed-password-using-bcrypt"><code>bcrypt</code></a></li>
+</ul>
+<h2>Install and setup a Local <span class="caps">MYSQL</span> server</h2>
+<p>You will be using <span class="caps">MYSQL</span> as an <span class="caps">RDBMS</span>.</p>
+<ul>
+	<li>Ensure you have <code>mysql</code> installed by running <code>which mysql</code>. Run <code>brew install mysql</code> if it is not installed</li>
+	<li>Run <code>brew services start mysql</code> to start mysql</li>
+	<li>Run <code>brew services stop mysql</code> to stop mysql</li>
+</ul>
+<p>When you interact with mysql you always interact as a specific user. MySQL comes out of the box with a single user already created called <code>root</code>.</p>
+<ul>
+	<li>Create a password for <code>root</code> by using <code>mysqladmin -u root password</code>. You will be asked to enter and confirm a new password. Make it really short for development purposes</li>
+</ul>
+<h2>Coding exercise</h2>
+<ul>
+	<li>Create a <span class="caps">MYSQL</span> database from an interactive shell.</li>
+</ul>
+<p>1. mysql -u root -p, give the password  you just created when prompted</p>
+<p>2. Use <code>CREATE</code> and <code>USE</code> a new database</p>
+<p>3. Create a table with at least 4 columns, one of them set as a primary key</p>
+<p>4. Use <code>DESCRIBE &lt;tablename&gt;</code> to ensure you made the table</p>
+<p>5. <code>INSERT</code> some rows into your table</p>
+<p>6. Execute queries</p>
         <nav class="foot-navigation">
       <a href="lab_04.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>

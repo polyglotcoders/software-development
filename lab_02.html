@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 2 - Python 101</title>
+    <title>Lab 2 - Software Development</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
-    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="description" content="A guided tour thatintroduces students to building web applications">
     <meta name="theme-color" content="#0000ff">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="screen" href="reset.css">
@@ -31,115 +31,91 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 101</span></a>
+          <a href="index.html"><span>Software Development</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">Client-Server Model</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">API</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Homework Assignment 04</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">REST</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">SQL</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Client Side Programming</a></li>
+  <li id="lab_7_link"><a href="lab_07.html">Node</a></li>
+  <li id="lab_8_link"><a href="lab_08.html">React</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 2</em>  Variables</h1>
+        <h1 class="lab_title"><em>lab 2</em>  <span class="caps">API</span></h1>
 <h2>Goals</h2>
 <ul>
-	<li>Start creating your own variables</li>
-	<li>Understand what variables are</li>
+	<li>To understand what an <span class="caps">API</span> is</li>
+	<li>Make <span class="caps">API</span> calls from the console</li>
+	<li>Make <span class="caps">API</span> calls from python code</li>
 </ul>
-<h2>A variable is a value that can change</h2>
-<p>Try to predict what lucy would be on each print</p>
-<h3 class="file-heading"><em>variables.py</em></h3>
-<pre class="file">lucy = 10 + 2 - 1
-print("lucy variable value: {}".format(lucy))
-lucy = 13 + 2 - 1
-print("lucy variable value: {}".format(lucy))
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python variables.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python variables.py</div>
-<p>lucy variable value: 11<br />
-lucy variable value: 14<br />
-</pre></p>
-<h2>Python has untyped variables</h2>
-<ul>
-	<li>In python, variables can be of <span class="caps">ANY</span> type and you don&#8217;t have to declare it.</li>
-</ul>
-<p>This is what it looks like in C / C++, where you have to declare the type of variable</p>
-<h3 class="file-heading"><em>typed_variables.h</em></h3>
-<pre class="file">int lucy = 1;
-string colm = "Hello";
-float morsal = 3.705;
-</pre>
-<p>This is what it looks like in python</p>
-<h3 class="file-heading"><em>untyped_variables.py</em></h3>
-<pre class="file">lucy = 1
-colm = "Hello"
-morsal = 3.705
-</pre>
-<h2>Unlike normal math equations, the &#8220;conclusion&#8221; is on the left side</h2>
-<p>In math we do something like <code>1 + 2 + 3 = answer</code> in programming however, we set the answer to the equation. <code>answer = 1 + 2 + 3</code> The lefthand side almost always contains only one word.</p>
-<h2>Name of the variable does not matter</h2>
-<p>A common mistake people often make is thinking that the name of the variable matters. it does not.</p>
-<h3 class="file-heading"><em>name_does_not_matter.py</em></h3>
-<pre class="file">harry = 1.385
-one = "Harry"
-</pre>
-<p>Run this file and you will see that it won&#8217;t throw any errors</p>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python name_does_not_matter.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python name_does_not_matter.py</div>
-<p></pre></p>
-<p>Another common mistake people make is thinking that there has to be quotation marks to variables. Variables never have quotation marks. They aren&#8217;t strings! Their value could be strings, but they are not.</p>
-<h3 class="file-heading"><em>quotation_marks_around_vars.py</em></h3>
-<pre class="file">"one" = "Harry"
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python quotation_marks_around_vars.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python quotation_marks_around_vars.py</div>
-File &#8220;quotation_marks_around_vars.py&#8221;, line 1
-&#8220;one&#8221; = &#8220;Harry&#8221;
-^
-<p>SyntaxError: can&#8217;t assign to literal<br />
-</pre></p>
-<h2>Advanced: Return multiple values in python.</h2>
-<p>Python is quite unique in that you can make two variables equal to two statements. An example of this would be a function that returns two values.</p>
-<h3 class="file-heading"><em>return_two_values.py</em></h3>
-<pre class="file">def fn_return_two():
-  return "a", "b"
+<h2>What is an <span class="caps">API</span>?</h2>
+<p>An <span class="caps">API</span> is a software-to-software interface. Recall in class us talking about computers fetching information or data from another computer. In our case we might fetch the latest Tweets from Twitter&#8217;s <span class="caps">API</span>, or the latest posts in Reddit&#8217;s <span class="caps">API</span>.</p>
+<h2>What is an endpoint?</h2>
+<p>Just an <span class="caps">HTML</span> address that gives you access to data</p>
+<p>Let&#8217;s install <a href="https://www.getpostman.com/">Postman</a></p>
+<p>Now let&#8217;s first take a look at reddit&#8217;s <span class="caps">API</span> for a particular subreddit.</p>
+<p>Go to <a href="https://www.reddit.com/r/ubc.json">https://www.reddit.com/r/ubc.json</a>. You&#8217;ll see that this gives us data for that particular subreddit. Now let&#8217;s use postman to fetch it.</p>
+<h2>So what&#8217;s the point of all of this?</h2>
+<p>Well, you&#8217;ll be running your sentiment analyzer on all the posts of a particular subreddit of your choice by fetching data for that subreddit. We&#8217;ll first be hardcoding it to return values, then we&#8217;ll start doing javascript to take in inputs</p>
+<h2>So how do I make a request to fetch information?</h2>
+<p>Let&#8217;s say we wanted to play around with <a href="https://github.com/HackerNews/API"> hacker news&#8217; <span class="caps">API</span> </a></p>
+<p>Let&#8217;s get the top 10 story ids on Hacker News&#8217; <span class="caps">API</span></p>
+<h3 class="file-heading"><em>request_json_ubc.py</em></h3>
+<pre class="file">import requests
 
-str_1, str_2 = fn_return_two()
-
-print("This is the first value returned {}".format(str_1))
-print("This is the second value returned {}".format(str_2))
+# Get top story ids on hacker news
+response = requests.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
+print(response.json())
 </pre>
 <h3><b>Execute:</b></h3>
-<pre class="instructions">python return_two_values.py</pre>
+<pre class="instructions">python3 request_json_ubc.py</pre>
 <h3><b>Output:</b></h3>
 <pre class="sample">
-<div class="sample_command">$ python return_two_values.py</div>
-<p>This is the first value returned a<br />
-This is the second value returned b<br />
+<div class="sample_command">$ python3 request_json_ubc.py</div>
+<p>[19436885, 19437245, 19431444, 19437574, 19437690, 19437963, 19434192, 19420212, 19435631, 19421500, 19435635, 19433344, 19430684, 19430487, 19424813, 19435854, 19434966, 19417079, 19429724, 19432953, 19433610, 19437465, 19432957, 19428032, 19431927, 19433018, 19437293, 19432702, 19437150, 19430630, 19425276, 19419295, 19429719, 19432758, 19431005, 19436857, 19424467, 19429887, 19438052, 19428700, 19430971, 19437924, 19429630, 19436412, 19429193, 19430187, 19433496, 19425485, 19421063, 19434280, 19423452, 19435791, 19424041, 19432563, 19437765, 19433825, 19436845, 19436092, 19430880, 19436032, 19426062, 19415735, 19423827, 19421119, 19428433, 19431436, 19436177, 19434057, 19429249, 19422833, 19432950, 19423539, 19432615, 19432788, 19419567, 19418491, 19434030, 19429522, 19427332, 19428278, 19429544, 19425243, 19437612, 19425589, 19436961, 19423806, 19433325, 19424428, 19428796, 19436554, 19416159, 19418224, 19433030, 19425844, 19423036, 19418570, 19431994, 19420532, 19423369, 19426186, 19428066, 19420408, 19428353, 19433831, 19430696, 19413436, 19423770, 19420454, 19428060, 19428475, 19420368, 19425637, 19425774, 19420557, 19435932, 19419403, 19426573, 19423470, 19424106, 19428048, 19414511, 19425708, 19431518, 19413786, 19424614, 19424311, 19431086, 19429590, 19422780, 19429792, 19436737, 19420977, 19428021, 19423434, 19422333, 19422342, 19420834, 19416560, 19424802, 19428794, 19418997, 19423464, 19415983, 19416678, 19422310, 19425065, 19423228, 19426570, 19419886, 19426538, 19431412, 19422419, 19425170, 19423278, 19430990, 19424914, 19425693, 19432603, 19416485, 19419279, 19423635, 19421166, 19411485, 19422361, 19417619, 19413195, 19424145, 19430291, 19413127, 19432627, 19411336, 19428380, 19427075, 19417877, 19430773, 19435461, 19421815, 19414019, 19413964, 19419451, 19428208, 19419025, 19435307, 19418782, 19421612, 19429857, 19424372, 19429829, 19415484, 19437239, 19419486, 19421227, 19412084, 19420590, 19418218, 19429318, 19426660, 19412911, 19418543, 19421697, 19415362, 19431091, 19412667, 19409367, 19414775, 19413469, 19433113, 19426104, 19430488, 19420628, 19421698, 19413271, 19418770, 19413262, 19415765, 19421032, 19431736, 19432785, 19415445, 19434173, 19424762, 19421904, 19422749, 19418101, 19422671, 19415186, 19413214, 19436553, 19428391, 19421791, 19427743, 19413634, 19411797, 19415973, 19413569, 19410111, 19413159, 19417561, 19414092, 19411731, 19415066, 19420952, 19410233, 19430999, 19423288, 19420971, 19432299, 19419748, 19413454, 19414275, 19432192, 19420846, 19419825, 19423298, 19417640, 19432016, 19431953, 19412478, 19427598, 19421486, 19421301, 19424204, 19409611, 19416085, 19413444, 19413027, 19414733, 19411641, 19420141, 19411159, 19416094, 19421988, 19417241, 19421732, 19412420, 19413348, 19422281, 19421467, 19425318, 19409902, 19411732, 19421476, 19425153, 19430579, 19414591, 19424625, 19426701, 19416584, 19408810, 19427774, 19425476, 19409618, 19416295, 19423578, 19426067, 19410972, 19409975, 19416032, 19423116, 19409584, 19413852, 19411799, 19422383, 19417797, 19429115, 19425848, 19414087, 19410187, 19414627, 19415001, 19413901, 19408597, 19413448, 19427554, 19412088, 19416167, 19423559, 19427411, 19421516, 19414164, 19429611, 19410659, 19423115, 19416740, 19412301, 19429550, 19420810, 19413727, 19411998, 19414278, 19426704, 19421829, 19424161, 19408882, 19425349, 19429200, 19429175, 19411961, 19429109, 19422919, 19419732, 19411927, 19409014, 19414205, 19409429, 19418701, 19408875, 19427450, 19424915, 19408731, 19424350, 19424248, 19427325, 19418617, 19418597, 19417757, 19427178, 19427148, 19425423, 19408866, 19414270, 19422587, 19424490, 19413637, 19424066, 19426405, 19422186, 19424734, 19421303, 19417483, 19426221, 19427931, 19421653, 19410536, 19414414, 19417110, 19409907, 19415887, 19417327, 19411548, 19416596, 19413193, 19416879, 19409046, 19425355, 19423136, 19413288, 19413600, 19411648, 19412778, 19415427, 19430775, 19411513, 19436074, 19408847, 19418142, 19423049, 19421030, 19426012, 19411777, 19422028, 19418672, 19418775, 19412853, 19425112, 19409391, 19421155, 19421077, 19409080, 19424414, 19417229, 19426019, 19435286, 19420515, 19424029, 19423950, 19423581, 19411863, 19423324, 19423286, 19423187, 19417030, 19423033, 19412694, 19418980, 19408576, 19413189, 19423147, 19410683, 19421920, 19410735, 19417970, 19415941, 19417336, 19410981, 19416897, 19411669, 19413142, 19417827, 19417634, 19417631, 19411572, 19417143, 19428782, 19423671, 19418823, 19412394, 19413339, 19411713, 19412750, 19408777, 19415309, 19412307, 19417445, 19411252, 19412978, 19412800, 19415679, 19418863, 19414548, 19411971, 19414372, 19408742, 19411459, 19409625, 19412943, 19412700, 19408572, 19411153, 19410349, 19409181, 19414057, 19409513, 19429881, 19409244, 19409469, 19410928, 19418244, 19427204, 19430663, 19415599, 19408735, 19427053, 19421357, 19422195, 19428102, 19425046, 19432362, 19410510, 19412295, 19425252]<br />
 </pre></p>
-<h2>Coding Exercises</h2>
-<p>Remember to add, commit, and push the file to your own forked repo!</p>
-<p>1. Create a file called <code>lecture_00_lab02_variables.py</code></p>
-<p>2. Create variables for your first name, last name, your school, your favorite number, and your favorite color!</p>
-<p>3. Return the string &#8220;42&#8221; by adding <span class="caps">TWO</span> strings together. Do not just give <code>forty_two = "42"</code></p>
-<p>4. Return the integer value 5 by using addition, subtraction, and division</p>
+<p>Now let&#8217;s say that we wanted to get the stories for just the top 10</p>
+<h3 class="file-heading"><em>request_top_10.py</em></h3>
+<pre class="file">import requests
+
+response = requests.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
+
+# Get top 10 ids
+top_ten_ids = response.json()[:10]
+
+print('Top ten ids:', top_ten_ids)
+
+# Fetch top 10 stories
+
+stories = []
+for id in top_ten_ids:
+  curr_story_api_url = 'https://hacker-news.firebaseio.com/v0/item/{}.json?print=pretty'.format(id)
+  curr_story = requests.get(curr_story_api_url)
+  stories.append(curr_story.json())
+
+print('Top ten stories:', stories)
+</pre>
+<h3><b>Execute:</b></h3>
+<pre class="instructions">python3 request_top_10.py</pre>
+<h3><b>Output:</b></h3>
+<pre class="sample">
+<div class="sample_command">$ python3 request_top_10.py</div>
+<p>Top ten ids: [19436885, 19437245, 19431444, 19437574, 19437690, 19437963, 19434192, 19420212, 19435631, 19421500]<br />
+Top ten stories: [{&#8217;by&#8217;: &#8216;grantlmiller&#8217;, &#8216;descendants&#8217;: 43, &#8216;id&#8217;: 19436885, &#8216;kids&#8217;: [19437847, 19437380, 19438232, 19438081, 19437400, 19437345, 19438033, 19437513, 19437535, 19437838, 19437364, 19437818, 19438235, 19437943, 19438192, 19437330, 19437824, 19437695, 19437370, 19437985, 19437649], &#8216;score&#8217;: 152, &#8216;time&#8217;: 1553035466, &#8216;title&#8217;: &#8216;Making Grass Flow Like Water to Save the Planet&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://www.charmindustrial.com/blog/2019/3/17/making-grass-flow-like-water&#8217;}, {&#8217;by&#8217;: &#8216;quickthrower2&#8217;, &#8216;descendants&#8217;: 32, &#8216;id&#8217;: 19437245, &#8216;kids&#8217;: [19437897, 19437567, 19437896, 19437785, 19437657, 19437923, 19437263, 19437596, 19437542, 19437727, 19437994, 19437967], &#8216;score&#8217;: 62, &#8216;time&#8217;: 1553037950, &#8216;title&#8217;: &#8216;Setting Up a Software Development Environment on Alpine Linux&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://blog.overops.com/my-alpine-desktop-setting-up-a-software-development-environment-on-alpine-linux/&#8217;}, {&#8217;by&#8217;: &#8216;collinmanderson&#8217;, &#8216;descendants&#8217;: 332, &#8216;id&#8217;: 19431444, &#8216;kids&#8217;: [19433394, 19432569, 19434017, 19432149, 19432722, 19432432, 19432755, 19433702, 19432323, 19432803, 19432242, 19437416, 19432229, 19433411, 19436622, 19435188, 19437801, 19437982, 19434259, 19431448, 19437184, 19437589, 19433389, 19436985, 19432548, 19435654, 19436867, 19436134, 19435776, 19435479, 19434527, 19437812, 19433541, 19433736, 19432911, 19434195, 19434336, 19433413, 19437039, 19437258, 19433274, 19435689, 19433034, 19435115, 19434621, 19433662, 19434608, 19433768, 19432652, 19434761, 19433977, 19432464, 19434600, 19433647, 19436717, 19436593, 19432410, 19434463, 19433190, 19437517, 19435404, 19432500, 19432400, 19434522, 19435101, 19435428, 19433163, 19436302, 19432199, 19435920, 19435598, 19434413, 19434279, 19433579, 19434807, 19433641, 19432558], &#8216;score&#8217;: 562, &#8216;time&#8217;: 1553007880, &#8216;title&#8217;: &#8216;Open Source Doesn’t Make Money Because It Isn’t Designed to Make Money&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;http://www.ianbicking.org/blog/2019/03/open-source-doesnt-make-money-by-design.html&#8217;}, {&#8217;by&#8217;: &#8216;erict15&#8217;, &#8216;descendants&#8217;: 77, &#8216;id&#8217;: 19437574, &#8216;kids&#8217;: [19438006, 19437893, 19437869, 19438085, 19437829, 19437791, 19437836, 19437784, 19437888, 19437833, 19437908], &#8216;score&#8217;: 98, &#8216;time&#8217;: 1553040995, &#8216;title&#8217;: &#8216;Pilot Who Hitched a Ride Saved Lion Air 737 Day Before Deadly Crash&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://www.bloomberg.com/news/articles/2019-03-19/how-an-extra-man-in-cockpit-saved-a-737-max-that-later-crashed&#8217;}, {&#8217;by&#8217;: &#8216;doppp&#8217;, &#8216;descendants&#8217;: 4, &#8216;id&#8217;: 19437690, &#8216;kids&#8217;: [19438154, 19438202], &#8216;score&#8217;: 29, &#8216;time&#8217;: 1553042075, &#8216;title&#8217;: &#8216;Kickstarter <span class="caps">CEO</span> Perry Chen Steps Down&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://techcrunch.com/2019/03/19/kickstarter-ceo-perry-chen-steps-down/&#8217;}, {&#8217;by&#8217;: &#8216;4d66ba06&#8217;, &#8216;descendants&#8217;: 2, &#8216;id&#8217;: 19437963, &#8216;kids&#8217;: <sup class="footnote" id="fnr19438282"><a href="#fn19438282">19438282</a></sup>, &#8216;score&#8217;: 12, &#8216;time&#8217;: 1553044669, &#8216;title&#8217;: &#8216;Volk Fi brings to you the first distributed network smartphone&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://volkfi.com/&#8217;}, {&#8217;by&#8217;: &#8216;dyukqu&#8217;, &#8216;descendants&#8217;: 28, &#8216;id&#8217;: 19434192, &#8216;kids&#8217;: [19435098, 19435058, 19437676, 19437650, 19437202, 19436592], &#8216;score&#8217;: 150, &#8216;time&#8217;: 1553021241, &#8216;title&#8217;: &#8216;MS TextWorld: open-source engine that both generates and simulates text games&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://www.microsoft.com/en-us/research/project/textworld/&#8217;}, {&#8217;by&#8217;: &#8216;colinprince&#8217;, &#8216;descendants&#8217;: 82, &#8216;id&#8217;: 19420212, &#8216;kids&#8217;: [19434728, 19437036, 19435219, 19434508, 19434626, 19434398, 19435415, 19437082, 19435271, 19437761, 19434602, 19434143, 19437187, 19435040, 19435285, 19434813, 19434843, 19434263, 19436179, 19438111], &#8216;score&#8217;: 207, &#8216;time&#8217;: 1552908542, &#8216;title&#8217;: &#8216;Pixelfed – An alternative to centralized image sharing platforms&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://pixelfed.social/site/about&#8217;}, {&#8217;by&#8217;: &#8216;ausjke&#8217;, &#8216;descendants&#8217;: 100, &#8216;id&#8217;: 19435631, &#8216;kids&#8217;: [19437071, 19436613, 19436140, 19436948, 19436733, 19436396, 19436685, 19436069, 19436677, 19436059, 19437308, 19436259, 19435872, 19437117, 19436101, 19437945, 19436071, 19436130, 19437584, 19437557, 19436652, 19437350], &#8216;score&#8217;: 131, &#8216;time&#8217;: 1553028288, &#8216;title&#8217;: &#8216;How to take back control of /etc/resolv.conf on Linux&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://www.ctrl.blog/entry/resolvconf-tutorial&#8217;}, {&#8217;by&#8217;: &#8216;DyslexicAtheist&#8217;, &#8216;descendants&#8217;: 0, &#8216;id&#8217;: 19421500, &#8216;score&#8217;: 8, &#8216;time&#8217;: 1552920649, &#8216;title&#8217;: &#8216;Curing the Vulnerable Parser: Design Patterns for Secure Input Handling (2017) [pdf]&#8217;, &#8216;type&#8217;: &#8216;story&#8217;, &#8216;url&#8217;: &#8216;https://www.usenix.org/system/files/login/articles/login_spring17_08_bratus.pdf&#8217;}]<br />
+</pre></p>
+<h2>Coding exercise</h2>
+<p>1. Fetch the titles of the top 50 stories of Hacker News</p>
+<p>2. Get the top 5 comments of the top 10 stories of Hacker News</p>
+<p>3. Run Sentiment Analysis on the top 5 comments of the top 10 stories in hacker news</p>
         <nav class="foot-navigation">
       <a href="lab_01.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>

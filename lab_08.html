@@ -202,7 +202,9 @@ this.setState({
 </pre>
 <h2>Coding Exercise</h2>
 <ul>
+	<li>To make life easier, remove the isLoggedIn on your <code>routes/index.js</code> on the /photos route.</li>
 	<li>Add to the images you receive if you go to localhost:5000/photos. The code associated with it is in routes/photos/all Make sure you get at least 5 images. The component associated with localhost:5000/photos is the Feed component. If you look at <code>app/index.jsx</code> you&#8217;ll see which client route is associated with which component. The feed component makes a request  to <code>routes/photos/all</code> and adds it to the render</li>
+	<li>Make sure that the feed component makes a request to the correct route. Currently it is pointing to <code>/pictures</code>. Where should it go instead?</li>
 	<li>Refresh the page and make sure you see all 5 images.</li>
 	<li>Shrink the size of the images so that it&#8217;s more appropriate</li>
 </ul>

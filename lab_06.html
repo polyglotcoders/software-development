@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 6 - Python 101</title>
+    <title>Lab 6 - Software Development</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
-    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="description" content="A guided tour thatintroduces students to building web applications">
     <meta name="theme-color" content="#0000ff">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="screen" href="reset.css">
@@ -31,33 +31,116 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 101</span></a>
+          <a href="index.html"><span>Software Development</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">Client-Server Model</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">API</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Homework Assignment 04</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">REST</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">SQL</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Client Side Programming</a></li>
+  <li id="lab_7_link"><a href="lab_07.html">Node</a></li>
+  <li id="lab_8_link"><a href="lab_08.html">React</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 6</em>  Homework Assignment 00</h1>
-<p>1. Open up <code>ha_00_python101.ipynb</code> and finish by next class</p>
+        <h1 class="lab_title"><em>lab 6</em>  Client Side Programming</h1>
+<h2>What is client-side programming?</h2>
+<p>So far, we&#8217;ve only been talking about server-side programming. Whenever you make a get request, it just gives you the rendered template html. Each &#8220;endpoint&#8221; in your server gives you back html.</p>
+<p>Client-side programming mostly relies on getting <span class="caps">JSON</span>  back from the server, and then using javascript to display said data on a single html page. This gives us a lot more flexibility in  displaying things, and also alleviates the load in a server by letting each client compute and render things rather than the server you pay for.</p>
+<h2>What is Javascript?</h2>
+<p>Javascript is the language of the web. As we&#8217;ve mentioned before a browser understands <span class="caps">HTML</span>, <span class="caps">CSS</span>, and Javascript.</p>
+<h2>Simple coding exercise with JQuery</h2>
+<ul>
+	<li>Create a new flask app called chat-app</li>
+	<li>Create a homepage route that will connect to an index.html page. Copy paste previous code if needed.</li>
+	<li>Add the <a href="https://code.jquery.com/">jquery scripts from the <span class="caps">CDN</span></a> on your header code. This will allow you to access functions written by jquery</li>
+	<li>Commit and push the code</li>
+	<li>Within static create a new file called <code>chat.js</code></li>
+</ul>
+<p>A page can&#8217;t be manipulated safely until the document is &#8220;ready.&#8221; jQuery detects this state of readiness for you. Code included inside $( document ).ready() will only run once the page Document Object Model (<span class="caps">DOM</span>) is ready for JavaScript code to execute.</p>
+<h3 class="file-heading"><em>chat.js</em></h3>
+<pre class="file">$( document ).ready(function() {
+    alert( "ready!" );
+});
+</pre>
+<ul>
+	<li>Now add a script that references the chat.js file in the header</li>
+	<li>Start up your app. You should see a popup that says &#8220;ready!&#8221;</li>
+</ul>
+<h2>Console</h2>
+<p>The javascript console in the browser is the best way to debug things. You&#8217;ve used the inspector before to temporarily change css code. Right click on a browser page and press Inspect or do <code>option + cmd + i</code> and click on  <code>Console</code> in the headers</p>
+<h2>Coding Exercise</h2>
+<ul>
+	<li>Change your chat.js alert to use a <code>console.log</code> function instead. This is akin to &#8220;print&#8221; in python</li>
+	<li>Now refresh the page. You should see it in the console on the inspector!</li>
+</ul>
+<h2>Buttons</h2>
+<p>JQuery allows you to run code when you click on a button.</p>
+<h3 class="file-heading"><em>button_example.js</em></h3>
+<pre class="file">$("#target").click(function() {
+  alert("Handler for .click() called.");
+});
+</pre>
+<h2>Coding Exercise</h2>
+<ul>
+	<li>Create a new route that will return a random string of your choosing</li>
+	<li>Create an empty html div with the id <code>#random-string</code></li>
+	<li>Create a button with the id <code>#target</code></li>
+	<li>Create a click handler similar to <code>button_example.js</code> that will run javascript when you click it the button with the id <code>#target</code></li>
+	<li>Within your button code, make a get request <span class="caps">VIA</span> <a href="https://api.jquery.com/jquery.post/">ajax</a> and append it to the html div with the id <code>#random-string</code></li>
+	<li>Test out your code! Refresh the page. When you click on the button you should see your random string appear</li>
+	<li>Now instead of fetching data from your own server, fetch data from hacker news&#8217; <span class="caps">API</span>. Fetch the top 10 stories when you click on your button</li>
+</ul>
+<h2>Ajax and Callbacks</h2>
+<p>Your code for the get should&#8217;ve looked something like this</p>
+<h3 class="file-heading"><em>ajax_get.js</em></h3>
+<pre class="file">$.get( "/random_string", function(data) {
+  $( "#random-string" ).html( data );
+});
+</pre>
+<p>Now you might be wondering what you&#8217;re passing as &#8220;data&#8221;. But this is not a normal parameter where you explicitly type out the value of data. This is a placeholder for a value you will receive from the server / another call. This is called a &#8220;callback&#8221;.</p>
+<p>We often use callbacks when we want to retrieve values that may take a while. Instead of waiting until we get it and pause our entire program waiting for it, we wait for a signal in the form of &#8220;data&#8221; to get back from the server before we proceed with the code. The javascript program / code you write though, will continue to proceed and run the rest of the code. It will only come back to running the code inside the callback after it receives data it tried to fetch</p>
+<p>Coding Exercise:</p>
+<p>Copy the code below in your <code>chat.js</code> application</p>
+<h3 class="file-heading"><em>httpRequestNoCallback.js</em></h3>
+<pre class="file">var randomStringData;
+$.get("random_string", function(data) {
+  randomStringData = data;
+  console.log("Value of randomStringData inside callback", randomStringData);
+});
+console.log("Value of randomStringData outside of callback", randomStringData);
+</pre>
+<ul>
+	<li>Take a look at the value of randomStringData. What&#8217;s the value if it&#8217;s outside of the callback? What&#8217;s its value inside of the callback?</li>
+	<li>Which one ran first?<br />
+p. Whenever you try to fetch data &#8220;asynchronously&#8221;, we can only manipulate that data inside a callback. If it&#8217;s outside the scope of a callback we won&#8217;t be able to have access to the data * Now fetch data from hacker news instead. Sort the top 10 stories alphabetically by title</li>
+</ul>
+<h2>Chat Application</h2>
+<ul>
+	<li>In this project, you will create a basic single-room chat application using jquery and flask.</li>
+	<li>Create a function called <code>fetch</code> to retrieve all the latest messages on the server</li>
+	<li>Create a <code>poller</code> which will constantly call the <code>fetch</code> function</li>
+	<li>Send new messages via <code>ajax POST</code></li>
+	<li>Within your <code>fetch</code> function, make sure you append the results to a div</li>
+	<li>Create a function called clear all messages that will clear all messages</li>
+</ul>
         <nav class="foot-navigation">
       <a href="lab_05.html">
       <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
       Previous
     </a>
   
-  
-    <span></span
+      <a href="lab_07.html">
+      <svg version="1.1" width="36" height="36" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.66,15.61,18,6,8.34,15.61A1,1,0,1,0,9.75,17L17,9.81V28.94a1,1,0,1,0,2,0V9.81L26.25,17a1,1,0,0,0,1.41-1.42Z"></path></svg>
+      Next
+    </a>
   </nav>
 
       </div>

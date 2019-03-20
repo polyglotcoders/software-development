@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lab 1 - Python 101</title>
+    <title>Lab 1 - Software Development</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover"">
-    <meta name="description" content="A guided tour that walks through the fundamentals of Git">
+    <meta name="description" content="A guided tour thatintroduces students to building web applications">
     <meta name="theme-color" content="#0000ff">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="screen" href="reset.css">
@@ -31,87 +31,42 @@
     <div class="layout">
       <div id="index">
         <p class="link-home">
-          <a href="index.html"><span>Python 101</span></a>
+          <a href="index.html"><span>Software Development</span></a>
         </p>
         <button class="link-menu">Menu</button>
         <nav tabindex="0">
           <ol>
-              <li id="lab_1_link"><a href="lab_01.html">Top Down</a></li>
-  <li id="lab_2_link"><a href="lab_02.html">Variables</a></li>
-  <li id="lab_3_link"><a href="lab_03.html">Data types and Data Structures</a></li>
-  <li id="lab_4_link"><a href="lab_04.html">Operators</a></li>
-  <li id="lab_5_link"><a href="lab_05.html">Quiz 00</a></li>
-  <li id="lab_6_link"><a href="lab_06.html">Homework Assignment 00</a></li>
+              <li id="lab_1_link"><a href="lab_01.html">Client-Server Model</a></li>
+  <li id="lab_2_link"><a href="lab_02.html">API</a></li>
+  <li id="lab_3_link"><a href="lab_03.html">Homework Assignment 04</a></li>
+  <li id="lab_4_link"><a href="lab_04.html">REST</a></li>
+  <li id="lab_5_link"><a href="lab_05.html">SQL</a></li>
+  <li id="lab_6_link"><a href="lab_06.html">Client Side Programming</a></li>
+  <li id="lab_7_link"><a href="lab_07.html">Node</a></li>
+  <li id="lab_8_link"><a href="lab_08.html">React</a></li>
 
           </ol>
         </nav>
       </div>
 
       <div id="content" tabindex="-1">
-        <h1 class="lab_title"><em>lab 1</em>  Top Down</h1>
+        <h1 class="lab_title"><em>lab 1</em>  Client-Server Model</h1>
 <h2>Goals</h2>
 <ul>
-	<li>Understand how code can be used in a real application</li>
+	<li>To understand what the server-client model is</li>
+	<li>Write your first server in flask</li>
 </ul>
-<h2>Stare at this code for a couple of minutes</h2>
-<h3 class="file-heading"><em>user.py</em></h3>
-<pre class="file">import datetime # this is how we import methods / functions from other places
-
-# Here is a class
-class User:
-  def __init__(self, name, lastname, password, birthday, address, telephone, hobbies, email):
-    self.name = name
-    self.lastname = lastname
-    self.password = password
-    self.birthday = birthday
-    self.address = address
-    self.telephone = telephone
-    self.hobbies = hobbies
-    self.email = email
-
-  def get_age(self):
-    # Get today's date
-    today = datetime.datetime.today()
-    age = today.year - self.birthday.year
-
-    return age
-
-  def change_password(self, new_password):
-    if len(new_password) &lt; 6:
-      raise ValueError('New password cannot contain less than 6 characters')
-
-    self.password  = new_password
-
-  def add_hobby(self, hobby):
-    self.hobbies.append(hobby)
-
-# Here is how to "instantiate" a class
-
-bob = User(
-  "bob",
-  "jones",
-  "supersecretpassword",
-  datetime.date(1992, 3, 12),
-  "450 SW Marine Drive",
-  "604 123 4567",
-  ["basketball", "baking"],
-  "bob.jones@gmail.com"
-)
-
-print("Bob's age: {}".format(bob.get_age()))
-print("Bob's original password {}".format(bob.password))
-bob.change_password("newpassword")
-print("Bob's new password {}".format(bob.password))
-</pre>
-<h3><b>Execute:</b></h3>
-<pre class="instructions">python user.py</pre>
-<h3><b>Output:</b></h3>
-<pre class="sample">
-<div class="sample_command">$ python user.py</div>
-<p>Bob&#8217;s age: 27<br />
-Bob&#8217;s original password supersecretpassword<br />
-Bob&#8217;s new password newpassword<br />
-</pre></p>
+<h2>What is a server?</h2>
+<p>It&#8217;s a computer than can handle requests.</p>
+<h2>What is a client?</h2>
+<p>It&#8217;s a computer that makes requests</p>
+<h2>So they&#8217;re both computers</h2>
+<p>Yes. A server can be a client and a client can be a server. Take your macbook for instance. Your macbook can be a server to itself, and we&#8217;ll see that soon!</p>
+<h2>What is the client-server model?</h2>
+<p><img src="./cgi_round_trip.jpg"></img></p>
+<p>Here we can see a client making a request for a website. The code for the website is located in a server somewhere in Menlo Park, California. The code runs, and we return some html and <span class="caps">CSS</span>.</p>
+<h2>Let&#8217;s write some code!</h2>
+<p>1. <a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a></p>
         <nav class="foot-navigation">
   
     <span></span>
